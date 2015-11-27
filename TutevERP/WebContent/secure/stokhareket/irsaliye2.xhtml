@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<f:metadata http-equiv="Content-Type"
+		content="text/html; charset=ISO-8859-9" />
+	<h:title >
+		<h1>İrsaliye Tablosu</h1> </h:title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel id="giris" header="İrsaliye Giriş" toggleable="true">
+
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel for="tur" value="İrsaliye Türü: " />
+				<p:selectOneMenu id="tur" value="#{irsaliyeController.irsaliye.tur}"
+					style="width:150px">
+					<f:selectItem itemLabel="Giriş İrsaliyesi" itemValue="G" />
+					<f:selectItem itemLabel="Çıkış İrsaliyesi" itemValue="C" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="tarih" value="İrsaliye Tarihi: " />
+				<p:calendar id="tarih" value="#{irsaliyeController.irsaliye.tarih}"
+					locale="tr" pattern="dd/MM/yyyy" />
+
+				<p:outputLabel for="firma_id" value="Firma Id:" />
+				<p:inputMask id="firma_id"
+					value="#{irsaliyeController.irsaliye.firma_id}" mask="99999" />
+
+				<p:outputLabel for="tel" value="Telefon:" />
+				<p:inputMask id="tel"
+					value="#{irsaliyeController.irsaliye.adres.tel}"
+					mask="999-999 9999" />
+
+				<p:outputLabel for="mail" value="E-Posta:" />
+				<p:inputMask id="mail"
+					value="#{irsaliyeController.irsaliye.adres.mail}" mask="*@*.*" />
+
+				<p:outputLabel for="acikAdres" value="Açık Adres:" />
+				<p:inputTextarea id="acikAdres"
+					value="#{irsaliyeController.irsaliye.adres.acikAdres}" />
+
+				<p:outputLabel for="pk" value="Posta Kodu: " />
+				<p:inputMask id="pk" value="#{irsaliyeController.irsaliye.adres.pk}"
+					mask="a*-999-a999" />
+
+				<panel> <p:commandButton value="Reset" type="reset" /> <!-- <p:commandButton id="btnIrsaliyeKaydet" value="Kaydet" update="display" oncomplete="PF('dlg').show()" /> -->
+				<p:commandButton id="btnIrsaliyeKaydet" value="Kaydet"
+					actionListener="#{irsaliyeController.irsaliyeKaydet}"
+					update="irsaliyeList" /> </panel>
+			</h:panelGrid>
+		</p:panel>
+		<p:panel id="horizontal" header="İrsaliye Listesi" toggleable="true">
+			<p:dataTable id="irsaliyeList" name="irsaliyeListesi" var="irs"
+				value="#{irsaliyeController.irsaliyeListesi}">
+				<p:column headerText="İrsaliye No">
+					<h:outputText value="#{irs.id}" />
+				</p:column>
+				<p:column headerText="İrsaliye Türü">
+					<h:outputText value="#{irs.tur}" />
+				</p:column>
+				<p:column headerText="İrsaliye Tarihi">
+					<h:outputText value="#{irs.tarih}" />
+				</p:column>
+				<p:column headerText="Açık Adresi">
+					<h:outputText value="#{irs.adres.acikAdres}" />
+				</p:column>
+				<p:column headerText="Telefon">
+					<h:outputText value="#{irs.adres.tel}" />
+				</p:column>
+				<p:column headerText="E-Posta">
+					<h:outputText value="#{irs.adres.mail}" />
+				</p:column>
+				<p:column headerText="Posta Kodu">
+					<h:outputText value="#{irs.adres.pk}" />
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

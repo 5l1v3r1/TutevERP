@@ -4,6 +4,7 @@
 package org.tutev.web.erp.controller.stokhareket;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -26,12 +27,8 @@ public class IrsaliyeController implements Serializable {
 	 */
 	private static final long serialVersionUID = -5319940611320885717L;
 
-	/**
-	 * 
-	 */
-
 	@Autowired
-	public transient IrsaliyeService irsaliyeService;
+	private transient IrsaliyeService irsaliyeService;
 
 	private Irsaliye irsaliye;
 	List<Irsaliye> irsaliyeListesi;
@@ -42,6 +39,7 @@ public class IrsaliyeController implements Serializable {
 	}
 
 	public void irsaliyeKaydet() {
+		// irsaliye.setTarih(new Date());
 		irsaliyeService.save(irsaliye);
 	}
 

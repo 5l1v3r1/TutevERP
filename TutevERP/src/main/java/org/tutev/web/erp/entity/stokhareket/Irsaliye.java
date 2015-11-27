@@ -3,7 +3,11 @@
  */
 package org.tutev.web.erp.entity.stokhareket;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -73,7 +77,6 @@ public class Irsaliye extends BaseEntity {
 	 * @param adres
 	 */
 	public Irsaliye(Long id, String tur, Date tarih, Long firma_id, Adres adres) {
-		super();
 		this.id = id;
 		this.tur = tur;
 		this.tarih = tarih;
@@ -103,13 +106,23 @@ public class Irsaliye extends BaseEntity {
 	}
 
 	@Column(name = "TARIH")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	public Date getTarih() {
 		return tarih;
 	}
 
 	public void setTarih(Date tarih) {
 		this.tarih = tarih;
+	}
+
+	public void setTarih(String tarih) throws ParseException {
+		// this.tarih = new Date(tarih);
+		try {
+			DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+			this.tarih = df.parse(tarih);
+		} catch (ParseException e) {
+			this.tarih = new Date();
+		}
 	}
 
 	@Column(name = "FIRMA_ID", precision = 10, scale = 0)
