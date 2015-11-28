@@ -20,9 +20,6 @@ import org.tutev.web.erp.entity.fatura.Fatura;
 @Service("faturaService")
 public class FaturaService implements ServiceBase<Fatura> {
 
-	public FaturaService() {
-		System.out.println("FaturaService Yüklendi");
-	}
 	@Autowired
 	private transient BaseDao baseDao;
 	

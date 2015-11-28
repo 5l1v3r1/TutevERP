@@ -21,9 +21,6 @@ import org.tutev.web.erp.service.exception.NameNotNullException;
 @Service("kisiService")
 public class KisiService implements ServiceBase<Kisi> {
 	
-	public KisiService() {
-		System.out.println("KisiService Yüklendi");
-	}
 
 	@Autowired
 	private transient BaseDao baseDao;

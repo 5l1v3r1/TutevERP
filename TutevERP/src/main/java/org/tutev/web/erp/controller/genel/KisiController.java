@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -29,14 +30,15 @@ public class KisiController implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		kisiListesi=kisiService.getAll();
 	}
 
 	public void kisiKaydet() {
-		
 		kisi.setDogumTarihi(new Date());
 		kisiService.save(kisi);
 		kisiListesi=kisiService.getAll();
+		kisi=null;
 	}
 	
 

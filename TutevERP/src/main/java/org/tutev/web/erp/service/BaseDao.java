@@ -19,10 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository("baseService")
 public class BaseDao {
 	
-	public BaseDao() {
-		System.out.println("Base Dao Yüklendi");
-	}
-
 	@Autowired
 	private SessionFactory sessionFactory;
 
