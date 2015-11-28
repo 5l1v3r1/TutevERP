@@ -17,7 +17,7 @@ import org.tutev.web.erp.service.KisiService;
 public class KisiController implements Serializable {
 
 	/**
-	 * 
+	 * Taner TEMEL
 	 */
 	private static final long serialVersionUID = -3607896108305768125L;
 
