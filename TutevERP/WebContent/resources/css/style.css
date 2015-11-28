@@ -1,0 +1,100 @@
+
+.bodyClass{
+	font-size: 10px !important;
+	overflow: hidden;
+}
+.menuTreeClass
+{
+	font-size: 12px;
+	display: inline-block;
+	text-decoration: none; 
+	display: -moz-inline-block ;
+	*display: inline;
+}
+
+.imgLogo{
+        position: absolute;
+        width: 115px; 
+        height: 50px; 
+        left: 50%;
+        top: 50%;
+        margin-left: -50px; 
+        margin-top: -25px; 
+    }
+    
+.divisionContent{
+	 padding: 12px 0px;
+}
+
+#upSide
+{
+	position: relative;
+	float: left;
+	width: 100%;
+	height:60px;
+	font-size:32px;
+	font-family: sans-serif;
+	text-align:left;
+	text-indent: 20px;
+	background-image: url('../images/edenetimBanner.png');
+	background-repeat:no-repeat;
+	background-position:left top;
+	background-size: 100%;
+}
+
+#leftSide
+{
+	position: relative;
+	float: left;
+	width: 15%;
+	height: 80%;
+	overflow: auto;
+}
+
+#rightSide
+{
+	position: relative;
+	float: left;
+	width: 85%;
+	height: 90%;
+	margin-top: -12px;
+}
+#wrap
+{
+width:100%;
+float:left;
+height:auto;
+overflow:hidden;
+}
+
+
+#post
+{
+width: 100px; !important;
+color:red;
+height: auto; !important;
+display:inline-block; 
+margin: 3px; 
+}
+
+
+#tabs li .ui-icon-close {
+	float: left;
+	margin: 0.4em 0.2em 0 0;
+	cursor: pointer;
+}
+
+.ui-widget {
+	font-size: 12px !important;
+}
+
+.ui-widget .ui-widget {
+	font-size: 12px !important;
+}
+
+.ui-widget-content,.ui-state-default,.ui-widget-content .ui-state-default,.ui-widget-header .ui-state-default
+	{
+	font-size: 12px !important;
+}
+ 
+

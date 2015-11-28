@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<f:facet name="first">
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="" />
+		<meta name="author" content="Test" />
+		<title>Tütev ERP</title>
+	</f:facet>
+	<f:facet name="middle">
+		<h:outputStylesheet name="bower_components/bootstrap/dist/css/bootstrap.min.css"></h:outputStylesheet>
+		<h:outputStylesheet name="/TutevERP/resources/bower_components/metisMenu/dist/metisMenu.min.css"></h:outputStylesheet>
+		<h:outputStylesheet name="css/css/timeline.css"></h:outputStylesheet>
+		<h:outputStylesheet name="css/css/sb-admin-2.css"></h:outputStylesheet>
+		<h:outputStylesheet name="css/style.css"></h:outputStylesheet>
+		<h:outputStylesheet name="bower_components/morrisjs/morris.css"></h:outputStylesheet>
+		<h:outputStylesheet name="/TutevERP/resources/bower_components/font-awesome/css/font-awesome.min.css" />
+
+		<h:outputScript name="/TutevERP/resources/bower_components/jquery/dist/jquery.min.js" target="head" />
+		<h:outputScript library="bower_components"	name="bootstrap/dist/js/bootstrap.min.js" target="head" />
+		<h:outputScript name="/TutevERP/resources/bower_components/metisMenu/dist/metisMenu.min.js" target="head" />
+		<h:outputScript library="bower_components" name="raphael/raphael-min.js" target="head" />
+		<h:outputScript library="js" name="sb-admin-2.js" target="head" />
+	</f:facet>
+</h:head>
+<h:body>
+	<div id="wrapper">
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			style="margin-bottom: 0 ; background-color:black">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" style="color: white;"
+				href="">
+				</a> <a href=""
+				target="_blank"> <p:graphicImage library="img"
+					styleClass="imgLogo" name="logo.png"></p:graphicImage>
+			</a>
+		</div>
+		<ul class="nav navbar-top-links navbar-right">
+			<a class="navbar-brand" style="color: white;"
+				href="">Hoşgeldiniz Taner </a>
+
+		</ul>
+		<div class="navbar-default sidebar" role="navigation">
+			<div class="sidebar-nav navbar-collapse">
+				<ul class="nav" id="side-menu">
+					
+				<li><a href="#"><i class="fa fa-sitemap fa-fw"></i>Başlık<span
+						class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+<!-- 								menu -->
+					</ul></li>
+					
+				</ul>
+			</div>
+		</div>
+		</nav>
+		<div class="divisionContent">
+			<div id="page-wrapper">
+				<div class="row">
+					<div class="col-lg-14">
+						<ui:insert name="pageContent" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>
