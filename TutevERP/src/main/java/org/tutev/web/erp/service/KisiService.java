@@ -12,6 +12,7 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tutev.web.erp.entity.genel.Kisi;
+import org.tutev.web.erp.service.exception.NameNotNullException;
 
 /**
  * 
@@ -19,12 +20,19 @@ import org.tutev.web.erp.entity.genel.Kisi;
  */
 @Service("kisiService")
 public class KisiService implements ServiceBase<Kisi> {
+	
+	public KisiService() {
+		System.out.println("KisiService Yüklendi");
+	}
 
 	@Autowired
 	private transient BaseDao baseDao;
 
 	@Override
-	public Kisi save(Kisi entity) {
+	public Kisi save(Kisi entity)  {
+		if(entity==null && entity.getAd().trim().equals(""))
+			return null;
+//			throw new NameNotNullException();
 		baseDao.save(entity);
 		return entity;
 	}
