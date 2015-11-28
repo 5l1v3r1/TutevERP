@@ -17,8 +17,12 @@
 		http://www.springframework.org/schema/task/spring-task-3.1.xsd">
 
 <!-- taner.temelt@gmail.com -->
-	<context:component-scan base-package="org.tutev.web.erp" />
+	<context:component-scan base-package="org.tutev.web" />
 
+	<task:scheduler id="taskScheduler"/>
+	<task:executor id="taskExecutor" pool-size="3"/>
+	<task:annotation-driven executor="taskExecutor" scheduler="taskScheduler"/>
+	
 	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
 
  	<bean id="DataSource" class="org.postgresql.jdbc3.Jdbc3PoolingDataSource">

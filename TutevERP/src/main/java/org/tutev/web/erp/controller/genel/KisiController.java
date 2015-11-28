@@ -36,7 +36,9 @@ public class KisiController implements Serializable {
 		
 		kisi.setDogumTarihi(new Date());
 		kisiService.save(kisi);
+		kisiListesi=kisiService.getAll();
 	}
+	
 
 	public Kisi getKisi() {
 		if (kisi == null) {
