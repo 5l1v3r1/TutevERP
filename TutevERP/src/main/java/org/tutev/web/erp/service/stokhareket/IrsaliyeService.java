@@ -14,7 +14,8 @@ import org.tutev.web.erp.entity.stokhareket.Irsaliye;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * @author Mehmet Emin IÞIK
+ * @author Mehmet Emin IÅžIK
+ * 
  * @param <Irsaliye>
  * 
  */
