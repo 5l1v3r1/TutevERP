@@ -24,7 +24,7 @@ public class BaseDao {
 	}
 
 	@Autowired
-	private transient SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();

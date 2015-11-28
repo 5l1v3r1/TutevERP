@@ -28,7 +28,7 @@ public class KisiController implements Serializable {
 	List<Kisi> kisiListesi;
 
 	@PostConstruct
-	private void init() {
+	public void init() {
 		kisiListesi=kisiService.getAll();
 	}
 
