@@ -11,7 +11,7 @@
 		<h1>İrsaliye Tablosu</h1> </h:title>
 </h:head>
 <h:body>
-	<h:form>
+	<h:form id="frmIrsaliye">
 		<p:panel id="giris" header="İrsaliye Giriş" toggleable="true">
 
 			<h:panelGrid columns="2" cellpadding="5">
@@ -47,10 +47,11 @@
 				<p:inputMask id="pk" value="#{irsaliyeController.irsaliye.adres.pk}"
 					mask="a*-999-a999" />
 
-				<panel> <p:commandButton value="Reset" type="reset" /> <!-- <p:commandButton id="btnIrsaliyeKaydet" value="Kaydet" update="display" oncomplete="PF('dlg').show()" /> -->
+				<panel> 
+				<p:commandButton value="Reset" type="reset" /> <!-- <p:commandButton id="btnIrsaliyeKaydet" value="Kaydet" update="display" oncomplete="PF('dlg').show()" /> -->
 				<p:commandButton id="btnIrsaliyeKaydet" value="Kaydet"
 					actionListener="#{irsaliyeController.irsaliyeKaydet}"
-					update="irsaliyeList" /> </panel>
+					update=":frmIrsaliye:irsaliyeList" /> </panel>
 			</h:panelGrid>
 		</p:panel>
 		<p:panel id="horizontal" header="İrsaliye Listesi" toggleable="true">

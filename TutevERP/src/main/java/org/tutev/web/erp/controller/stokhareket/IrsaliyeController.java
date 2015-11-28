@@ -41,6 +41,7 @@ public class IrsaliyeController implements Serializable {
 	public void irsaliyeKaydet() {
 		// irsaliye.setTarih(new Date());
 		irsaliyeService.save(irsaliye);
+		irsaliyeListesi = irsaliyeService.getAll();
 	}
 
 	/**
