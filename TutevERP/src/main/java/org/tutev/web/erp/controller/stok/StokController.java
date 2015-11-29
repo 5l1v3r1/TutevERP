@@ -58,7 +58,7 @@ public class StokController implements Serializable {
 	}
 	
 	
-	
+	 
 	
 	public void stokKaydet() {
 		try {
