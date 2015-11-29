@@ -10,7 +10,7 @@
 		<h:form id="frmFatura" >
 
 			<p:panelGrid id="pnlFatura" columns="1">
-				<p:dataTable id="tblFatura" widgetVar="tblFatura" var="fatura"
+				<p:dataTable id="tblFatura" widgetVar="tblFatura" var="fatura" paginatorPosition="bottom"
 					value="#{faturaController.faturaListesi}" rows="10" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="10,20,50">
@@ -26,12 +26,22 @@
 					<p:column headerText="Fatura Tipi">
 						<h:outputText value="#{fatura.faturaTipi}" />
 					</p:column>
+					<p:column headerText="İşlemler">
+						<p:commandButton value="Sil" icon="ui-icon-trash" actionListener="#{faturaController.sil(fatura.id)}" update=":frmFatura:tblFatura">
+							<p:confirm header="Silme Onay" message="Silmek İstediginizden Emin misiniz?" icon="ui-icon-alert" />
+						</p:commandButton>	
+						<p:commandButton icon="ui-icon-pencil" value="Düzenle" update=":frmFatura:dlgFatura" oncomplete="PF('dlgFatura').show()" actionListener="#{faturaController.duzenle(fatura.id)}" > </p:commandButton>
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					    </p:confirmDialog>					
+					</p:column>
 					
 				</p:dataTable>
 
 
-				<p:commandButton value="Yeni Fatura" process="@form"
-					onclick="PF('dlgFatura').show();"></p:commandButton>
+				<p:commandButton value="Yeni Fatura" actionListener="#{faturaController.yeni}" update=":frmFatura:dlgFatura"
+					oncomplete="PF('dlgFatura').show();"></p:commandButton>
 
 
 			</p:panelGrid>
@@ -50,7 +60,7 @@
 					<p:inputText value="#{faturaController.fatura.faturaTipi}"></p:inputText>
 
 					<h:outputText value="Fatura Tarihi : " />
-					<p:calendar id="popup" value="#{faturaController.fatura.faturaTarihi}" />
+					<p:calendar id="popup" locale="tr"  value="#{faturaController.fatura.faturaTarihi}" />
 					
 					<h:outputText value="Müşteri Adı: " />
 					<p:inputText value="#{faturaController.fatura.musteriAdi}"></p:inputText>

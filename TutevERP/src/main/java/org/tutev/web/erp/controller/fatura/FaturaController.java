@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.tutev.web.erp.entity.fatura.Fatura;
+import org.tutev.web.erp.entity.genel.Kisi;
 import org.tutev.web.erp.service.FaturaService;
 
 
@@ -25,19 +26,39 @@ public class FaturaController implements Serializable{
 
 	@PostConstruct
 	public void init() {
-		FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		
 		faturaListesi=faturaService.getAll();
 	}
 
 	public void faturaKaydet() {
-		faturaService.save(fatura);
-
-		faturaListesi=faturaService.getAll();
-		fatura=null;
+		try {
+			if(fatura.getId()==null)
+				faturaService.save(fatura);
+			else
+				faturaService.update(fatura);	
+			
+			faturaListesi=faturaService.getAll();
+		} catch (Exception e) {
+		}
 	}
 	
 	public List<Fatura> getFaturaListesi() {
 		return faturaListesi;
+	}
+	
+	
+	public void sil(Long id) {
+		Fatura silinecekFatura = faturaService.getById(id);
+		faturaService.delete(silinecekFatura);
+		faturaListesi=faturaService.getAll();
+	}
+	
+	public void duzenle(Long id) {
+		fatura = faturaService.getById(id);
+	}
+	
+	public void yeni() {
+		fatura=null;
 	}
 
 	public Fatura getFatura() {
