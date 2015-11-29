@@ -30,12 +30,10 @@ public class KisiController implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		kisiListesi=kisiService.getAll();
 	}
 
 	public void kisiKaydet() {
-		kisi.setDogumTarihi(new Date());
 		kisiService.save(kisi);
 		kisiListesi=kisiService.getAll();
 		kisi=null;

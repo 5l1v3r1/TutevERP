@@ -1,14 +1,11 @@
-<ui:composition 
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	 template="/layout/layout.xhtml" >
-	
-<ui:define name="pageContent">
-		<h:form id="frmKisi" >
-
+	template="/layout/layout.xhtml">
+	<ui:define name="pageContent">
+		<h:form id="frmKisi">
 			<p:panelGrid id="pnlKisi" columns="1">
 				<p:dataTable id="tblKisi" widgetVar="tblKisi" var="car"
 					value="#{kisiController.kisiListesi}" rows="10" paginator="true"
@@ -52,15 +49,17 @@
 					<p:inputText value="#{kisiController.kisi.soyad}"></p:inputText>
 
 					<h:outputText value="Doğum Tarihi : " />
-					<p:calendar id="popup" value="#{kisiController.kisi.dogumTarihi}" />
+					<p:calendar id="popup" value="#{kisiController.kisi.dogumTarihi}"
+						locale="tr" />
 
 					<p:commandButton value="İptal" onclick="PF('dlgKisi').hide()"></p:commandButton>
-					<p:commandButton value="Kaydet" update=":frmKisi:tblKisi" process="@form"
+					<p:commandButton value="Kaydet"
+						update=":frmKisi:tblKisi,:frmKisi:dlgKisi" process="@form"
 						oncomplete="PF('dlgKisi').hide()"
 						action="#{kisiController.kisiKaydet}"></p:commandButton>
 				</p:panelGrid>
 
 			</p:dialog>
 		</h:form>
-</ui:define>
+	</ui:define>
 </ui:composition>

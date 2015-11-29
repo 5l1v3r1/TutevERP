@@ -22,6 +22,7 @@
 		<h:outputStylesheet name="css/style.css"></h:outputStylesheet>
 		<h:outputStylesheet name="bower_components/morrisjs/morris.css"></h:outputStylesheet>
 		<h:outputStylesheet name="/TutevERP/resources/bower_components/font-awesome/css/font-awesome.min.css" />
+   		<h:outputScript library="js" name="commonUtils.js" target="head"/>
 
    		<h:outputScript library="bower_components" name="jquery/dist/jquery.min.js" target="head"/>
    		<h:outputScript library="bower_components" name="bootstrap/dist/js/bootstrap.min.js" target="head"/>
@@ -52,19 +53,18 @@
 		</div>
 		<ul class="nav navbar-top-links navbar-right">
 			<a class="navbar-brand" style="color: white;"
-				href="">Hoşgeldiniz Taner </a>
+				href="">Hoşgeldiniz #{homeController.username} </a>
 
 		</ul>
 		<div class="navbar-default sidebar" role="navigation">
 			<div class="sidebar-nav navbar-collapse">
 				<ul class="nav" id="side-menu">
 					
-				<li><a href="#"><i class="fa fa-sitemap fa-fw"></i>Başlık<span
-						class="fa arrow"></span></a>
+				<li><a href="#"><i class="fa fa-sitemap fa-fw"></i>Başlık<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-<!-- 								menu -->
+					<li><a href="/TutevERP/secure/index.xhtml"><i class="fa fa-user"></i>Ana Sayfa<span class="fa fa-user"></span></a></li>
+					<li><a href="/TutevERP/secure/kisi/kisi.xhtml"><i class="fa fa-user"></i>Kişi İşlemleri<span class="fa fa-user"></span></a></li>
 					</ul></li>
-					
 				</ul>
 			</div>
 		</div>
