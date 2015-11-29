@@ -11,13 +11,10 @@ import java.util.Map;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
-import org.hibernate.transform.ResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tutev.web.erp.entity.genel.Kisi;
-import org.tutev.web.erp.service.exception.NameNotNullException;
 import org.tutev.web.erp.util.PageingModel;
 
 /**
