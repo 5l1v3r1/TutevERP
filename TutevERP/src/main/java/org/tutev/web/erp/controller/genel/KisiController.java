@@ -1,11 +1,9 @@
 package org.tutev.web.erp.controller.genel;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -34,11 +32,31 @@ public class KisiController implements Serializable {
 	}
 
 	public void kisiKaydet() {
-		kisiService.save(kisi);
-		kisiListesi=kisiService.getAll();
-		kisi=null;
+		try {
+			if(kisi.getId()==null)
+				kisiService.save(kisi);
+			else
+				kisiService.update(kisi);	
+			
+			kisiListesi=kisiService.getAll();
+		} catch (Exception e) {
+		}
+
 	}
 	
+	public void sil(Long id) {
+		Kisi silinecekKisi = kisiService.getById(id);
+		kisiService.delete(silinecekKisi);
+		kisiListesi=kisiService.getAll();
+	}
+	
+	public void duzenle(Long id) {
+		kisi = kisiService.getById(id);
+	}
+	
+	public void yeni() {
+		kisi=null;
+	}
 
 	public Kisi getKisi() {
 		if (kisi == null) {

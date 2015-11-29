@@ -7,7 +7,7 @@
 	<ui:define name="pageContent">
 		<h:form id="frmKisi">
 			<p:panelGrid id="pnlKisi" columns="1">
-				<p:dataTable id="tblKisi" widgetVar="tblKisi" var="car"
+				<p:dataTable id="tblKisi" widgetVar="tblKisi" var="kisi" paginatorPosition="bottom"
 					value="#{kisiController.kisiListesi}" rows="10" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="10,20,50">
@@ -15,22 +15,32 @@
 						<h:outputText value="Kişi Listesi" />
 					</f:facet>
 					<p:column headerText="No">
-						<h:outputText value="#{car.id}" />
+						<h:outputText value="#{kisi.id}" />
 					</p:column>
 					<p:column headerText="Ad">
-						<h:outputText value="#{car.ad}" />
+						<h:outputText value="#{kisi.ad}" />
 					</p:column>
 					<p:column headerText="Soyad">
-						<h:outputText value="#{car.soyad}" />
+						<h:outputText value="#{kisi.soyad}" />
 					</p:column>
 					<p:column headerText="Doğum Tarihi">
-						<h:outputText value="#{car.dogumTarihi}" />
+						<p:calendar pattern="dd/MM/yyyy" disabled="true" value="#{kisi.dogumTarihi}"></p:calendar>						
+					</p:column>
+					<p:column headerText="İşlemler">
+						<p:commandButton value="Sil" icon="ui-icon-trash" actionListener="#{kisiController.sil(kisi.id)}" update=":frmKisi:tblKisi">
+							<p:confirm header="Silme Onay" message="Silmek İstediginizden Emin misiniz?" icon="ui-icon-alert" />
+						</p:commandButton>	
+						<p:commandButton icon="ui-icon-pencil" value="Düzenle" update=":frmKisi:dlgKisi" oncomplete="PF('dlgKisi').show()" actionListener="#{kisiController.duzenle(kisi.id)}" > </p:commandButton>
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					    </p:confirmDialog>					
 					</p:column>
 				</p:dataTable>
 
 
-				<p:commandButton value="Yeni" process="@form"
-					onclick="PF('dlgKisi').show();"></p:commandButton>
+				<p:commandButton value="Yeni" actionListener="#{kisiController.yeni}" update=":frmKisi:dlgKisi"
+					oncomplete="PF('dlgKisi').show();"></p:commandButton>
 
 
 			</p:panelGrid>
