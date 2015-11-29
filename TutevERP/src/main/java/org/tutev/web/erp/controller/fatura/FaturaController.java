@@ -1,39 +1,76 @@
 package org.tutev.web.erp.controller.fatura;
 
-import javax.annotation.PostConstruct;
+import java.io.Serializable;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.tutev.web.erp.entity.fatura.Fatura;
+import org.tutev.web.erp.entity.genel.Kisi;
+import org.tutev.web.erp.service.FaturaService;
 
 
 @Controller("faturaController")
 @Scope("session")
-public class FaturaController {
+public class FaturaController implements Serializable{
 
-	private int faturaId;
-	private String faturaAdi;
-	
-	
+	@Autowired
+	private transient FaturaService  faturaService;
+
+	private Fatura fatura;
+	List<Fatura> faturaListesi;
+
 	@PostConstruct
-	private void init() {
-		setFaturaAdi("Fatura1");
-		setFaturaId(1234);
+	public void init() {
 		
+		faturaListesi=faturaService.getAll();
+	}
+
+	public void faturaKaydet() {
+		try {
+			if(fatura.getId()==null)
+				faturaService.save(fatura);
+			else
+				faturaService.update(fatura);	
+			
+			faturaListesi=faturaService.getAll();
+		} catch (Exception e) {
+		}
 	}
 	
-	public int getFaturaId() {
-		return faturaId;
-	}
-	public void setFaturaId(int faturaId) {
-		this.faturaId = faturaId;
-	}
-	public String getFaturaAdi() {
-		return faturaAdi;
-	}
-	public void setFaturaAdi(String faturaAdi) {
-		this.faturaAdi = faturaAdi;
+	public List<Fatura> getFaturaListesi() {
+		return faturaListesi;
 	}
 	
+	
+	public void sil(Long id) {
+		Fatura silinecekFatura = faturaService.getById(id);
+		faturaService.delete(silinecekFatura);
+		faturaListesi=faturaService.getAll();
+	}
+	
+	public void duzenle(Long id) {
+		fatura = faturaService.getById(id);
+	}
+	
+	public void yeni() {
+		fatura=null;
+	}
+
+	public Fatura getFatura() {
+	 if(fatura==null)
+		 fatura=new Fatura();
+		return fatura;
+	}
+
+	public void setFatura(Fatura fatura) {
+		
+		this.fatura = fatura;
+	}
 
 	
 	
