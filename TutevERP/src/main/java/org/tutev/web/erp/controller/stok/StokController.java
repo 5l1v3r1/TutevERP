@@ -1,10 +1,13 @@
 package org.tutev.web.erp.controller.stok;
 import java.io.Serializable;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.tutev.web.erp.entity.genel.Kisi;
 import org.tutev.web.erp.entity.stok.StokKart;
 import org.tutev.web.erp.service.StokService;
 
@@ -37,18 +40,36 @@ public class StokController implements Serializable {
 		setStokListesi(stokService.getAll());
 	}
 				
+	public void stokSil(Long id) {
+		StokKart silinecekStokKart = stokService.getById(id);
+		stokService.delete(silinecekStokKart);
+		stokListesi=stokService.getAll();
+
+	}
+	
+	
+	public void stokDuzenle(Long id) {
+		stokKart = stokService.getById(id);
+	}
+	
+	
+	public void yeni() {
+		stokKart=null;
+	}
+	
+	
+	
+	
 	public void stokKaydet() {
-		//if(stokKart.getId()==null){
-		//stokService.save(stokKart);
-		//}else{
-		//stokService.update(stokKart);
-		//}		
-		System.out.println("Yeni Stok Kaydý");
-		//stokService.save(stokKart);
-		//yeniStokKart();
-		stokService.save(stokKart);
-		yeniStokKart();
-		stokListele();
+		try {
+			if(stokKart.getId()==null){
+				stokService.save(stokKart);
+			}else{
+				stokService.update(stokKart);}		
+			System.out.println("Yeni Stok Kaydi yapildi");
+			stokListele();
+			} catch (Exception e) {
+		}	
 	}
 	
 	public void stokDeleteByKod() {

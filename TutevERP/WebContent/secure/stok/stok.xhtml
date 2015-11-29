@@ -1,176 +1,68 @@
-<ui:composition 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html">
-	
-	<h:head>
-	<title>Stok Kartı Giriş Sayfasına Hoşgeldiniz</title>
-    </h:head>
-    <h:form id="form">
-     
-     <h2 class="first">Yeni Giris Tablosu</h2>
-     <p:dataTable var="car1" value="#{stokController.stokKart}" tableStyleClass="ui-table-columntoggle">
-         <p:column headerText="Kod">
-            <h:inputText value="#{stokController.stokKart.kod}" />
-         </p:column>  
-         <p:column headerText="Kategori">
-            <h:inputText value="#{stokController.stokKart.kategori}" />
-         </p:column> 
-         <p:column headerText="Marka">
-            <h:inputText value="#{stokController.stokKart.marka}" />
-         </p:column>
-         <p:column headerText="Urun Ad">
-            <h:inputText value="#{stokController.stokKart.urunAd}" />
-         </p:column>
-         <p:column headerText="Barkod">
-            <h:inputText value="#{stokController.stokKart.barkod}" />
-         </p:column>
-         <p:column headerText="Para Birim">
-            <h:inputText value="#{stokController.stokKart.paraBirim}" />
-         </p:column>
-         <p:column headerText="Giris Birim Fiyat">
-            <h:inputText value="#{stokController.stokKart.girisBirimFiyat}" />
-         </p:column>
-          <p:column headerText="Cikis Birim Fiyat">
-            <h:inputText value="#{stokController.stokKart.cikisBirimFiyat}" />
-         </p:column>
-         <p:column headerText="Olcu Birim">
-            <h:inputText value="#{stokController.stokKart.olcuBirim}" />
-         </p:column>
-         <p:column headerText="Urun Miktar">
-            <h:inputText value="#{stokController.stokKart.urunMiktar}" />
-         </p:column>
-      </p:dataTable>  
-        
-    <!-- STOK Bilgi Giris -->     
-    <!--    
-        
-        
-     
-     <h2 class="first">Eski Giris Tablosu</h2>
-    <table  >
-    
-	<tr style="background-color: grey">
-		<td valign="top">  <label for="stok_kategori">Stok Kategori:</label></td>
-		<td valign="top">  <h:inputText value="#{stokController.stokKart.kategori}" /> </td>
-	</tr>
-	
-	<tr>
-		<td valign="top">  <label for="stok_kod">Stok Kod:</label></td>
-		<td valign="top">  <h:inputText value="#{stokController.stokKart.kod}" /> </td>
-	</tr>
-	<tr style="background-color: grey">
-			<td valign="top">  <label for="stok_marka">Stok Marka:</label></td>
-			<td valign="top">  <h:inputText value="#{stokController.stokKart.marka}" /> </td>
-	</tr >
-	<tr>
-			<td valign="top">  <label for="stok_urunad">Stok UrunAd:</label></td>
-			<td valign="top">  <h:inputText value="#{stokController.stokKart.urunAd}" /> </td>
-	</tr>     
-	
-	<tr>
-			<td valign="top">  <label for="stok_barkod">Stok Barkod:</label></td>
-			<td valign="top">  <h:inputText value="#{stokController.stokKart.barkod}" /> </td>
-	</tr>
-    
-    <tr>
-			<td valign="top">  <label for="stok_paraBirim">Stok Parabirim:</label></td>
-			<td valign="top">  <h:inputText value="#{stokController.stokKart.paraBirim}" /> </td>
-	</tr>
-	
-	<tr>
-			<td valign="top">  <label for="stok_girisBirimFiyat">Stok Girisbirim Fiyat:</label></td>
-			<td valign="top">  <h:inputText value="#{stokController.stokKart.girisBirimFiyat}" /> </td>
-	</tr>
-  
-    <tr>
-			<td valign="top">  <label for="stok_cikisBirimFiyat">Stok Cikisbirim Fiyat:</label></td>
-			<td valign="top">  <h:inputText value="#{stokController.stokKart.cikisBirimFiyat}" /> </td>
-	</tr>
-	
-    
-    <tr>
-			<td valign="top">  <label for="stok_olcuBirim">Stok OlcuBirim :</label></td>
-			<td valign="top">  <h:inputText value="#{stokController.stokKart.olcuBirim}" /> </td>
-	</tr>
-	
-	<tr>
-			<td valign="top">  <label for="stok_urunMiktar">Stok Urun Miktar :</label></td>
-			<td valign="top">  <h:inputText value="#{stokController.stokKart.urunMiktar}" /> </td>
-	</tr>
-    
-    
-    
-    
-    
-    </table>
-    
-     
-    
-        
-    //-->
-    
-      <!-- Action Butonlar -->
-    
-   
-    <h2 class="first">Stok İşlemleri</h2>
-    
-    <p:growl id="growl" life="2000" />
-     
-    <p:commandButton value="Stok Listele" id="ajax" update="growl" actionListener="#{stokController.stokListele}" styleClass="ui-priority-primary" />
-    <p:commandButton value="Yeni Stok Kartı" id="ajax" update="growl" actionListener="#{stokController.yeniStokKart}" styleClass="ui-priority-primary" />
-    <p:commandButton value="Stok Kartını Kaydet" id="ajax" update="growl" actionListener="#{stokController.stokKaydet}" styleClass="ui-priority-primary" />
-    <p:commandButton value="Stok Koduna Göre Stok Sil" id="ajax" update="growl" actionListener="#{stokController.stokDeleteByKod}" styleClass="ui-priority-primary" />
-    <p:commandButton value="Stok Urun Adına Göre Stok Sil" id="ajax" update="growl" actionListener="#{stokController.stokDeleteByUrunAd}" styleClass="ui-priority-primary" />
-    
-    
-    
-      
-   
- 
-    <h2 class="first">Stok Tablosu</h2>
-    <p:dataTable var="car" value="#{stokController.stokListesi}" tableStyleClass="ui-table-columntoggle">
-        <p:column headerText="ID">
-            <h:outputText value="#{car.id}" />
-        </p:column>
-        
-         <p:column headerText="KOD">
-            <h:outputText value="#{car.kod}" />
-        </p:column>
- 
-        <p:column headerText="UrunAd">
-            <h:outputText value="#{car.urunAd}" />
-        </p:column>
- 
-        <p:column headerText="Kategori">
-            <h:outputText value="#{car.kategori}" />
-        </p:column>
-        <p:column headerText="Marka" >
-            <h:outputText value="#{car.marka}"/>
-        </p:column>
-        <p:column headerText="Barkod" >
-            <h:outputText value="#{car.barkod}"/>
-        </p:column>
-        <p:column headerText="ParaBirim" >
-            <h:outputText value="#{car.paraBirim}"/>
-        </p:column>
-        <p:column headerText="GirisBirimFiyat" >
-            <h:outputText value="#{car.girisBirimFiyat}"/>
-        </p:column>
-        <p:column headerText="CikisBirimFiyat" >
-            <h:outputText value="#{car.cikisBirimFiyat}"/>
-        </p:column>
-        <p:column headerText="OlcuBirim" >
-            <h:outputText value="#{car.olcuBirim}"/>
-        </p:column>
-         <p:column headerText="UrunMiktar" >
-            <h:outputText value="#{car.urunMiktar}"/>
-        </p:column>
-    
-    </p:dataTable>
-    </h:form>
-    
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/layout/layout.xhtml">
+	<ui:define name="pageContent">
+		<h:form id="frmStk">
+		<p:panelGrid id="pnlStk" columns="1">
+				<p:dataTable id="tblStk" widgetVar="tblStk" var="stkrt" paginatorPosition="bottom"
+					value="#{stokController.stokListesi}" rows="10" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="10,20,50">
+					<f:facet name="header">
+						<h:outputText value="Stok Listesi" />
+					</f:facet>
+					<p:column headerText="No">
+						<h:outputText value="#{stkrt.id}" />
+					</p:column>
+					<p:column headerText="UrunAd">
+						<h:outputText value="#{stkrt.urunAd}" />
+					</p:column>
+					<p:column headerText="Barkod">
+						<h:outputText value="#{stkrt.barkod}" />
+					</p:column>
+					<p:column headerText="İşlemler">
+						<p:commandButton value="Sil" icon="ui-icon-trash" actionListener="#{stokController.stokSil(stkrt.id)}" update=":frmStk:tblStk">
+							<p:confirm header="Silme Onay" message="Silmek İstediginizden Emin misiniz?" icon="ui-icon-alert" />
+						</p:commandButton>	
+						<p:commandButton icon="ui-icon-pencil" value="Düzenle" update=":frmStk:dlgStk" oncomplete="PF('dlgStk').show()" actionListener="#{stokController.stokDuzenle(stkrt.id)}" > </p:commandButton>
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					    </p:confirmDialog>					
+					</p:column>
+				</p:dataTable>
+				<p:commandButton value="Yeni" actionListener="#{stokController.yeni}" update=":frmStk:dlgStk"
+					oncomplete="PF('dlgStk').show();"></p:commandButton>		
+			
+			</p:panelGrid>
+			
+			<p:dialog id="dlgStk" widgetVar="dlgStk" appendTo="frmStk"
+				closable="true" header="Stok Düzenleme" modal="true">
+
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+						<h:outputText value="Stok Detayları" />
+					</f:facet>
+
+					<h:outputText value="Urun Adı : " />
+					<p:inputText value="#{stokController.stokKart.urunAd}"></p:inputText>
+
+					<h:outputText value="Urun Barkod : " />
+					<p:inputText value="#{stokController.stokKart.barkod}"></p:inputText>
+
+					<p:commandButton value="İptal" onclick="PF('dlgStk').hide()"></p:commandButton>
+					<p:commandButton value="Kaydet"
+						update=":frmStk:tblStk,:frmStk:dlgStk" process="@form"
+						oncomplete="PF('dlgStk').hide()"
+						action="#{stokController.stokKaydet}"></p:commandButton>
+				</p:panelGrid>
+
+			</p:dialog>
+			
+		  </h:form>		
+	</ui:define>	  
 	
 </ui:composition>	
