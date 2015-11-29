@@ -1,0 +1,70 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	 template="/layout/layout.xhtml" >
+	
+<ui:define name="pageContent">
+		<h:form id="frmFatura" >
+
+			<p:panelGrid id="pnlFatura" columns="1">
+				<p:dataTable id="tblFatura" widgetVar="tblFatura" var="fatura"
+					value="#{faturaController.faturaListesi}" rows="10" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="10,20,50">
+					<f:facet name="header">
+						<h:outputText value="Fatura Listesi" />
+					</f:facet>
+					<p:column headerText="Id">
+						<h:outputText value="#{fatura.id}" />
+					</p:column>
+					<p:column headerText="Fatura No">
+						<h:outputText value="#{fatura.faturaNo}" />
+					</p:column>
+					<p:column headerText="Fatura Tipi">
+						<h:outputText value="#{fatura.faturaTipi}" />
+					</p:column>
+					
+				</p:dataTable>
+
+
+				<p:commandButton value="Yeni Fatura" process="@form"
+					onclick="PF('dlgFatura').show();"></p:commandButton>
+
+
+			</p:panelGrid>
+			<p:dialog id="dlgFatura" widgetVar="dlgFatura" appendTo="dlgFatura"
+				closable="true" header="Fatura Düzenleme" modal="true">
+
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+						<h:outputText value="Fatura Detayları" />
+					</f:facet>
+
+					<h:outputText value="Fatura Adı : " />
+					<p:inputText value="#{faturaController.fatura.faturaNo}"></p:inputText>
+
+					<h:outputText value="Fatura Tipi : " />
+					<p:inputText value="#{faturaController.fatura.faturaTipi}"></p:inputText>
+
+					<h:outputText value="Fatura Tarihi : " />
+					<p:calendar id="popup" value="#{faturaController.fatura.faturaTarihi}" />
+					
+					<h:outputText value="Müşteri Adı: " />
+					<p:inputText value="#{faturaController.fatura.musteriAdi}"></p:inputText>
+					
+					<h:outputText value="Miktar : " />
+					<p:inputText value="#{faturaController.fatura.miktar}"></p:inputText>
+
+					<p:commandButton value="İptal" onclick="PF('dlgFatura').hide()"></p:commandButton>
+					<p:commandButton value="Kaydet" update=":frmFatura:tblFatura" process="@form"
+						oncomplete="PF('dlgFatura').hide()"
+						action="#{faturaController.faturaKaydet}"></p:commandButton>
+				</p:panelGrid>
+
+			</p:dialog>
+		</h:form>
+</ui:define>
+</ui:composition>
