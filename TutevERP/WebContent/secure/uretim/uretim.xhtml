@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>JSF 2 URETIM</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h2>JSF 2.0 Uretim Ornek - welcome.xhtml</h2>
+		<h2>Welcome</h2>
+		<table width="450px">
+			<tr>
+				 
+				<td valign="top">  <label for="uretimNo">Üretim No</label>  
+				</td>  
+				<td valign="top">  <h:inputText
+						value="#{uretimController.uretim.uretimNo}" />  
+				</td>
+			</tr>
+			 
+
+			<tr>
+				 
+				<td valign="top">  <label for="miktar">Miktar</label></td>  
+				<td valign="top">  <h:inputText
+						value="#{uretimController.uretim.miktar}" />  
+				</td>
+			</tr>
+
+			<tr>
+				 
+				<td valign="top">  <label for="ekleyen"> Ekleyen</label></td>  
+				<td valign="top">  <h:inputText
+						value="#{uretimController.uretim.ekleyen}" />  
+				</td>
+			</tr>
+
+			<tr>
+				 
+				<td colspan="2" style="text-align: center"><h:commandButton
+						id="btnUretimKaydet" value="UretimKaydet"
+						actionListener="#{uretimController.uretimKaydet}"></h:commandButton>
+					 </td>
+			</tr>
+		</table>
+
+		<p:dataTable var="car" value="#{uretimController.uretimListesi}">
+			<p:column headerText="Uretim No">
+				<h:outputText value="#{car.uretimNo}" />
+			</p:column>
+
+			<p:column headerText="Miktar">
+				<h:outputText value="#{car.miktar}" />
+			</p:column>
+
+			<p:column headerText="Ekleyen">
+				<h:outputText value="#{car.ekleyen}" />
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+</h:body>
+
+</html>

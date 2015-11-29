@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+</h:head>
+<h:body>
+	<h:form id="ftmUretim">
+
+		<p:panelGrid id="pnlKisi" columns="1">
+			<p:dataTable id="tblUretim" widgetVar="tblUretim" var="car"
+				value="#{uretimController.uretimListesi}" rows="10" paginator="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="10,20,50">
+				<f:facet name="header">
+					<h:outputText value="Üretim Listesi" />
+				</f:facet>
+
+				<p:column headerText="Üretim No">
+					<h:outputText value="#{car.uretimNo}" />
+				</p:column>
+				<p:column headerText="miktar">
+					<h:outputText value="#{car.miktar}" />
+				</p:column>
+				<p:column headerText="Ekleyen">
+					<h:outputText value="#{car.ekleyen}" />
+				</p:column>
+				<p:column headerText="Ekleme Tarihi">
+					<h:outputText value="#{car.tarih}" />
+				</p:column>
+			</p:dataTable>
+
+
+			<p:commandButton value="Yeni" process="@form"
+				onclick="PF('dlgUretim').show();"></p:commandButton>
+
+
+		</p:panelGrid>
+		<p:dialog id="dlgUretim" widgetVar="dlgUretim" appendTo="ftmUretim"
+			closable="true" header="Üretim Düzenleme" modal="true">
+
+			<p:panelGrid columns="2">
+				<f:facet name="header">
+					<h:outputText value="Üretim Detayları" />
+				</f:facet>
+
+				<h:outputText value="Üretim No : " />
+				<p:inputText value="#{uretimController.uretim.uretimNo}"></p:inputText>
+
+				<h:outputText value="Miktar : " />
+				<p:inputText value="#{uretimController.uretim.miktar}"></p:inputText>
+
+				<h:outputText value="Ekleyen : " />
+				<p:inputText value="#{uretimController.uretim.ekleyen}"></p:inputText>
+
+				<h:outputText value="Ekleme Tarihi : " />
+				<p:calendar id="popup" value="#{uretimController.uretim.tarih}" />
+
+				<p:commandButton value="İptal" onclick="PF('dlgUretim').hide()"></p:commandButton>
+				<p:commandButton value="Kaydet" update=":ftmUretim:tblUretim"
+					process="@form" oncomplete="PF('dlgUretim').hide()"
+					action="#{uretimController.uretimKaydet}"></p:commandButton>
+			</p:panelGrid>
+
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>
