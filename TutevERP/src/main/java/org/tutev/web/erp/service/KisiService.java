@@ -6,14 +6,19 @@
 package org.tutev.web.erp.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
+import org.hibernate.transform.ResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tutev.web.erp.entity.genel.Kisi;
 import org.tutev.web.erp.service.exception.NameNotNullException;
+import org.tutev.web.erp.util.PageingModel;
 
 /**
  * 
@@ -65,6 +70,18 @@ public class KisiService implements ServiceBase<Kisi> {
 		criteria.addOrder(Order.desc("id"));
 		return (List<Kisi>) criteria.list();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public PageingModel<Kisi> getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
+		Criteria criteria = getSession().createCriteria(Kisi.class);
+		criteria.setMaxResults(pageSize);
+		criteria.setFirstResult(firstRecord);
+		criteria.addOrder(Order.desc("id"));
+		List<Kisi> list= criteria.list();
+		int kayitSayisi=((Long)getSession().createCriteria(Kisi.class).setProjection(Projections.rowCount()).uniqueResult()).intValue();
+		return new PageingModel<Kisi>(list,kayitSayisi );
+	}
+	
 
 	@Override
 	public Session getSession() {

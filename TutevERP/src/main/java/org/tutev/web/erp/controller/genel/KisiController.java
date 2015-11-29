@@ -2,14 +2,18 @@ package org.tutev.web.erp.controller.genel;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.tutev.web.erp.entity.genel.Kisi;
 import org.tutev.web.erp.service.KisiService;
+import org.tutev.web.erp.util.PageingModel;
 
 @Controller("kisiController")
 @Scope("session")
@@ -24,11 +28,12 @@ public class KisiController implements Serializable {
 	private transient KisiService kisiService;
 
 	private Kisi kisi;
-	List<Kisi> kisiListesi;
-
+	
+	LazyDataModel<Kisi> lazy;
+ 
 	@PostConstruct
 	public void init() {
-		kisiListesi=kisiService.getAll();
+		listele();
 	}
 
 	public void kisiKaydet() {
@@ -38,16 +43,35 @@ public class KisiController implements Serializable {
 			else
 				kisiService.update(kisi);	
 			
-			kisiListesi=kisiService.getAll();
+			listele();
 		} catch (Exception e) {
 		}
+
+	}
+	
+	public void listele() {
+		
+		lazy=new LazyDataModel<Kisi>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -1117065338221723478L;
+
+			@Override
+			public List<Kisi> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+				
+				PageingModel<Kisi> kisiler=kisiService.getByPageing(first, pageSize, filters);
+				lazy.setRowCount(kisiler.getRowCount());
+				return kisiler.getList();
+			}
+		};
 
 	}
 	
 	public void sil(Long id) {
 		Kisi silinecekKisi = kisiService.getById(id);
 		kisiService.delete(silinecekKisi);
-		kisiListesi=kisiService.getAll();
+		listele();
 	}
 	
 	public void duzenle(Long id) {
@@ -69,7 +93,7 @@ public class KisiController implements Serializable {
 		this.kisi = kisi;
 	}
 	
-	public List<Kisi> getKisiListesi() {
-		return kisiListesi;
+	public LazyDataModel<Kisi> getLazy() {
+		return lazy;
 	}
 }

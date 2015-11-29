@@ -8,7 +8,7 @@
 		<h:form id="frmKisi">
 			<p:panelGrid id="pnlKisi" columns="1">
 				<p:dataTable id="tblKisi" widgetVar="tblKisi" var="kisi" paginatorPosition="bottom"
-					value="#{kisiController.kisiListesi}" rows="10" paginator="true"
+					value="#{kisiController.lazy}" lazy="true" rowKey="#{kisi.id}"  rows="10" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="10,20,50">
 					<f:facet name="header">
