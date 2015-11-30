@@ -32,8 +32,8 @@
 						</p:commandButton>	
 						<p:commandButton icon="ui-icon-pencil" value="Düzenle" update=":frmUretim:dlgUretim" oncomplete="PF('dlgUretim').show()" actionListener="#{uretimController.duzenle(uretim.id)}" > </p:commandButton>
 						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					        <p:commandButton value="Evet " type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					        <p:commandButton value="Hayır " type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 					    </p:confirmDialog>					
 					</p:column>
 				</p:dataTable>
@@ -49,7 +49,7 @@
 
 				<p:panelGrid columns="2">
 					<f:facet name="header">
-						<h:outputText value="Üretim Detayları" />
+						<h:outputText value="Üretim Detayları " />
 					</f:facet>
 
 					<h:outputText value="Üretim No : " />
