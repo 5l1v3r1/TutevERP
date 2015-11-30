@@ -25,6 +25,7 @@ public class uretimController implements Serializable {
 	private static final long serialVersionUID = -2735969159815934322L;
 
 	/**
+	 * 
 	 * Erhan KÖSE
 	 * 
 	 

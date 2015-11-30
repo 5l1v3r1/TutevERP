@@ -26,7 +26,7 @@
 					<p:column headerText="Uretim Tarihi">
 						<p:calendar pattern="dd/MM/yyyy" disabled="true" value="#{uretim.tarih}"></p:calendar>						
 					</p:column>
-					<p:column headerText="İşlemler">
+					<p:column headerText="İşlemler ">
 						<p:commandButton value="Sil" icon="ui-icon-trash" actionListener="#{uretimController.sil(uretim.id)}" update=":frmUretim:tblUretim">
 							<p:confirm header="Silme Onay" message="Silmek İstediginizden Emin misiniz?" icon="ui-icon-alert" />
 						</p:commandButton>	
