@@ -22,6 +22,7 @@ import org.tutev.web.erp.util.PageingModel;
  * @author Bilisim-Hoca
  * 
  * 
+ * 
  */
 @Service("uretimService")
 public class UretimService implements ServiceBase<Uretim> {

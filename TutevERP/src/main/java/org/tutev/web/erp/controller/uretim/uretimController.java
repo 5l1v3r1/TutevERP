@@ -26,6 +26,7 @@ public class uretimController implements Serializable {
 
 	/**
 	 * Erhan KÖSE
+	 * 
 	 
 	 */
 	  
