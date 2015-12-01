@@ -1,0 +1,118 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/layout/layout.xhtml">
+	<ui:define name="pageContent">
+		<h:form id="frmIrsaliye">
+			<p:panelGrid id="pnlIrsaliye" columns="1">
+				<p:dataTable name="tblIrsaliye" widgetVar="tblIrsaliye" var="irs"
+					paginatorPosition="bottom" value="#{irsaliyeController.lazy}"
+					lazy="true" rowKey="#{irs.id}" rows="10" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="10,20,50">
+					<p:column headerText="İrsaliye No">
+						<h:outputText value="#{irs.id}" />
+					</p:column>
+					<p:column headerText="İrsaliye Türü">
+						<h:outputText value="#{irs.tur}" />
+					</p:column>
+					<p:column headerText="İrsaliye Tarihi">
+						<h:outputText pattern="dd/MM/yyyy" disabled="true" locale="tr"
+							value="#{irs.tarih}"></h:outputText>
+					</p:column>
+					<p:column headerText="Firma Kodu">
+						<h:outputText value="#{irs.firma_id}" />
+					</p:column>
+					<p:column headerText="Açık Adresi">
+						<h:outputText value="#{irs.adres.acikAdres}" />
+					</p:column>
+					<p:column headerText="Telefon">
+						<h:outputText value="#{irs.adres.tel}" />
+					</p:column>
+					<p:column headerText="E-Posta">
+						<h:outputText value="#{irs.adres.mail}" />
+					</p:column>
+					<p:column headerText="Posta Kodu">
+						<h:outputText value="#{irs.adres.pk}" />
+					</p:column>
+					<p:column headerText="İşlemler">
+						<p:commandButton icon="ui-icon-trash"
+							actionListener="#{irsaliyeController.sil(irs.id)}"
+							update=":frmIrsaliye:pnlIrsaliye">
+							<p:confirm header="Silme Onay"
+								message="Silmek İstediginizden Emin misiniz?"
+								icon="ui-icon-alert" />
+						</p:commandButton>
+						<p:commandButton icon="ui-icon-pencil" 
+							update=":frmIrsaliye:dlgIrsaliye"
+							oncomplete="PF('dlgIrsaliye').show()"
+							actionListener="#{irsaliyeController.duzenle(irs.id)}">
+						</p:commandButton>
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+							<p:commandButton value="Evet" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+							<p:commandButton value="Hayır" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
+					</p:column>
+				</p:dataTable>
+				<p:commandButton value="Yeni Kayıt"
+					actionListener="#{irsaliyeController.yeni}"
+					update=":frmIrsaliye:dlgIrsaliye"
+					oncomplete="PF('dlgIrsaliye').show();">
+				</p:commandButton>
+			</p:panelGrid>
+			<p:dialog id="dlgIrsaliye" widgetVar="dlgIrsaliye"
+				appendTo="frmIrsaliye" closable="true" header="İrsaliye Düzenleme"
+				modal="true">
+
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+						<h:outputText value="İrsaliye Detayları" />
+					</f:facet>
+
+					<p:outputLabel for="tur" value="İrsaliye Türü: " />
+					<p:selectOneMenu id="tur"
+						value="#{irsaliyeController.irsaliye.tur}" style="width:150px">
+						<f:selectItem itemLabel="Giriş İrsaliyesi" itemValue="G" />
+						<f:selectItem itemLabel="Çıkış İrsaliyesi" itemValue="C" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="tarih" value="İrsaliye Tarihi: " />
+					<p:calendar id="tarih" value="#{irsaliyeController.irsaliye.tarih}"
+						locale="tr" pattern="dd/MM/yyyy" />
+
+					<p:outputLabel for="firma_id" value="Firma Id:" />
+					<p:inputMask id="firma_id"
+						value="#{irsaliyeController.irsaliye.firma_id}" mask="99999" />
+
+					<p:outputLabel for="tel" value="Telefon:" />
+					<p:inputMask id="tel"
+						value="#{irsaliyeController.irsaliye.adres.tel}"
+						mask="999-999 9999" />
+
+					<p:outputLabel for="mail" value="E-Posta:" />
+					<p:inputMask id="mail"
+						value="#{irsaliyeController.irsaliye.adres.mail}" mask="*@*.*" />
+
+					<p:outputLabel for="acikAdres" value="Açık Adres:" />
+					<p:inputTextarea id="acikAdres"
+						value="#{irsaliyeController.irsaliye.adres.acikAdres}" />
+
+					<p:outputLabel for="pk" value="Posta Kodu: " />
+					<p:inputMask id="pk"
+						value="#{irsaliyeController.irsaliye.adres.pk}" mask="a*-999-a999" />
+
+					<p:commandButton value="İptal" onclick="PF('dlgIrsaliye').hide()"></p:commandButton>
+					<p:commandButton value="Kaydet"
+						update=":frmIrsaliye:pnlIrsaliye,:frmIrsaliye:dlgIrsaliye"
+						process="@form" oncomplete="PF('dlgIrsaliye').hide()"
+						action="#{irsaliyeController.irsaliyeKaydet}"></p:commandButton>
+				</p:panelGrid>
+
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
