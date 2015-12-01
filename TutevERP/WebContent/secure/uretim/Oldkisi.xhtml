@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<h:head>
+	</h:head>
+<h:body>
+		<h:form id="frmKisi" >
+
+			<p:panelGrid id="pnlKisi" columns="1">
+				<p:dataTable id="tblKisi" widgetVar="tblKisi" var="car"
+					value="#{kisiController.kisiListesi}" rows="10" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="10,20,50">
+					<f:facet name="header">
+						<h:outputText value="Kişi Listesi" />
+					</f:facet>
+					<p:column headerText="No">
+						<h:outputText value="#{car.id}" />
+					</p:column>
+					<p:column headerText="Ad">
+						<h:outputText value="#{car.ad}" />
+					</p:column>
+					<p:column headerText="Soyad">
+						<h:outputText value="#{car.soyad}" />
+					</p:column>
+					<p:column headerText="Doğum Tarihi">
+						<h:outputText value="#{car.dogumTarihi}" />
+					</p:column>
+				</p:dataTable>
+
+
+				<p:commandButton value="Yeni" process="@form"
+					onclick="PF('dlgKisi').show();"></p:commandButton>
+
+
+			</p:panelGrid>
+			<p:dialog id="dlgKisi" widgetVar="dlgKisi" appendTo="frmKisi"
+				closable="true" header="Kişi Düzenleme" modal="true">
+
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+						<h:outputText value="Kişi Detayları" />
+					</f:facet>
+
+					<h:outputText value="Adı : " />
+					<p:inputText value="#{kisiController.kisi.ad}"></p:inputText>
+
+					<h:outputText value="Soyadı : " />
+					<p:inputText value="#{kisiController.kisi.soyad}"></p:inputText>
+
+					<h:outputText value="Doğum Tarihi : " />
+					<p:calendar id="popup" value="#{kisiController.kisi.dogumTarihi}" />
+
+					<p:commandButton value="İptal" onclick="PF('dlgKisi').hide()"></p:commandButton>
+					<p:commandButton value="Kaydet" update=":frmKisi:tblKisi" process="@form"
+						oncomplete="PF('dlgKisi').hide()"
+						action="#{kisiController.kisiKaydet}"></p:commandButton>
+				</p:panelGrid>
+
+			</p:dialog>
+		</h:form>
+</h:body>
+</html>

@@ -1,68 +1,75 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	template="/layout/layout.xhtml">
+	<ui:define name="pageContent">
+		<h:form id="frmUretim">
+			<p:panelGrid id="pnlUretim" columns="1">
+				<p:dataTable id="tblUretim" widgetVar="tblUretim" var="uretim" paginatorPosition="bottom"
+					value="#{uretimController.lazy}" lazy="true" rowKey="#{uretim.id}"  rows="10" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="10,20,50">
+					<f:facet name="header">
+						<h:outputText value="Üretim Listesi " />
+					</f:facet>
+					<p:column headerText="Uretim Id">
+						<h:outputText value="#{uretim.id}" />
+					</p:column>
+					<p:column headerText="Uretim No">
+						<h:outputText value="#{uretim.uretimNo}" />
+					</p:column>
+					<p:column headerText="Miktar">
+						<h:outputText value="#{uretim.miktar}" />
+					</p:column>
+					<p:column headerText="Uretim Tarihi">
+						<p:calendar pattern="dd/MM/yyyy" disabled="true" value="#{uretim.tarih}"></p:calendar>						
+					</p:column>
+					<p:column headerText="İşlemler ">
+						<p:commandButton value="Sil" icon="ui-icon-trash" actionListener="#{uretimController.sil(uretim.id)}" update=":frmUretim:tblUretim">
+							<p:confirm header="Silme Onay" message="Silmek İstediginizden Emin misiniz?" icon="ui-icon-alert" />
+						</p:commandButton>	
+						<p:commandButton icon="ui-icon-pencil" value="Düzenle" update=":frmUretim:dlgUretim" oncomplete="PF('dlgUretim').show()" actionListener="#{uretimController.duzenle(uretim.id)}" > </p:commandButton>
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					        <p:commandButton value="Evet " type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					        <p:commandButton value="Hayır " type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					    </p:confirmDialog>					
+					</p:column>
+				</p:dataTable>
 
-<h:head>
-	<title>JSF 2 URETIM</title>
-</h:head>
-<h:body>
-	<h:form>
-		<h2>JSF 2.0 Uretim Ornek - welcome.xhtml</h2>
-		<h2>Welcome</h2>
-		<table width="450px">
-			<tr>
-				 
-				<td valign="top">  <label for="uretimNo">Üretim No</label>  
-				</td>  
-				<td valign="top">  <h:inputText
-						value="#{uretimController.uretim.uretimNo}" />  
-				</td>
-			</tr>
-			 
 
-			<tr>
-				 
-				<td valign="top">  <label for="miktar">Miktar</label></td>  
-				<td valign="top">  <h:inputText
-						value="#{uretimController.uretim.miktar}" />  
-				</td>
-			</tr>
+				<p:commandButton value="Yeni" actionListener="#{uretimController.yeni}" update=":frmUretim:dlgUretim"
+					oncomplete="PF('dlgUretim').show();"></p:commandButton>
 
-			<tr>
-				 
-				<td valign="top">  <label for="ekleyen"> Ekleyen</label></td>  
-				<td valign="top">  <h:inputText
-						value="#{uretimController.uretim.ekleyen}" />  
-				</td>
-			</tr>
 
-			<tr>
-				 
-				<td colspan="2" style="text-align: center"><h:commandButton
-						id="btnUretimKaydet" value="UretimKaydet"
-						actionListener="#{uretimController.uretimKaydet}"></h:commandButton>
-					 </td>
-			</tr>
-		</table>
+			</p:panelGrid>
+			<p:dialog id="dlgUretim" widgetVar="dlgUretim" appendTo="frmUretim"
+				closable="true" header="Kişi Düzenleme" modal="true">
 
-		<p:dataTable var="car" value="#{uretimController.uretimListesi}">
-			<p:column headerText="Uretim No">
-				<h:outputText value="#{car.uretimNo}" />
-			</p:column>
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+						<h:outputText value="Üretim Detayları " />
+					</f:facet>
 
-			<p:column headerText="Miktar">
-				<h:outputText value="#{car.miktar}" />
-			</p:column>
+					<h:outputText value="Üretim No : " />
+					<p:inputText value="#{uretimController.uretim.uretimNo}"></p:inputText>
 
-			<p:column headerText="Ekleyen">
-				<h:outputText value="#{car.ekleyen}" />
-			</p:column>
+					<h:outputText value="Miktar : " />
+					<p:inputText value="#{uretimController.uretim.miktar}"></p:inputText>
 
-		</p:dataTable>
-	</h:form>
-</h:body>
+					<h:outputText value="Üretim Tarihi : " />
+					<p:calendar id="popup" value="#{uretimController.uretim.tarih}"
+						locale="tr" />
 
-</html>
+					<p:commandButton value="İptal" onclick="PF('dlgUretim').hide()"></p:commandButton>
+					<p:commandButton value="Kaydet"
+						update=":frmUretim:tblUretim,:frmUretim:dlgUretim" process="@form"
+						oncomplete="PF('dlgUretim').hide()"
+						action="#{uretimController.uretimKaydet}"></p:commandButton>
+				</p:panelGrid>
+
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
