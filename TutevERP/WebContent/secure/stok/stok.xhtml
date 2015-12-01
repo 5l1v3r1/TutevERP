@@ -10,19 +10,50 @@
 				<p:dataTable id="tblStk" widgetVar="tblStk" var="stkrt" paginatorPosition="bottom"
 					value="#{stokController.stokListesi}" rows="10" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="10,20,50">
+					rowsPerPageTemplate="10,20,50">				
 					<f:facet name="header">
 						<h:outputText value="Stok Listesi" />
 					</f:facet>
-					<p:column headerText="No">
+					<p:column headerText="No" >
 						<h:outputText value="#{stkrt.id}" />
 					</p:column>
-					<p:column headerText="UrunAd">
+					<p:column headerText="UrunAd" sortBy="#{stkrt.urunAd}" filterBy="#{stkrt.urunAd}">
 						<h:outputText value="#{stkrt.urunAd}" />
 					</p:column>
-					<p:column headerText="Barkod">
+					<p:column headerText="Barkod" sortBy="#{stkrt.barkod}" filterBy="#{stkrt.barkod}" >
 						<h:outputText value="#{stkrt.barkod}" />
 					</p:column>
+					
+					<p:column headerText="Kategori" sortBy="#{stkrt.kategori}" filterBy="#{stkrt.kategori}" >
+						<h:outputText value="#{stkrt.kategori}" />
+					</p:column>
+					
+					<p:column headerText="Marka" sortBy="#{stkrt.marka}" filterBy="#{stkrt.marka}" >
+						<h:outputText value="#{stkrt.marka}" />
+					</p:column>
+					
+					<p:column headerText="Kod" sortBy="#{stkrt.kod}" filterBy="#{stkrt.kod}" >
+						<h:outputText value="#{stkrt.kod}" />
+					</p:column>
+					
+					<p:column headerText="ParaBirim" sortBy="#{stkrt.paraBirim}" filterBy="#{stkrt.paraBirim}" >
+						<h:outputText value="#{stkrt.paraBirim}" />
+					</p:column>
+					
+					<p:column headerText="GirisBirimFiyat" sortBy="#{stkrt.girisBirimFiyat}" filterBy="#{stkrt.girisBirimFiyat}" >
+						<h:outputText value="#{stkrt.girisBirimFiyat}" />
+					</p:column>
+					<p:column headerText="CikisBirimFiyat" sortBy="#{stkrt.cikisBirimFiyat}" filterBy="#{stkrt.cikisBirimFiyat}" >
+						<h:outputText value="#{stkrt.cikisBirimFiyat}" />
+					</p:column>
+					<p:column headerText="OlcuBirim" sortBy="#{stkrt.olcuBirim}" filterBy="#{stkrt.olcuBirim}" >
+						<h:outputText value="#{stkrt.olcuBirim}" />
+					</p:column>
+					<p:column headerText="UrunMiktar" sortBy="#{stkrt.urunMiktar}" filterBy="#{stkrt.urunMiktar}" >
+						<h:outputText value="#{stkrt.urunMiktar}" />
+					</p:column>
+					
+					
 					<p:column headerText="İşlemler">
 						<p:commandButton value="Sil" icon="ui-icon-trash" actionListener="#{stokController.stokSil(stkrt.id)}" update=":frmStk:tblStk">
 							<p:confirm header="Silme Onay" message="Silmek İstediginizden Emin misiniz?" icon="ui-icon-alert" />
@@ -52,6 +83,30 @@
 
 					<h:outputText value="Urun Barkod : " />
 					<p:inputText value="#{stokController.stokKart.barkod}"></p:inputText>
+					
+					<h:outputText value="Urun Kod : " />
+					<p:inputText value="#{stokController.stokKart.kod}"></p:inputText>
+					
+					<h:outputText value="Urun Kategori : " />
+					<p:inputText value="#{stokController.stokKart.kategori}"></p:inputText>
+					
+					<h:outputText value="Urun Marka : " />
+					<p:inputText value="#{stokController.stokKart.marka}"></p:inputText>
+					
+					<h:outputText value="Urun ParaBirim : " />
+					<p:inputText value="#{stokController.stokKart.paraBirim}"></p:inputText>
+					
+					<h:outputText value="Urun GirisBirimFiyat : " />
+					<p:inputText value="#{stokController.stokKart.girisBirimFiyat}"></p:inputText>
+					
+					<h:outputText value="Urun CikisBirimFiyat : " />
+					<p:inputText value="#{stokController.stokKart.cikisBirimFiyat}"></p:inputText>
+					
+					<h:outputText value="Urun OlcuBirim : " />
+					<p:inputText value="#{stokController.stokKart.olcuBirim}"></p:inputText>
+					
+					<h:outputText value="Urun UrunMiktar : " />
+					<p:inputText value="#{stokController.stokKart.urunMiktar}"></p:inputText>
 
 					<p:commandButton value="İptal" onclick="PF('dlgStk').hide()"></p:commandButton>
 					<p:commandButton value="Kaydet"
