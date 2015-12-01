@@ -6,42 +6,51 @@
 package org.tutev.web.erp.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.tutev.web.erp.entity.genel.Kisi;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.tutev.web.erp.entity.uretim.Uretim;
+import org.tutev.web.erp.util.PageingModel;
 
 /**
  * 
- * @author Erhan Kose
+ * @author Bilisim-Hoca
+ * 
+ * 
+ * 
+ * 
  */
+@Service("uretimService")
 public class UretimService implements ServiceBase<Uretim> {
-	BaseDao service = new BaseDao();
+	
+
+	@Autowired
+	private transient BaseDao baseDao;
 
 	@Override
-	public Uretim save(Uretim entity) {
-
-		if (entity.getUretimNo().trim().equals("")) {
-			System.out.println("Uretim kaydý yapýlamadý");
-		} else {
-			service.save(entity);
-		}
-
+	public Uretim save(Uretim entity)  {
+		if(entity==null && entity.getUretimNo().trim().equals(""))
+			return null;
+//			throw new NameNotNullException();
+		baseDao.save(entity);
 		return entity;
 	}
 
 	@Override
 	public Uretim update(Uretim entity) {
-		service.update(entity);
+		baseDao.saveOrUpdate(entity);
 		return entity;
 	}
 
 	@Override
 	public Boolean delete(Uretim entity) {
 		try {
-			service.delete(entity);
-			
+			baseDao.delete(entity);
 		} catch (Exception e) {
 			return false;
 		}
@@ -55,15 +64,28 @@ public class UretimService implements ServiceBase<Uretim> {
 		return uretim;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Uretim> getAll() {
-		// Criteria Where Å?artÄ± oluÅŸturmayÄ± saÄŸlar
-		Criteria criteria = getSession().createCriteria(Kisi.class);
+		Criteria criteria = getSession().createCriteria(Uretim.class);
+		criteria.addOrder(Order.desc("id"));
 		return (List<Uretim>) criteria.list();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public PageingModel<Uretim> getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
+		Criteria criteria = getSession().createCriteria(Uretim.class);
+		criteria.setMaxResults(pageSize);
+		criteria.setFirstResult(firstRecord);
+		criteria.addOrder(Order.desc("id"));
+		List<Uretim> list= criteria.list();
+		int kayitSayisi=((Long)getSession().createCriteria(Uretim.class).setProjection(Projections.rowCount()).uniqueResult()).intValue();
+		return new PageingModel<Uretim>(list,kayitSayisi );
+	}
+	
 
 	@Override
 	public Session getSession() {
-		return null;
+		return baseDao.getSession();
 	}
 }
