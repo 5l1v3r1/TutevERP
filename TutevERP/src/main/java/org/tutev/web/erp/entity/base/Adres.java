@@ -63,7 +63,7 @@ public class Adres implements Serializable {
 		this.pk = pk;
 	}
 
-	@Column(name = "TEL", length = 13)
+	@Column(name = "TEL", length = 20)
 	public String getTel() {
 		return tel;
 	}
