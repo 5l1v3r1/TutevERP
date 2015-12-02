@@ -24,46 +24,47 @@ public class FaturaService implements ServiceBase<Fatura> {
 
 	@Autowired
 	private transient BaseDao baseDao;
-	
-    @Override
-    public Fatura save(Fatura entity) {
-    	baseDao.save(entity);
-        return entity;
-    }
 
-    @Override
-    public Fatura update(Fatura entity) {
-    	baseDao.saveOrUpdate(entity);
-        return entity;
+	@Override
+	public Fatura save(Fatura entity) {
+		baseDao.save(entity);
+		return entity;
+	}
 
-    }
+	@Override
+	public Fatura update(Fatura entity) {
+		baseDao.saveOrUpdate(entity);
+		return entity;
 
-    @Override
-    public Boolean delete(Fatura entity) {
-        try {
-        	baseDao.delete(entity);
-        } catch (Exception ex) {
-            return false;
-        }
-        return true;
-    }
+	}
 
-    @Override
-    public Fatura getById(Long id) {
-        Session session=getSession();
-        return (Fatura) session.get(Fatura.class, id);
-    }
+	@Override
+	public Boolean delete(Fatura entity) {
+		try {
+			baseDao.delete(entity);
+		} catch (Exception ex) {
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public List<Fatura> getAll() {
-        Session session=getSession();
-        Criteria criteria=session.createCriteria(Fatura.class);
-        return criteria.list();
-    }
+	@Override
+	public Fatura getById(Long id) {
+		Session session = getSession();
+		return (Fatura) session.get(Fatura.class, id);
+	}
 
-    @Override
-    public Session getSession() {
-    	return baseDao.getSession();
-    }
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Fatura> getAll() {
+		Session session = getSession();
+		Criteria criteria = session.createCriteria(Fatura.class);
+		return criteria.list();
+	}
+
+	@Override
+	public Session getSession() {
+		return baseDao.getSession();
+	}
 
 }

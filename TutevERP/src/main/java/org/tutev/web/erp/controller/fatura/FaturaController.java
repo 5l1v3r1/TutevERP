@@ -4,19 +4,22 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.tutev.web.erp.entity.fatura.Fatura;
-import org.tutev.web.erp.entity.genel.Kisi;
 import org.tutev.web.erp.service.fatura.FaturaService;
 
 
 @Controller("faturaController")
 @Scope("session")
 public class FaturaController implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5496968561640370391L;
 
 	@Autowired
 	private transient FaturaService  faturaService;

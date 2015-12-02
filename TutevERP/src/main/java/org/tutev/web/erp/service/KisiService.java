@@ -28,6 +28,7 @@ public class KisiService implements ServiceBase<Kisi> {
 	@Autowired
 	private transient BaseDao baseDao;
 
+	@SuppressWarnings("null")
 	@Override
 	public Kisi save(Kisi entity)  {
 		if(entity==null && entity.getAd().trim().equals(""))

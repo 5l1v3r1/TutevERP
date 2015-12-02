@@ -24,11 +24,16 @@ import org.tutev.web.erp.entity.base.BaseEntity;
  *
  * @author Bilisim-Hoca
  */
+@SuppressWarnings("deprecation")
 @Entity
 @Table(name = "AUT_USERS")
 public class Kullanici extends  BaseEntity{
     
-    private Long id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1102631676506803698L;
+	private Long id;
     private String username;
     private String password;
     private Kisi kisi;

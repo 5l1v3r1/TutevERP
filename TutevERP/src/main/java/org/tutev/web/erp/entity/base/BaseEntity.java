@@ -19,7 +19,11 @@ import javax.persistence.TemporalType;
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 
-    String ekleyen;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4899459139495335769L;
+	String ekleyen;
     String guncelleyen;
     Date eklemeTarihi;
     Date guncellemeTarihi;

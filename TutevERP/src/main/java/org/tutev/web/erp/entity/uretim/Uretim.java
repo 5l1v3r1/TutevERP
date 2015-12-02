@@ -27,9 +27,15 @@ import org.tutev.web.erp.entity.base.BaseEntity;
  * 
  * @author Erhan Kose
  */
+@SuppressWarnings("deprecation")
 @Entity
 @Table(name = "URT_URETIM")
 public class Uretim extends BaseEntity {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2032781563357516372L;
 
 	public Uretim() {
 	}

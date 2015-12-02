@@ -23,6 +23,10 @@ import org.tutev.web.erp.entity.base.BaseEntity;
 @Table(name = "URT_MALZEME")
 public class Malzeme extends BaseEntity {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -309374331443265793L;
 	private String malzemeAd;
 	private Long malzemeId;
 	

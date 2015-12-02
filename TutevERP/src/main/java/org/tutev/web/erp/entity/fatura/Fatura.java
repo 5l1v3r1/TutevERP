@@ -9,28 +9,38 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.ForeignKey;
 import org.tutev.web.erp.entity.base.BaseEntity;
+import org.tutev.web.erp.entity.genel.Kisi;
+import org.tutev.web.erp.entity.genel.KodluListe;
+import org.tutev.web.erp.entity.stokhareket.Irsaliye;
 
+@SuppressWarnings("deprecation")
 @Entity
 @Table(name="FTR_FATURA")
 public class Fatura extends BaseEntity {
 
-    private Long id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4515466884808962859L;
+	private Long id;
     private String faturaNo;
-    private String faturaTipi;
+    private KodluListe faturaTipi;
     private Date faturaTarihi;
-    private Double miktar;
-    private String musteriAdi;
-    private Double faturaTutari;
-    private Double birimFiyati;
+    private Kisi musteri;
+    private Irsaliye irsaliye;
 
     
     @Id
@@ -53,12 +63,14 @@ public class Fatura extends BaseEntity {
         this.faturaNo = faturaNo;
     }
 
-    @Column(name = "FATURA_TIPI")
-    public String getFaturaTipi() {
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FATURA_TIP_ID")
+    @ForeignKey(name = "FK_FATURA_TIP_ID")
+    public KodluListe getFaturaTipi() {
         return faturaTipi;
     }
 
-    public void setFaturaTipi(String faturaTipi) {
+    public void setFaturaTipi(KodluListe faturaTipi) {
         this.faturaTipi = faturaTipi;
     }
 
@@ -71,41 +83,26 @@ public class Fatura extends BaseEntity {
     public void setFaturaTarihi(Date faturaTarihi) {
         this.faturaTarihi = faturaTarihi;
     }
-
-    @Column(name = "MIKTAR")
-    public Double getMiktar() {
-        return miktar;
-    }
-
-    public void setMiktar(Double miktar) {
-        this.miktar = miktar;
-    }
-
-    @Column(name = "MUSTERI_ADI")
-    public String getMusteriAdi() {
-        return musteriAdi;
-    }
-
-    public void setMusteriAdi(String musteriAdi) {
-        this.musteriAdi = musteriAdi;
-    }
-
-    @Column(name = "FATURA_TUTARI")
-    public Double getFaturaTutari() {
-        return faturaTutari;
-    }
-
-    public void setFaturaTutari(Double faturaTutari) {
-        this.faturaTutari = faturaTutari;
-    }
-
-    @Column(name = "BIRIM_FIYATI")
-    public Double getBirimFiyati() {
-        return birimFiyati;
-    }
-
-    public void setBirimFiyati(Double birimFiyati) {
-        this.birimFiyati = birimFiyati;
-    }
-
+    
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MUSTERI_ID")
+    @ForeignKey(name = "FK_MUSTERI_ID")
+    public Kisi getMusteri() {
+		return musteri;
+	}
+    
+    public void setMusteri(Kisi musteri) {
+		this.musteri = musteri;
+	}
+    
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IRSALIYE_ID")
+    @ForeignKey(name = "FK_IRSALIYE_ID")
+    public Irsaliye getIrsaliye() {
+		return irsaliye;
+	}
+    
+    public void setIrsaliye(Irsaliye irsaliye) {
+		this.irsaliye = irsaliye;
+	}
 }

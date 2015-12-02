@@ -2,6 +2,7 @@ package org.tutev.web.erp.entity.genel;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -52,6 +53,8 @@ public class KodluListe extends BaseEntity {
 		this.tanim = tanim;
 	}
 
+	@Enumerated
+	@Column(name="KODLU_LISTE_TIP")
 	public KodluListeTip getKodluListeTip() {
 		return kodluListeTip;
 	}

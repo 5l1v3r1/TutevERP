@@ -23,8 +23,8 @@ import org.tutev.web.erp.entity.genel.KodluListe;
 @SuppressWarnings("deprecation")
 @Entity
 @Table(name = "GNL_PERSONEL")
-public class Personel  extends BaseEntity{
-	
+public class Personel extends BaseEntity {
+
 	/**
 	 * 
 	 */
@@ -36,11 +36,9 @@ public class Personel  extends BaseEntity{
 	private String isGurubu;
 	private Date girisTarihi;
 	private String istihtamDurum;
-	
-	
-	
 
-	public Personel( String departman, String isGurubu,Date girisTarihi, String istihtamDurum) {
+	public Personel(String departman, String isGurubu, Date girisTarihi,
+			String istihtamDurum) {
 		super();
 		this.departman = departman;
 		this.isGurubu = isGurubu;
@@ -61,24 +59,25 @@ public class Personel  extends BaseEntity{
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "UYRUK_ID")
-    @ForeignKey(name = "FK_UYRUK_ID")
-	public KodluListe getUyrugu() {
+	@JoinColumn(name = "UYRUK_ID")
+	@ForeignKey(name = "FK_UYRUK_ID")
+	public KodluListe getUyruk() {
 		return uyruk;
 	}
 
+	public void setUyruk(KodluListe uyruk) {
+		this.uyruk = uyruk;
+	}
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "KISI_ID")
-    @ForeignKey(name = "FK_KISI_ID")
+	@JoinColumn(name = "KISI_ID")
+	@ForeignKey(name = "FK_KISI_ID")
 	public Kisi getKisi() {
 		return kisi;
 	}
+
 	public void setKisi(Kisi kisi) {
 		this.kisi = kisi;
-	}
-	
-	public void setUyruk(KodluListe uyruk) {
-		this.uyruk = uyruk;
 	}
 
 	@Column(name = "departman", length = 80)

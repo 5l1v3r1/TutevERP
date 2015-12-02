@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.ForeignKey;
 import org.tutev.web.erp.entity.base.BaseEntity;
-import org.tutev.web.erp.entity.genel.KodluListeTip;
+import org.tutev.web.erp.entity.genel.KodluListe;
 
 //Specifies that the class is an entity-it must have a no-argument constructor
 @SuppressWarnings("deprecation")
@@ -36,9 +36,9 @@ public class Skart extends BaseEntity {
 	private String tanim;
 	private SkartMarkaModel skartMarkaModel;
 	private String barkod;
-	private KodluListeTip paraBirimi;
+	private KodluListe paraBirimi;
 	private BigDecimal birimFiyat;
-	private KodluListeTip olcuBirimi;
+	private KodluListe olcuBirimi;
 
 	@Id
 	// Each entity bean will have a primary key
@@ -107,11 +107,11 @@ public class Skart extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PARA_BIRIMI_ID")
     @ForeignKey(name = "FK_PARA_BIRIMI_ID")
-	public KodluListeTip getParaBirimi() {
+	public KodluListe getParaBirimi() {
 		return paraBirimi;
 	}
 
-	public void setParaBirimi(KodluListeTip paraBirimi) {
+	public void setParaBirimi(KodluListe paraBirimi) {
 		this.paraBirimi = paraBirimi;
 	}
 
@@ -127,11 +127,11 @@ public class Skart extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "OLCU_BIRIMI_ID")
     @ForeignKey(name = "FK_OLCU_BIRIMI_ID")
-	public KodluListeTip getOlcuBirimi() {
+	public KodluListe getOlcuBirimi() {
 		return olcuBirimi;
 	}
 
-	public void setOlcuBirimi(KodluListeTip olcuBirimi) {
+	public void setOlcuBirimi(KodluListe olcuBirimi) {
 		this.olcuBirimi = olcuBirimi;
 	}
 

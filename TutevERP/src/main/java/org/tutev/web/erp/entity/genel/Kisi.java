@@ -29,7 +29,13 @@ import org.tutev.web.erp.entity.base.BaseEntity;
 @Table(name = "GNL_KISI")
 public class Kisi extends BaseEntity{
 
-    public Kisi() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5882434844445173712L;
+
+
+	public Kisi() {
     }
 
     public Kisi(Long id, String ad, String soyad, Date dogumTarihi) {

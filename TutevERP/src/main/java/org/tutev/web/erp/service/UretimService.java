@@ -32,6 +32,7 @@ public class UretimService implements ServiceBase<Uretim> {
 	@Autowired
 	private transient BaseDao baseDao;
 
+	@SuppressWarnings("null")
 	@Override
 	public Uretim save(Uretim entity)  {
 		if(entity==null && entity.getUretimNo().trim().equals(""))

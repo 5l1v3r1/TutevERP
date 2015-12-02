@@ -68,7 +68,8 @@ public class MalzemeService implements ServiceBase<Malzeme> {
         return malzeme;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<Malzeme> getAll() {
         //Criteria Where �?artı oluşturmayı sağlar
         Criteria criteria=getSession().createCriteria(Malzeme.class);
