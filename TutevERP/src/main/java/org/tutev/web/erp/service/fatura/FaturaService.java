@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.tutev.web.erp.service;
+package org.tutev.web.erp.service.fatura;
 
 import java.util.List;
 
@@ -12,6 +12,8 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tutev.web.erp.entity.fatura.Fatura;
+import org.tutev.web.erp.service.BaseDao;
+import org.tutev.web.erp.service.ServiceBase;
 
 /**
  *

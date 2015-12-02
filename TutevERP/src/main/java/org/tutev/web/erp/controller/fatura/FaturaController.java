@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.tutev.web.erp.entity.fatura.Fatura;
 import org.tutev.web.erp.entity.genel.Kisi;
-import org.tutev.web.erp.service.FaturaService;
+import org.tutev.web.erp.service.fatura.FaturaService;
 
 
 @Controller("faturaController")

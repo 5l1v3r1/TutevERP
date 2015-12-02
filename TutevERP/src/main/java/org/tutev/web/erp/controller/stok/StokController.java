@@ -7,9 +7,8 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.tutev.web.erp.entity.genel.Kisi;
-import org.tutev.web.erp.entity.stok.StokKart;
-import org.tutev.web.erp.service.StokService;
+import org.tutev.web.erp.entity.stok.Skart;
+import org.tutev.web.erp.service.stok.StokService;
 
 
 @Controller("stokController")
@@ -26,8 +25,8 @@ public class StokController implements Serializable {
 	@Autowired         
 	private transient StokService stokService;   //wired the beans automatically
 
-	private StokKart stokKart;  //created variable  for stokKart object
-	List<StokKart> stokListesi;  //created variable for List of stokKart objects
+	private Skart stokKart;  //created variable  for stokKart object
+	List<Skart> stokListesi;  //created variable for List of stokKart objects
 		
 	@PostConstruct  
 	private void init() {   ////the contract that guarantees that this method will be invoked only once in the bean lifecycle
@@ -41,7 +40,7 @@ public class StokController implements Serializable {
 	}
 				
 	public void stokSil(Long id) {
-		StokKart silinecekStokKart = stokService.getById(id);
+		Skart silinecekStokKart = stokService.getById(id);
 		stokService.delete(silinecekStokKart);
 		stokListesi=stokService.getAll();
 
@@ -74,7 +73,7 @@ public class StokController implements Serializable {
 	
 	public void stokDeleteByKod() {
 		System.out.println("Stok Kaydý Sil");
-		for (StokKart sk : stokListesi){
+		for (Skart sk : stokListesi){
 			  System.out.println("stokkodu:"+sk.getKod());
 			  System.out.println("girilenkartkodu:"+stokKart.getKod());
 			  if (sk.getKod()!=null && sk.getKod().equals(stokKart.getKod())){
@@ -88,14 +87,15 @@ public class StokController implements Serializable {
 	
 	public void stokDeleteByUrunAd() {
 		System.out.println("Stok Kaydý Sil");
-		for (StokKart sk : stokListesi){
-			  System.out.println("stokkodu:"+sk.getUrunAd());
-			  System.out.println("girilenkartkodu:"+stokKart.getUrunAd());
-			  if (sk.getUrunAd()!=null && sk.getUrunAd().equals(stokKart.getUrunAd())){
-				  System.out.println("stokkodu:"+sk.getUrunAd());
-				  stokService.delete(sk);
-			  }
-		}			  
+		//TODO
+//		for (Skart sk : stokListesi){
+//			  System.out.println("stokkodu:"+sk.getUrunAd());
+//			  System.out.println("girilenkartkodu:"+stokKart.getUrunAd());
+//			  if (sk.getUrunAd()!=null && sk.getUrunAd().equals(stokKart.getUrunAd())){
+//				  System.out.println("stokkodu:"+sk.getUrunAd());
+//				  stokService.delete(sk);
+//			  }
+//		}			  
     	yeniStokKart();
 		stokListele();
 	}
@@ -103,32 +103,32 @@ public class StokController implements Serializable {
 	
 			
 	public void yeniStokKart() {      //create new stokKart object 
-		stokKart = new StokKart();
+		stokKart = new Skart();
 	}
 
 
 	
 	///GET and SET METHODS for variables 
 
-	public List<StokKart> getStokListesi() {
+	public List<Skart> getStokListesi() {
 		return stokListesi;
 	}
 
 
 
-	public void setStokListesi(List<StokKart> stokListesi) {
+	public void setStokListesi(List<Skart> stokListesi) {
 		this.stokListesi = stokListesi;
 	}
 	
 	
-	public StokKart getStokKart() {   
+	public Skart getStokKart() {   
 		if(stokKart==null){
 			yeniStokKart();
 			}	
 		return stokKart;
 	}	
 		
-	public void setStokKart(StokKart stokKart) {
+	public void setStokKart(Skart stokKart) {
 		this.stokKart=stokKart;
 			
 	}

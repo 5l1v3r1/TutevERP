@@ -1,4 +1,4 @@
-package org.tutev.web.erp.service;
+package org.tutev.web.erp.service.personel;
 
 import java.util.Date;
 import java.util.List;
@@ -7,15 +7,16 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.tutev.web.erp.entity.genel.Kisi;
-import org.tutev.web.erp.entity.ik.PersonelBilgi;
+import org.tutev.web.erp.entity.ik.Personel;
+import org.tutev.web.erp.service.ServiceBase;
 
-public class PersonelBigiService implements ServiceBase<PersonelBilgi> {
+public class PersonelService implements ServiceBase<Personel> {
 	
 	
 	
 
 	@Override
-	public PersonelBilgi save(PersonelBilgi entity) {
+	public Personel save(Personel entity) {
 		 Session session = getSession();
 	        Transaction t= session.getTransaction();
 	        t.begin();
@@ -28,7 +29,7 @@ public class PersonelBigiService implements ServiceBase<PersonelBilgi> {
 	}
 
 	@Override
-	public PersonelBilgi update(PersonelBilgi entity) {
+	public Personel update(Personel entity) {
 		  Session session = getSession();
 	        Transaction t= session.getTransaction();
 	        t.begin();
@@ -40,7 +41,7 @@ public class PersonelBigiService implements ServiceBase<PersonelBilgi> {
 	}
 
 	@Override
-	public Boolean delete(PersonelBilgi entity) {
+	public Boolean delete(Personel entity) {
 		 try {
 	            Session session = getSession();
 	            Transaction t= session.getTransaction();
@@ -56,17 +57,17 @@ public class PersonelBigiService implements ServiceBase<PersonelBilgi> {
 	}
 
 	@Override
-	public PersonelBilgi getById(Long id) {
+	public Personel getById(Long id) {
 		 Session session = getSession();
-		 PersonelBilgi personel=(PersonelBilgi)session.get(PersonelBilgi.class, id);
+		 Personel personel=(Personel)session.get(Personel.class, id);
 		 return personel;
 		 
 	}
 
 	@Override
-	public List<PersonelBilgi> getAll() {
+	public List<Personel> getAll() {
 		    Criteria criteria=getSession().createCriteria(Kisi.class);
-	        return (List<PersonelBilgi>) criteria.list();
+	        return (List<Personel>) criteria.list();
 	}
 
 	@Override
