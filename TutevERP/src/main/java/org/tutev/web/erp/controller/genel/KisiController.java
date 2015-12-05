@@ -69,13 +69,11 @@ public class KisiController implements Serializable {
 
 			@Override
 			public void forEach(Consumer<? super Kisi> arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 
 			@Override
 			public Spliterator<Kisi> spliterator() {
-				// TODO Auto-generated method stub
 				return null;
 			}
 		};

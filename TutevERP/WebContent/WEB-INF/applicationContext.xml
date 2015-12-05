@@ -17,11 +17,14 @@
 		http://www.springframework.org/schema/task/spring-task-3.1.xsd">
 
 <!-- taner.temelt@gmail.com -->
-	<aop:aspectj-autoproxy />
-	<tx:annotation-driven />
+	<aop:aspectj-autoproxy />		
 	<task:scheduler id="taskScheduler"/>
 	<task:executor id="taskExecutor" pool-size="3"/>
-	<task:annotation-driven executor="taskExecutor" scheduler="taskScheduler"/>
+<!-- 	<task:annotation-driven executor="taskExecutor" scheduler="taskScheduler"/> -->
+
+<task:annotation-driven 
+     executor="taskExecutor" scheduler="taskScheduler" 
+     proxy-target-class="true"/>
 
 	<context:component-scan base-package="org.tutev" />
 
@@ -29,7 +32,7 @@
  	<bean id="DataSource" class="org.postgresql.jdbc3.Jdbc3PoolingDataSource">
 		<property name="serverName" value="localhost" />
 		<property name="portNumber" value="5432" />
-		<property name="databaseName" value="ERP" />
+		<property name="databaseName" value="TERP" />
 		<property name="user" value="postgres" />
 		<property name="password" value="postgres" />
 		<property name="initialConnections" value="3" />
@@ -50,6 +53,7 @@
 		</property>
 	</bean>
 
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

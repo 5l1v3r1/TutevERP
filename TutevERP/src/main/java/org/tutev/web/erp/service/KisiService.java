@@ -8,10 +8,13 @@ package org.tutev.web.erp.service;
 import java.util.List;
 import java.util.Map;
 
+import org.bouncycastle.asn1.isismtt.x509.Restriction;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tutev.web.erp.entity.genel.Kisi;
@@ -72,11 +75,19 @@ public class KisiService implements ServiceBase<Kisi> {
 	@SuppressWarnings("unchecked")
 	public PageingModel<Kisi> getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
 		Criteria criteria = getSession().createCriteria(Kisi.class);
+		if(filters!=null || filters.size()>0){
+			if(filters.get("ad")!=null){
+				criteria.add(Restrictions.ilike("ad", (String) filters.get("ad"),MatchMode.ANYWHERE));
+			}
+		}
 		criteria.setMaxResults(pageSize);
 		criteria.setFirstResult(firstRecord);
+
+		int kayitSayisi=((Long)criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+		criteria.setProjection(null);
+		
 		criteria.addOrder(Order.desc("id"));
 		List<Kisi> list= criteria.list();
-		int kayitSayisi=((Long)getSession().createCriteria(Kisi.class).setProjection(Projections.rowCount()).uniqueResult()).intValue();
 		return new PageingModel<Kisi>(list,kayitSayisi );
 	}
 	

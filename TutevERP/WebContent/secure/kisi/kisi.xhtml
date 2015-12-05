@@ -14,14 +14,17 @@
 					<f:facet name="header">
 						<h:outputText value="Kişi Listesi" />
 					</f:facet>
-					<p:column headerText="No">
+					<p:column headerText="No" >
 						<h:outputText value="#{kisi.id}" />
 					</p:column>
-					<p:column headerText="Ad">
+					<p:column headerText="Ad" filterBy="#{kisi.ad}">
 						<h:outputText value="#{kisi.ad}" />
 					</p:column>
 					<p:column headerText="Soyad">
 						<h:outputText value="#{kisi.soyad}" />
+					</p:column>
+					<p:column headerText="Uyruk">
+						<h:outputText value="#{kisi.uyruk.tanim}" />
 					</p:column>
 					<p:column headerText="Doğum Tarihi">
 						<p:calendar pattern="dd/MM/yyyy" disabled="true" value="#{kisi.dogumTarihi}"></p:calendar>						
@@ -59,9 +62,15 @@
 					<p:inputText value="#{kisiController.kisi.soyad}"></p:inputText>
 
 					<h:outputText value="Doğum Tarihi : " />
-					<p:calendar id="popup" value="#{kisiController.kisi.dogumTarihi}"
-						locale="tr" />
+					<p:calendar id="popup" value="#{kisiController.kisi.dogumTarihi}" />
 
+					<h:outputText value="Uyruk : " />
+					<p:selectOneMenu id="uyruk"  value="#{kisiController.kisi.uyruk}" 
+					effect="fold" converter="#{kodluListeConverter}">
+			            <f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}"  
+			            value="#{dataController.uyrukListe}" var="item" />
+			        </p:selectOneMenu>
+					
 					<p:commandButton value="İptal" onclick="PF('dlgKisi').hide()"></p:commandButton>
 					<p:commandButton value="Kaydet"
 						update=":frmKisi:tblKisi,:frmKisi:dlgKisi" process="@form"
@@ -73,3 +82,9 @@
 		</h:form>
 	</ui:define>
 </ui:composition>
+
+
+
+
+
+

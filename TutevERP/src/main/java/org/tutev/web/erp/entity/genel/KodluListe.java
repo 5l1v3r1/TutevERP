@@ -26,6 +26,18 @@ public class KodluListe extends BaseEntity {
 	private String tanim;
 	private KodluListeTip kodluListeTip; 
 
+	public KodluListe() {
+	}
+	
+	public KodluListe(Long id, String kod, String tanim,
+			KodluListeTip kodluListeTip) {
+		super();
+		this.id = id;
+		this.kod = kod;
+		this.tanim = tanim;
+		this.kodluListeTip = kodluListeTip;
+	}
+
 	@Id
 	@SequenceGenerator(name = "SQ_KODLU_LISTE", sequenceName = "SQ_KODLU_LISTE", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "SQ_KODLU_LISTE", strategy = GenerationType.SEQUENCE)
@@ -66,5 +78,19 @@ public class KodluListe extends BaseEntity {
 	
 	public void setKodluListeTip(KodluListeTip kodluListeTip) {
 		this.kodluListeTip = kodluListeTip;
+	}
+	
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof KodluListe){
+			KodluListe kl=(KodluListe) o;
+			if(kl!=null){
+				if(this.id.equals(kl.id)){
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }
