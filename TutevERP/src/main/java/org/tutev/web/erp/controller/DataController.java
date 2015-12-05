@@ -33,6 +33,9 @@ public class DataController implements Serializable {
 	private List<KodluListe> uyrukListe;
 	private List<KodluListe> olcuBirimListe;
 	private List<KodluListe> paraBirimListe;
+	//EK
+	private List<KodluListe> uretimTipiListe;
+	
 
 	@PostConstruct
 	private void init() {
@@ -45,6 +48,16 @@ public class DataController implements Serializable {
 			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
 			dataGuncelle();
 		}
+		
+		if (uretimTipiListe == null || uretimTipiListe.size() < 1) {
+			logger.debug("uretimTipiListe Referans verisi Bulunamadý DB insert Yapýlýyor");
+			kodluListeService.save(new KodluListe(null, "krtk","Kritik Üretim", KodluListeTip.URETIM_TIP));
+			kodluListeService.save(new KodluListe(null, "Zrnl","Zorunlu Üretim", KodluListeTip.URETIM_TIP));
+			kodluListeService.save(new KodluListe(null, "icuretim", "Ýç Kaynaklar için Üretim",KodluListeTip.URETIM_TIP));
+			kodluListeService.save(new KodluListe(null, "dnmsl", "Dönemsel Üretim",KodluListeTip.URETIM_TIP));
+			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
+			dataGuncelle();
+		}
 	}
 
 	public void dataGuncelle() {
@@ -52,7 +65,19 @@ public class DataController implements Serializable {
 		uyrukListe = dataService.getByType(KodluListeTip.UYRUK);
 		olcuBirimListe = dataService.getByType(KodluListeTip.OLCU_BIRIMI);
 		paraBirimListe = dataService.getByType(KodluListeTip.PARA_BIRIM);
+		uretimTipiListe = dataService.getByType(KodluListeTip.URETIM_TIP);
 		logger.info("Referans Data Yüklendi");
+	}
+
+	public void dataUretimGuncelle() {
+		logger.info("Üretim Tip Referans Data Yükleniyor");
+		uyrukListe = dataService.getByType(KodluListeTip.URETIM_TIP);
+	 
+		logger.info("Üretim Tip Referans Data Yüklendi");
+	}
+	
+	public List<KodluListe> getUretimTipiListe() {
+		return uretimTipiListe;
 	}
 
 	public List<KodluListe> getOlcuBirimListe() {

@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.ForeignKey;
 import org.tutev.web.erp.entity.base.BaseEntity;
+import org.tutev.web.erp.entity.genel.KodluListe;
 
 /**
  * 
@@ -41,7 +42,7 @@ public class Uretim extends BaseEntity {
 	}
 
 	public Uretim(Long id, String uretimNo, Long miktar, Date tarih,
-			Malzeme malzeme) {
+			Malzeme malzeme,KodluListe uretimTipi) {
 		this.id = id;
 		this.uretimNo = uretimNo;
 		this.miktar = miktar;
@@ -55,7 +56,9 @@ public class Uretim extends BaseEntity {
 	private Long miktar;
 	private Date tarih;
 	private Malzeme malzeme;
-
+	private KodluListe uretimTipi;
+	
+	
 	@Id
 	@SequenceGenerator(name = "SQ_URETIM", sequenceName = "SQ_URETIM", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "SQ_URETIM", strategy = GenerationType.SEQUENCE)
@@ -107,6 +110,18 @@ public class Uretim extends BaseEntity {
 		this.malzeme = malzeme;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "URETIM_ID")
+    @ForeignKey(name = "FK_URETIM_ID")
+    public KodluListe getUretimTipi() {
+		return uretimTipi;
+	}
+
+	public void setUretimTipi(KodluListe uretimTipi) {
+		this.uretimTipi = uretimTipi;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "Uretim{" + "id=" + id + "Miktar" + miktar + " Tarihi=" + tarih

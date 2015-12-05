@@ -17,12 +17,18 @@
 					<p:column headerText="Uretim Id">
 						<h:outputText value="#{uretim.id}" />
 					</p:column>
-					<p:column headerText="Uretim No">
+	
+					<p:column headerText="Uretim No" filterBy="#{uretim.uretimNo}">
 						<h:outputText value="#{uretim.uretimNo}" />
 					</p:column>
 					<p:column headerText="Miktar">
 						<h:outputText value="#{uretim.miktar}" />
 					</p:column>
+					
+					<p:column headerText="Üretim Tipi">
+						<h:outputText value="#{uretim.uretimTipi.tanim}" />
+					</p:column> 
+									
 					<p:column headerText="Uretim Tarihi">
 						<p:calendar pattern="dd/MM/yyyy" disabled="true" value="#{uretim.tarih}"></p:calendar>						
 					</p:column>
@@ -58,6 +64,13 @@
 					<h:outputText value="Miktar : " />
 					<p:inputText value="#{uretimController.uretim.miktar}"></p:inputText>
 
+					<h:outputText value="Üretim Tipi : " />
+					<p:selectOneMenu id="uretimTipi"  value="#{uretimController.uretim.uretimTipi}" 
+					effect="fold" converter="#{kodluListeConverter}">
+			            <f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}"  
+			            value="#{dataController.uretimTipiListe}" var="item" />
+			        </p:selectOneMenu>
+					
 					<h:outputText value="Üretim Tarihi : " />
 					<p:calendar id="popup" value="#{uretimController.uretim.tarih}"
 						locale="tr" />
