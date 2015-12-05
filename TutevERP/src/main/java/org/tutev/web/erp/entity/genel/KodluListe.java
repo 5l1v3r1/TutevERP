@@ -2,6 +2,7 @@ package org.tutev.web.erp.entity.genel;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,8 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Index;
 import org.tutev.web.erp.entity.base.BaseEntity;
 
+@SuppressWarnings("deprecation")
 @Entity
 @Table(name = "GNL_KODLU_LISTE")
 public class KodluListe extends BaseEntity {
@@ -35,6 +38,8 @@ public class KodluListe extends BaseEntity {
 		this.id = id;
 	}
 
+	@Index(name="IDX_KOD")
+//	@javax.persistence.Index()
 	@Column(name = "KOD", length = 80)
 	public String getKod() {
 		return kod;
@@ -53,7 +58,7 @@ public class KodluListe extends BaseEntity {
 		this.tanim = tanim;
 	}
 
-	@Enumerated
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name="KODLU_LISTE_TIP")
 	public KodluListeTip getKodluListeTip() {
 		return kodluListeTip;
