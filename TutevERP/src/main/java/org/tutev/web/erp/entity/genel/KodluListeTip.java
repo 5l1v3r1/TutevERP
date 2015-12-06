@@ -2,8 +2,11 @@ package org.tutev.web.erp.entity.genel;
 
 public enum KodluListeTip {
 
-	PARA_BIRIM(101, "Para Birimi"), OLCU_BIRIMI(102, "Ölçü Birimi"), UYRUK(103,
-			"Uyruðu"), URETIM_TIP(109, "Üretim Tipi");
+	  PARA_BIRIM(101, "Para Birimi")
+	, OLCU_BIRIMI(102, "Ã–lÃ§Ã¼ Birimi")
+	, UYRUK(103, "UyruÄŸu")
+	, URETIM_TIP(109, "Ãœretim Tipi")
+	, IRSALIYE_TIP(110, "Ä°rsaliye Tipi");
 
 	private KodluListeTip(int no, String label) {
 		this.no = no;
