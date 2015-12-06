@@ -24,7 +24,7 @@ public class KodluListe extends BaseEntity {
 	private Long id;
 	private String kod;
 	private String tanim;
-	private KodluListeTip kodluListeTip; 
+	private KodluListeTip kodluListeTip;
 
 	public KodluListe() {
 	}

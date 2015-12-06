@@ -22,7 +22,7 @@ public class KodluListeConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext arg0, UIComponent arg1, String arg2) {
-		if (arg2 != null && arg2.trim().length() > 0) {
+		if (arg2 != null && arg2.trim().length() > 0 && !arg2.equals("null")) {
 			try {
 				KodluListe kodluListe = kodluListeService.getById(new Long(arg2));
 				logger.debug("KodluListeConverter Convert Yaptý " + arg2);
@@ -38,7 +38,7 @@ public class KodluListeConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-	 if(arg2 != null) {
+	 if(arg2 != null && !arg2.equals("null") && arg2 instanceof KodluListe ) {
             return String.valueOf(((KodluListe) arg2).getId());
         }
         else {

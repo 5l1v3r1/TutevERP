@@ -5,10 +5,13 @@ import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.tutev.web.erp.controller.DataController;
 import org.tutev.web.erp.entity.genel.KodluListe;
 import org.tutev.web.erp.util.PageingModel;
@@ -74,6 +77,16 @@ public class KodluListeService {
 
 	public Session getSession() {
 		return baseDao.getSession();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public List<KodluListe> acomp(String query) {
+		Criteria criteria = getSession().createCriteria(KodluListe.class);
+		criteria.add(Restrictions.ilike("tanim", query,MatchMode.ANYWHERE));
+		criteria.addOrder(Order.desc("id"));
+		List<KodluListe> list= criteria.list();
+		return list;
 	}
 	
 	

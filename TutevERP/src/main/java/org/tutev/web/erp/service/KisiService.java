@@ -8,7 +8,6 @@ package org.tutev.web.erp.service;
 import java.util.List;
 import java.util.Map;
 
-import org.bouncycastle.asn1.isismtt.x509.Restriction;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
@@ -18,6 +17,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tutev.web.erp.entity.genel.Kisi;
+import org.tutev.web.erp.entity.genel.KodluListe;
 import org.tutev.web.erp.util.PageingModel;
 
 /**
@@ -72,13 +72,29 @@ public class KisiService implements ServiceBase<Kisi> {
 		return (List<Kisi>) criteria.list();
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "null" })
 	public PageingModel<Kisi> getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
 		Criteria criteria = getSession().createCriteria(Kisi.class);
 		if(filters!=null || filters.size()>0){
 			if(filters.get("ad")!=null){
 				criteria.add(Restrictions.ilike("ad", (String) filters.get("ad"),MatchMode.ANYWHERE));
 			}
+			
+			if(filters.get("uyruk")!=null){
+				KodluListe uyruk= (KodluListe) filters.get("uyruk");
+				criteria.add(Restrictions.eq("uyruk.id",uyruk.getId()));
+			}
+			
+//			if(filters.get("uyruk")!=null){
+//				Criteria crUyruk =criteria.createAlias("uyruk", "u");
+//				KodluListe uyruk= (KodluListe) filters.get("uyruk");
+//				crUyruk.add(Restrictions.eq("u.id",uyruk.getId()));
+//				
+////				select t.name,u.tanim from gnl_kisi t
+//				
+////				left join gnl_kodlu_liste u on (u.id=t.uyruk_id )
+////				where t.uyruk_id=1
+//			}
 		}
 		criteria.setMaxResults(pageSize);
 		criteria.setFirstResult(firstRecord);

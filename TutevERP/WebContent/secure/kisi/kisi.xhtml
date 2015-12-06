@@ -23,7 +23,16 @@
 					<p:column headerText="Soyad">
 						<h:outputText value="#{kisi.soyad}" />
 					</p:column>
-					<p:column headerText="Uyruk">
+					<p:column headerText="Uyruk" filterBy="#{kisi.uyruk}">
+					<f:facet name="filter">
+						<p:autoComplete id="uyruk" forceSelection="true" value="#{kisiController.filterUyruk}"  completeMethod="#{kisiController.acomp}" itemValue="#{item}" minQueryLength="3"  itemLabel="#{item.tanim}" var="item"  converter="#{kodluListeConverter}">
+						<p:ajax event="itemSelect" listener="#{kisiController.ajaxCall}" />
+			        	</p:autoComplete>
+<!-- 						<p:selectOneMenu id="uyruk"  onchange="PF('tblKisi').filter()"  effect="fold" converter="#{kodluListeConverter}"> -->
+<!-- 						<f:selectItem itemLabel="Seçiniz" itemValue="null" ></f:selectItem> -->
+<!-- 			            <f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}"  value="#{dataController.uyrukListe}" var="item" /> -->
+<!-- 			        </p:selectOneMenu> -->
+					</f:facet>
 						<h:outputText value="#{kisi.uyruk.tanim}" />
 					</p:column>
 					<p:column headerText="Doğum Tarihi">

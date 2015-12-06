@@ -14,11 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.tutev.web.erp.entity.genel.Kisi;
+import org.tutev.web.erp.entity.genel.KodluListe;
 import org.tutev.web.erp.service.KisiService;
+import org.tutev.web.erp.service.KodluListeService;
 import org.tutev.web.erp.util.PageingModel;
 
 @Controller("kisiController")
-@Scope("session")
+@Scope("TEMEL")
 public class KisiController implements Serializable {
 
 	/**
@@ -28,13 +30,17 @@ public class KisiController implements Serializable {
 
 	@Autowired
 	private transient KisiService kisiService;
+	@Autowired
+	private transient KodluListeService kodluListeService;
 
 	private Kisi kisi;
+	private KodluListe filterUyruk;
 	
 	LazyDataModel<Kisi> lazy;
  
 	@PostConstruct
 	public void init() {
+//		System.out.println("T-CONTRUCT");
 		listele();
 	}
 
@@ -51,6 +57,14 @@ public class KisiController implements Serializable {
 
 	}
 	
+	public List<KodluListe> acomp(String query) {
+		return kodluListeService.acomp(query);
+	}
+	
+	public void ajaxCall() {
+		listele();
+	}
+	
 	public void listele() {
 		
 		lazy=new LazyDataModel<Kisi>() {
@@ -61,6 +75,10 @@ public class KisiController implements Serializable {
 
 			@Override
 			public List<Kisi> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+				
+				if(filterUyruk!=null && filterUyruk.getId()!=null ){
+					filters.put("uyruk", filterUyruk);
+				}
 				
 				PageingModel<Kisi> kisiler=kisiService.getByPageing(first, pageSize, filters);
 				lazy.setRowCount(kisiler.getRowCount());
@@ -107,5 +125,16 @@ public class KisiController implements Serializable {
 	
 	public LazyDataModel<Kisi> getLazy() {
 		return lazy;
+	}
+	
+	public KodluListe getFilterUyruk() {
+		if(filterUyruk==null){
+			filterUyruk=new KodluListe();
+		}
+		return filterUyruk;
+	}
+	
+	public void setFilterUyruk(KodluListe filterUyruk) {
+		this.filterUyruk = filterUyruk;
 	}
 }
