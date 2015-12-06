@@ -5,8 +5,10 @@ import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tutev.web.erp.entity.genel.Kisi;
@@ -67,12 +69,21 @@ public class StokService implements ServiceBase<Skart>{
 		@SuppressWarnings("unchecked")
 		public PageingModel<Skart> getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
 			Criteria criteria = getSession().createCriteria(Skart.class);
+			if(filters!=null || filters.size()>0){
+				if(filters.get("ad")!=null){
+					criteria.add(Restrictions.ilike("ad", (String) filters.get("ad"),MatchMode.ANYWHERE));
+				}
+			}
 			criteria.setMaxResults(pageSize);
 			criteria.setFirstResult(firstRecord);
+
+			int kayitSayisi=((Long)criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+			criteria.setProjection(null);
+			
 			criteria.addOrder(Order.desc("id"));
 			List<Skart> list= criteria.list();
-			int kayitSayisi=((Long)getSession().createCriteria(Skart.class).setProjection(Projections.rowCount()).uniqueResult()).intValue();
-			return new PageingModel<Skart>(list,kayitSayisi );
+			return new PageingModel<Skart>(list,kayitSayisi );		
+				
 		}
 		
 		

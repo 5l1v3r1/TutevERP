@@ -41,39 +41,48 @@ public class DataController implements Serializable {
 	private void init() {
 		dataGuncelle();
 		if (uyrukListe == null || uyrukListe.size() < 1) {
-			logger.debug("Referans Data Bulunamadý DB insert Yapýlýyor");
-			kodluListeService.save(new KodluListe(null, "TC","Türkiye Cumhuriyeti", KodluListeTip.UYRUK));
-			kodluListeService.save(new KodluListe(null, "ABD","Amerika Birleþik Devletleri", KodluListeTip.UYRUK));
+			logger.debug("Referans Data BulunamadÃ½ DB insert YapÃ½lÃ½yor");
+			kodluListeService.save(new KodluListe(null, "TC","TÃ¼rkiye Cumhuriyeti", KodluListeTip.UYRUK));
+			kodluListeService.save(new KodluListe(null, "ABD","Amerika BirleÃ¾ik Devletleri", KodluListeTip.UYRUK));
 			kodluListeService.save(new KodluListe(null, "FR", "Fransa",KodluListeTip.UYRUK));
-			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
+			logger.debug("Referans Data BulunamadÃ½ DB insert YapÃ½ldÃ½");
 			dataGuncelle();
 		}
 		
 		if (uretimTipiListe == null || uretimTipiListe.size() < 1) {
-			logger.debug("uretimTipiListe Referans verisi Bulunamadý DB insert Yapýlýyor");
-			kodluListeService.save(new KodluListe(null, "krtk","Kritik Üretim", KodluListeTip.URETIM_TIP));
-			kodluListeService.save(new KodluListe(null, "Zrnl","Zorunlu Üretim", KodluListeTip.URETIM_TIP));
-			kodluListeService.save(new KodluListe(null, "icuretim", "Ýç Kaynaklar için Üretim",KodluListeTip.URETIM_TIP));
-			kodluListeService.save(new KodluListe(null, "dnmsl", "Dönemsel Üretim",KodluListeTip.URETIM_TIP));
-			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
+			logger.debug("uretimTipiListe Referans verisi BulunamadÃ½ DB insert YapÃ½lÃ½yor");
+			kodluListeService.save(new KodluListe(null, "krtk","Kritik Ãœretim", KodluListeTip.URETIM_TIP));
+			kodluListeService.save(new KodluListe(null, "Zrnl","Zorunlu Ãœretim", KodluListeTip.URETIM_TIP));
+			kodluListeService.save(new KodluListe(null, "icuretim", "ÃÃ§ Kaynaklar iÃ§in Ãœretim",KodluListeTip.URETIM_TIP));
+			kodluListeService.save(new KodluListe(null, "dnmsl", "DÃ¶nemsel Ãœretim",KodluListeTip.URETIM_TIP));
+			logger.debug("Referans Data BulunamadÃ½ DB insert YapÃ½ldÃ½");
 			dataGuncelle();
 		}
+		if (paraBirimListe == null || paraBirimListe.size() < 1) {
+			logger.debug("paraBirimListe Referans verisi BulunamadÃ½ DB insert YapÃ½lÃ½yor");
+			kodluListeService.save(new KodluListe(null, "TL","TÃ¼rk LirasÄ±", KodluListeTip.PARA_BIRIM));
+			kodluListeService.save(new KodluListe(null, "USD","Amerikan DolarÄ±", KodluListeTip.PARA_BIRIM));
+			kodluListeService.save(new KodluListe(null, "EURO", "Avrupa Para Birimi",KodluListeTip.PARA_BIRIM));
+			logger.debug("Referans Data BulunamadÃ½ DB insert YapÃ½ldÃ½");
+			dataGuncelle();
+		}	
+		
 	}
 
 	public void dataGuncelle() {
-		logger.info("Referans Data Yükleniyor");
+		logger.info("Referans Data YÃ¼kleniyor");
 		uyrukListe = dataService.getByType(KodluListeTip.UYRUK);
 		olcuBirimListe = dataService.getByType(KodluListeTip.OLCU_BIRIMI);
 		paraBirimListe = dataService.getByType(KodluListeTip.PARA_BIRIM);
 		uretimTipiListe = dataService.getByType(KodluListeTip.URETIM_TIP);
-		logger.info("Referans Data Yüklendi");
+		logger.info("Referans Data YÃ¼klendi");
 	}
 
 	public void dataUretimGuncelle() {
-		logger.info("Üretim Tip Referans Data Yükleniyor");
+		logger.info("Ãœretim Tip Referans Data YÃ¼kleniyor");
 		uyrukListe = dataService.getByType(KodluListeTip.URETIM_TIP);
 	 
-		logger.info("Üretim Tip Referans Data Yüklendi");
+		logger.info("Ãœretim Tip Referans Data YÃ¼klendi");
 	}
 	
 	public List<KodluListe> getUretimTipiListe() {
