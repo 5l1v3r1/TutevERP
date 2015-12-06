@@ -33,6 +33,7 @@ public class DataController implements Serializable {
 	private List<KodluListe> uyrukListe;
 	private List<KodluListe> olcuBirimListe;
 	private List<KodluListe> paraBirimListe;
+	private List<KodluListe> irsaliyeTurListe;
 	//EK
 	private List<KodluListe> uretimTipiListe;
 	
@@ -49,6 +50,14 @@ public class DataController implements Serializable {
 			dataGuncelle();
 		}
 		
+		if (irsaliyeTurListe == null || irsaliyeTurListe.size() < 1) {
+			logger.debug("İrsaliye Türü : Referans Data Bulunamadý DB insert Yapýlýyor");
+			kodluListeService.save(new KodluListe(null, "G","Giriş İrsaliyesi", KodluListeTip.IRSALIYE_TIP));
+			kodluListeService.save(new KodluListe(null, "C","Çıkış İrsaliyesi", KodluListeTip.IRSALIYE_TIP));
+			logger.debug("İrsaliye Türü : Referans Data Bulunamadý DB insert Yapýldý");
+			dataGuncelle();
+		}
+
 		if (uretimTipiListe == null || uretimTipiListe.size() < 1) {
 			logger.debug("uretimTipiListe Referans verisi Bulunamadý DB insert Yapýlýyor");
 			kodluListeService.save(new KodluListe(null, "krtk","Kritik Üretim", KodluListeTip.URETIM_TIP));
@@ -75,6 +84,7 @@ public class DataController implements Serializable {
 		olcuBirimListe = dataService.getByType(KodluListeTip.OLCU_BIRIMI);
 		paraBirimListe = dataService.getByType(KodluListeTip.PARA_BIRIM);
 		uretimTipiListe = dataService.getByType(KodluListeTip.URETIM_TIP);
+		irsaliyeTurListe = dataService.getByType(KodluListeTip.IRSALIYE_TIP);
 		logger.info("Referans Data Yüklendi");
 	}
 
@@ -99,5 +109,21 @@ public class DataController implements Serializable {
 
 	public List<KodluListe> getUyrukListe() {
 		return uyrukListe;
+	}
+
+	/**
+	 * Mehmet Emin IŞIK
+	 * @return the irsaliyeTurListe
+	 */
+	public List<KodluListe> getIrsaliyeTurListe() {
+		return irsaliyeTurListe;
+	}
+
+	/**
+	 * Mehmet Emin IŞIK
+	 * @param irsaliyeTurListe the irsaliyeTurListe to set
+	 */
+	public void setIrsaliyeTurListe(List<KodluListe> irsaliyeTurListe) {
+		this.irsaliyeTurListe = irsaliyeTurListe;
 	}
 }
