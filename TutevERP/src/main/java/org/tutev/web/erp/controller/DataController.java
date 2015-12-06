@@ -75,6 +75,15 @@ public class DataController implements Serializable {
 			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
 			dataGuncelle();
 		}	
+		if (paraBirimListe == null || paraBirimListe.size() < 1) {
+			logger.debug("paraBirimListe Referans verisi Bulunamadý DB insert Yapýlýyor");
+			kodluListeService.save(new KodluListe(null, "IL","IL", KodluListeTip.YERLESIM_TIP));
+			kodluListeService.save(new KodluListe(null, "ILCE","ILCE", KodluListeTip.YERLESIM_TIP));
+			kodluListeService.save(new KodluListe(null, "ULKE", "ÜLKE",KodluListeTip.YERLESIM_TIP));
+			kodluListeService.save(new KodluListe(null, "MAH", "MAHALLE",KodluListeTip.YERLESIM_TIP));
+			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
+			dataGuncelle();
+		}	
 		
 	}
 
