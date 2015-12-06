@@ -17,6 +17,10 @@
 					</p:column>
 					<p:column headerText="İrsaliye Türü">
 						<h:outputText value="#{irs.tur}" />
+						<p:selectOneMenu id="tur"  onchange="PF('tblIrsaliye').filter()"  effect="fold" converter="#{kodluListeConverter}">
+						<f:selectItem itemLabel="Seçiniz" itemValue="null" ></f:selectItem>
+			            <f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}"  value="#{dataController.uyrukListe}" var="item" />
+			        </p:selectOneMenu>
 					</p:column>
 					<p:column headerText="İrsaliye Tarihi">
 						<h:outputText pattern="dd/MM/yyyy" disabled="true" locale="tr"
