@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/layout/layout.xhtml">
+	<ui:define name="pageContent">
+		<h:form id="frmStk">
+		<p:panelGrid id="pnlStk" columns="1">
+			
+									
+				<p:dataTable id="tblStk" widgetVar="tblStk" var="stkrtM" paginatorPosition="bottom"
+					value="#{stokMarkaModelController.stokMarkaModelListesi}" rows="10" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="10,20,50">				
+					<f:facet name="header">
+						<h:outputText value="Stok Listesi" />
+					</f:facet>  
+					<p:column headerText="Marka Model No" >
+						<h:outputText value="#{stkrtM.id}" />
+					</p:column>
+					<p:column headerText="Marka Model Tanim" sortBy="#{stkrtM.tanim}" filterBy="#{stkrtM.tanim}">
+						<h:outputText value="#{stkrtM.tanim}" />
+					</p:column>
+											
+					<p:column headerText="Marka Model Kod" sortBy="#{stkrtM.kod}" filterBy="#{stkrtM.kod}" >
+						<h:outputText value="#{stkrtM.kod}" />
+					</p:column>
+					
+					<!--  
+					<p:column headerText="ParaBirim" sortBy="#{stkrt.paraBirim}" filterBy="#{stkrt.paraBirim}" >
+						<h:outputText value="#{stkrt.paraBirim}" />
+					</p:column> 
+					/-->
+					
+					
+					<p:column headerText="İşlemler">
+						<p:commandButton value="Sil" icon="ui-icon-trash" actionListener="#{stokMarkaModelController.stokMarkaModelSil(stkrtM.id)}" update=":frmStk:tblStk">
+							<p:confirm header="Silme Onay" message="Silmek İstediginizden Emin misiniz?" icon="ui-icon-alert" />
+						</p:commandButton>	
+						<p:commandButton icon="ui-icon-pencil" value="Düzenle" update=":frmStk:dlgStk" oncomplete="PF('dlgStk').show()" actionListener="#{stokMarkaModelController.stokMarkaModelDuzenle(stkrtM.id)}" > </p:commandButton>
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					    </p:confirmDialog>					
+					</p:column>
+				</p:dataTable>
+				<p:commandButton value="Yeni" actionListener="#{stokMarkaModelController.yeni}" update=":frmStk:dlgStk"
+					oncomplete="PF('dlgStk').show();"></p:commandButton>		
+			
+			</p:panelGrid>
+			
+			<p:dialog id="dlgStk" widgetVar="dlgStk" appendTo="frmStk"
+				closable="true" header="Stok Düzenleme" modal="true">
+
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+						<h:outputText value="Stok Detaylari" />
+					</f:facet>
+
+					<h:outputText value="MarkaModel Tanim : " />
+					<p:inputText value="#{stokMarkaModelController.stokKartMarkaModel.tanim}"></p:inputText>
+
+					<h:outputText value="MarkaModel Kod : " />
+					<p:inputText value="#{stokMarkaModelController.stokKartMarkaModel.kod}"></p:inputText>
+					
+
+							
+				
+					<p:commandButton value="Iptal" onclick="PF('dlgStk').hide()"></p:commandButton>
+					<p:commandButton value="Kaydet"
+						update=":frmStk:tblStk,:frmStk:dlgStk" process="@form"
+						oncomplete="PF('dlgStk').hide()"
+						action="#{stokMarkaModelController.stokMarkaModelKaydet}"></p:commandButton>
+				</p:panelGrid>
+
+			</p:dialog>
+			
+			 
+		  </h:form>		
+	</ui:define>	  
+	
+</ui:composition>	
