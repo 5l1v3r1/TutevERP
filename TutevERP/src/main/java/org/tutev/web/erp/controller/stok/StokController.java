@@ -55,10 +55,12 @@ public class StokController implements Serializable {
 	
 	@PostConstruct  
 	private void init() {   ////the contract that guarantees that this method will be invoked only once in the bean lifecycle
-		stokListesi=stokService.getAll();  //assigned values by using getAll method in StokService 
+		//stokListesi=stokService.getAll();  //assigned values by using getAll method in StokService 
 		//stokKategoriListesi = stokKategoriService.getAll();
 		//stokListele();
 		//stokListele();
+		listele();
+		
 	}
 
 	private void stokListele() {
@@ -77,7 +79,8 @@ public class StokController implements Serializable {
 	public void stokSil(Long id) {                         //stok.xhtlm icinde  stokController.stokSil(stkrt.id) ile kullanýldý
 		Skart silinecekStokKart = stokService.getById(id);
 		stokService.delete(silinecekStokKart);
-		stokListesi=stokService.getAll();
+		//stokListesi=stokService.getAll();
+		listele();
 
 	}
 	
@@ -99,7 +102,8 @@ public class StokController implements Serializable {
 			}else{
 				stokService.update(stokKart);}		
 			System.out.println("Yeni Stok Kaydi yapildi");
-			stokListele();
+			//stokListele();
+			listele();
 			} catch (Exception e) {
 		}	
 	}

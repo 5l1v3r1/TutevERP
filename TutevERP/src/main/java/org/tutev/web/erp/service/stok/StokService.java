@@ -12,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tutev.web.erp.entity.genel.Kisi;
+import org.tutev.web.erp.entity.genel.KodluListe;
 import org.tutev.web.erp.entity.stok.Skart;
 import org.tutev.web.erp.service.BaseDao;
 import org.tutev.web.erp.service.ServiceBase;
@@ -66,7 +67,7 @@ public class StokService implements ServiceBase<Skart>{
 	    } 
 		
 
-		@SuppressWarnings("unchecked")
+		@SuppressWarnings({ "unchecked", "null" })
 		public PageingModel<Skart> getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
 			Criteria criteria = getSession().createCriteria(Skart.class);
 			if(filters!=null || filters.size()>0){
@@ -74,6 +75,13 @@ public class StokService implements ServiceBase<Skart>{
 					criteria.add(Restrictions.ilike("ad", (String) filters.get("ad"),MatchMode.ANYWHERE));
 				}
 			}
+			
+			if(filters.get("paraBirimi")!=null){
+				KodluListe paraBirimi= (KodluListe) filters.get("paraBirimi");
+				criteria.add(Restrictions.eq("paraBirimi.id",paraBirimi.getId()));
+			}
+			
+			
 			criteria.setMaxResults(pageSize);
 			criteria.setFirstResult(firstRecord);
 

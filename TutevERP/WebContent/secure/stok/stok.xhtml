@@ -8,26 +8,36 @@
 		<h:form id="frmStk">
 		<p:panelGrid id="pnlStk" columns="1">
 			
-				<!--value="#{stokController.stokListesi}" lazy="false" rowKey="#{stkrt.id}"  rows="10" paginator="true"-->				
-				<p:dataTable id="tblStk" widgetVar="tblStk" var="stkrt" paginatorPosition="bottom"
+			
+			    <p:dataTable id="tblStk" widgetVar="tblStk" var="stkrt" paginatorPosition="bottom"
+					value="#{stokController.lazy}" lazy="true" rowKey="#{stkrt.id}"  rows="10" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="10,20,50"> 			
+			
+				 <!--value="#{stokController.stokListesi}" lazy="false" rowKey="#{stkrt.id}"  rows="10" paginator="true"-->				
+				<!--  <p:dataTable id="tblStk" widgetVar="tblStk" var="stkrt" paginatorPosition="bottom"
 					value="#{stokController.stokListesi}" rows="10" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="10,20,50">				
+					rowsPerPageTemplate="10,20,50">			
+						 -->
 					<f:facet name="header">
 						<h:outputText value="Stok Listesi" />
 					</f:facet>  
-					<p:column headerText="No" >
+					<p:column headerText="Stok ID" >
 						<h:outputText value="#{stkrt.id}" />
 					</p:column>
-					<p:column headerText="Tanim" sortBy="#{stkrt.tanim}" filterBy="#{stkrt.tanim}">
+					<p:column headerText="Stok Tanim">
 						<h:outputText value="#{stkrt.tanim}" />
 					</p:column>
-					<p:column headerText="Barkod" sortBy="#{stkrt.barkod}" filterBy="#{stkrt.barkod}" >
+					<p:column headerText="Stok Barkod">
 						<h:outputText value="#{stkrt.barkod}" />
 					</p:column>
 					
-								
-					<p:column headerText="Kategori Tanim" >
+					<p:column headerText="Stok Kod">
+						<h:outputText value="#{stkrt.kod}" />
+					</p:column>
+													
+					<p:column headerText="Kategori Tanim">
 						<h:outputText value="#{stkrt.skartKategori.tanim}" />
 					</p:column>
 					
@@ -35,31 +45,25 @@
 						<h:outputText value="#{stkrt.skartKategori.id}" />
 					</p:column>
 					
-		            <p:column headerText="Marka Tanim" >
+		            <p:column headerText="Marka Tanim">
 						<h:outputText value="#{stkrt.skartMarkaModel.tanim}" />
 					</p:column>
 					
 		            <p:column headerText="Marka ID" >
 						<h:outputText value="#{stkrt.skartMarkaModel.id}" />
 					</p:column>
-					
-		            
-		            
-					<p:column headerText="Kod" sortBy="#{stkrt.kod}" filterBy="#{stkrt.kod}" >
-						<h:outputText value="#{stkrt.kod}" />
-					</p:column>
-					
+										
 					
 					<!-- <p:column headerText="ParaBirimi" sortBy="#{stkrt.paraBirimi}" filterBy="#{stkrt.paraBirimi}" >
 						<h:outputText value="#{stkrt.paraBirimi}" />
 					</p:column>
 					 -->
 			        
-			        
+			       
 			        <p:column headerText="ParaBirimi" filterBy="#{stkrt.paraBirimi}">
 					<f:facet name="filter">
-					<p:selectOneMenu id="parabirimi"  onchange="PF('tblStk').filter()"  effect="fold" converter="#{kodluListeConverter}">
-						<f:selectItem itemLabel="Seçiniz" itemValue="null" ></f:selectItem>
+					<p:selectOneMenu id="paraBirimi"  onchange="PF('tblStk').filter()"  effect="fold" converter="#{kodluListeConverter}">
+						<f:selectItem itemLabel="Seciniz" itemValue="null" ></f:selectItem>
 			            <f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}"  value="#{dataController.paraBirimListe}" var="item" />
 			        </p:selectOneMenu>
 					</f:facet>
@@ -105,7 +109,7 @@
 					<h:outputText value="Urun Marka ID: " />
 					<p:inputText value="#{stokController.stokKart.skartMarkaModel.id}"></p:inputText>
 							
-		
+		            
 				    <h:outputText value="Para Birimi : " />
 					<p:selectOneMenu id="parabirimi"  value="#{stokController.stokKart.paraBirimi}" 
 					effect="fold" converter="#{kodluListeConverter}">
