@@ -11,6 +11,7 @@ import org.tutev.web.erp.entity.stok.SkartKategori;
 import org.tutev.web.erp.service.stok.StokKategoriService;
 
 
+
 @Controller("stokKategoriController")
 @Scope("session")
 public class StokKategoriController implements Serializable {

@@ -23,6 +23,7 @@ import org.tutev.web.erp.service.stok.StokService;
 import org.tutev.web.erp.util.PageingModel;
 
 
+
 @Controller("stokController")
 @Scope("session")
 public class StokController implements Serializable {

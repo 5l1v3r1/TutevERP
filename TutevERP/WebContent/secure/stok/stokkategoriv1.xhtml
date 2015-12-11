@@ -6,9 +6,9 @@
 	template="/layout/layout.xhtml">
 	<ui:define name="pageContent">
 		<h:form id="frmStk">
-			<p:panelGrid id="pnlStk" columns="1">
-
-
+		<p:panelGrid id="pnlStk" columns="1">
+			
+									
 				<p:dataTable id="tblStk" widgetVar="tblStk" var="stkrtK" paginatorPosition="bottom"
 					value="#{stokKategoriController.stokKategoriListesi}" rows="10" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -27,11 +27,11 @@
 						<h:outputText value="#{stkrtK.kod}" />
 					</p:column>
 					
-					 
+					<!--  
 					<p:column headerText="ParaBirim" sortBy="#{stkrt.paraBirim}" filterBy="#{stkrt.paraBirim}" >
 						<h:outputText value="#{stkrt.paraBirim}" />
 					</p:column> 
-					
+					/-->
 					
 					
 					<p:column headerText="İşlemler">
@@ -45,37 +45,11 @@
 					    </p:confirmDialog>					
 					</p:column>
 				</p:dataTable>
-
-	<!-- 			<p:treeTable  id="tblStk" widgetVar="tblStk" value="#{stokKategoriController.stokKategoriListesi}" var="document">
-					<f:facet name="header">Stok Kategori Listesi </f:facet>
-					<p:column headerText="Kategori No">
-						<h:outputText value="#{document.id}" />
-					</p:column>
-					<p:column headerText="Kategori Tanim">
-						<h:outputText value="#{document.tanim}" />
-					</p:column>
-					<p:column style="width:24px">
-						<p:commandLink update=":form:documentPanel"
-							oncomplete="PF('documentDialog').show()" title="View Detail"
-							styleClass="ui-icon ui-icon-search">
-							<f:setPropertyActionListener value="#{document}"
-								target="#{ttBasicView.selectedDocument}" />
-						</p:commandLink>
-					</p:column>
-				</p:treeTable>
- -->
-
-
-
-
-
-
-				<p:commandButton value="Yeni"
-					actionListener="#{stokKategoriController.yeni}"
-					update=":frmStk:dlgStk" oncomplete="PF('dlgStk').show();"></p:commandButton>
-
+				<p:commandButton value="Yeni" actionListener="#{stokKategoriController.yeni}" update=":frmStk:dlgStk"
+					oncomplete="PF('dlgStk').show();"></p:commandButton>		
+			
 			</p:panelGrid>
-
+			
 			<p:dialog id="dlgStk" widgetVar="dlgStk" appendTo="frmStk"
 				closable="true" header="Stok Düzenleme" modal="true">
 
@@ -85,13 +59,12 @@
 					</f:facet>
 
 					<h:outputText value="Kategori Tanim : " />
-					<p:inputText
-						value="#{stokKategoriController.stokKartKategori.tanim}"></p:inputText>
+					<p:inputText value="#{stokKategoriController.stokKartKategori.tanim}"></p:inputText>
 
 					<h:outputText value="Kategori Kod : " />
 					<p:inputText value="#{stokKategoriController.stokKartKategori.kod}"></p:inputText>
-
-
+											
+				
 					<p:commandButton value="Iptal" onclick="PF('dlgStk').hide()"></p:commandButton>
 					<p:commandButton value="Kaydet"
 						update=":frmStk:tblStk,:frmStk:dlgStk" process="@form"
@@ -100,9 +73,9 @@
 				</p:panelGrid>
 
 			</p:dialog>
-
-
-		</h:form>
-	</ui:define>
-
-</ui:composition>
+			
+			 
+		  </h:form>		
+	</ui:define>	  
+	
+</ui:composition>	

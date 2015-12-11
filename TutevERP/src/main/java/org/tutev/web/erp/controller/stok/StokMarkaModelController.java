@@ -11,6 +11,7 @@ import org.tutev.web.erp.entity.stok.SkartMarkaModel;
 import org.tutev.web.erp.service.stok.StokMarkaModelService;
 
 
+
 @Controller("stokMarkaModelController")
 @Scope("session")
 public class StokMarkaModelController implements Serializable {
