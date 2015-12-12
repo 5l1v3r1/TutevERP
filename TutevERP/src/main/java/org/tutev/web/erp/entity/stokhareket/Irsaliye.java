@@ -12,14 +12,17 @@ import java.util.Locale;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.ForeignKey;
 import org.tutev.web.erp.entity.base.Adres;
 import org.tutev.web.erp.entity.base.BaseEntity;
 
@@ -31,15 +34,20 @@ import org.tutev.web.erp.entity.base.BaseEntity;
  * 
  */
 
-@SuppressWarnings("serial")
+@SuppressWarnings("deprecation")
 @Entity
 @Table(name = "IRS_IRSALIYE")
 public class Irsaliye extends BaseEntity {
+	/**
+	 * Generated Serial Id 
+	 */
+	private static final long serialVersionUID = -630615291362114642L;
 	private Long id;
 	private String tur;
 	private Date tarih;
-	private Long firma_id;
+	private Firma firmaId;
 	private Adres adres;
+	private Depo depo;
 
 	/**
 	 * Default parametresiz constructor
@@ -54,14 +62,14 @@ public class Irsaliye extends BaseEntity {
 	 * @param id
 	 * @param tur
 	 * @param tarih
-	 * @param firma_id
+	 * @param firmaId
 	 * @param adres
 	 */
 	public Irsaliye(Irsaliye irsaliye) {
 		this.id = irsaliye.id;
 		this.tur = irsaliye.tur;
 		this.tarih = irsaliye.tarih;
-		this.firma_id = irsaliye.firma_id;
+		this.firmaId = irsaliye.firmaId;
 		this.adres = new Adres(irsaliye.adres);
 	}
 
@@ -76,11 +84,11 @@ public class Irsaliye extends BaseEntity {
 	 * @param firma_id
 	 * @param adres
 	 */
-	public Irsaliye(Long id, String tur, Date tarih, Long firma_id, Adres adres) {
+	public Irsaliye(Long id, String tur, Date tarih, Firma firma_id, Adres adres) {
 		this.id = id;
 		this.tur = tur;
 		this.tarih = tarih;
-		this.firma_id = firma_id;
+		this.firmaId = firma_id;
 		this.adres = new Adres(adres);
 	}
 
@@ -121,17 +129,20 @@ public class Irsaliye extends BaseEntity {
 			DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 			this.tarih = df.parse(tarih);
 		} catch (ParseException e) {
+			e.printStackTrace();
 			this.tarih = new Date();
 		}
 	}
 
+	@OneToOne(fetch=FetchType.LAZY)
 	@Column(name = "FIRMA_ID", precision = 10, scale = 0)
-	public Long getFirma_id() {
-		return firma_id;
+	@ForeignKey(name="FK_IRSALIYE_REF_FIRMA")
+	public Firma getFirma() {
+		return firmaId;
 	}
 
-	public void setFirma_id(Long firma_id) {
-		this.firma_id = firma_id;
+	public void setFirma(Firma firma) {
+		this.firmaId = firma;
 	}
 
 	@Embedded
@@ -143,9 +154,26 @@ public class Irsaliye extends BaseEntity {
 		this.adres = adres;
 	}
 
+	/**
+	 * @return the cikisDepo
+	 */
+	@OneToOne(fetch=FetchType.LAZY)
+	@Column(name = "DEPO_ID", precision = 10, scale = 0)
+	@ForeignKey(name="FK_IRSALIYE_REF_DEPO")
+	public Depo getDepo() {
+		return depo;
+	}
+
+	/**
+	 * @param cikisDepo the cikisDepo to set
+	 */
+	public void setCikisDepo(Depo depo) {
+		this.depo = depo;
+	}
+
 	@Override
 	public String toString() {
-		return "Irsaliye : id=" + getId() + " tur=" + this.tur + " tarih=" + this.tarih + " firma_id=" + this.firma_id
+		return "Irsaliye : id=" + getId() + " tur=" + this.tur + " tarih=" + this.tarih + " firma_id=" + this.firmaId
 				+ " adres=" + this.adres;
 	}
 
