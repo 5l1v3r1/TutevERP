@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.tutev.web.erp.service.BaseDao;
 import org.tutev.web.erp.service.ServiceBase;
 import org.tutev.web.erp.util.PageingModel;
-import org.tutev.web.erp.entity.genel.Kisi;
 import org.tutev.web.erp.entity.stokhareket.Irsaliye;
 import org.springframework.beans.factory.annotation.Autowired;
 
