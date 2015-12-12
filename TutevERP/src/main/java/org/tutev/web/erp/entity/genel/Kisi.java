@@ -127,7 +127,7 @@ public class Kisi extends BaseEntity{
     
     @Override
     public String toString() {
-        return "Kisi{" + "id=" + id + ", ad=" + ad + ", soyad=" + soyad + ", dogumTarihi=" + dogumTarihi + '}';
+        return "Kisi [" + "id=" + id + ", ad=" + ad + ", soyad=" + soyad + ", dogumTarihi=" + dogumTarihi + ']';
     }
 
     
