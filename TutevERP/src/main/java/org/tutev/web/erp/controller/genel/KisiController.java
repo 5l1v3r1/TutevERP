@@ -3,8 +3,6 @@ package org.tutev.web.erp.controller.genel;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 import javax.annotation.PostConstruct;
 
@@ -85,15 +83,6 @@ public class KisiController implements Serializable {
 				return kisiler.getList();
 			}
 
-			@Override
-			public void forEach(Consumer<? super Kisi> arg0) {
-				
-			}
-
-			@Override
-			public Spliterator<Kisi> spliterator() {
-				return null;
-			}
 		};
 
 	}

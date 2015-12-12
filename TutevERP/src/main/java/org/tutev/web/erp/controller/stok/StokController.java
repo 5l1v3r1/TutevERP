@@ -2,8 +2,6 @@ package org.tutev.web.erp.controller.stok;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 import javax.annotation.PostConstruct;
 
@@ -178,16 +176,6 @@ public class StokController implements Serializable {
 				PageingModel<Skart> stokkartlar=stokService.getByPageing(first, pageSize, filters);
 				lazy.setRowCount(stokkartlar.getRowCount());
 				return stokkartlar.getList();
-			}
-
-			@Override
-			public void forEach(Consumer<? super Skart> arg0) {
-				
-			}
-
-			@Override
-			public Spliterator<Skart> spliterator() {
-				return null;
 			}
 		};
 
