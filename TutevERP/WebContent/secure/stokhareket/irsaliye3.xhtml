@@ -15,12 +15,16 @@
 					<p:column headerText="İrsaliye No">
 						<h:outputText value="#{irs.id}" />
 					</p:column>
-					<p:column headerText="İrsaliye Türü">
+					<p:column headerText="İrsaliye Türü" filterBy="#{irs.tur}">
+						<f:facet name="filter" width="90%">
+							<p:selectOneMenu id="tur" onchange="PF('tblIrsaliye').filter()"
+								effect="fold" converter="#{kodluListeConverter}">
+								<f:selectItem itemLabel="Seçiniz" itemValue="null"></f:selectItem>
+								<f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}"
+									value="#{dataController.irsaliyeTurListe}" var="item" />
+							</p:selectOneMenu>
+						</f:facet>
 						<h:outputText value="#{irs.tur}" />
-						<p:selectOneMenu id="tur"  onchange="PF('tblIrsaliye').filter()"  effect="fold" converter="#{kodluListeConverter}">
-						<f:selectItem itemLabel="Seçiniz" itemValue="null" ></f:selectItem>
-			            <f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}"  value="#{dataController.uyrukListe}" var="item" />
-			        </p:selectOneMenu>
 					</p:column>
 					<p:column headerText="İrsaliye Tarihi">
 						<h:outputText pattern="dd/MM/yyyy" disabled="true" locale="tr"
@@ -49,7 +53,7 @@
 								message="Silmek İstediginizden Emin misiniz?"
 								icon="ui-icon-alert" />
 						</p:commandButton>
-						<p:commandButton icon="ui-icon-pencil" 
+						<p:commandButton icon="ui-icon-pencil"
 							update=":frmIrsaliye:dlgIrsaliye"
 							oncomplete="PF('dlgIrsaliye').show()"
 							actionListener="#{irsaliyeController.duzenle(irs.id)}">
