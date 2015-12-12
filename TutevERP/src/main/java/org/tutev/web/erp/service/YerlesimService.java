@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.tutev.web.erp.entity.genel.Yerlesim;
 import org.tutev.web.erp.util.PageingModel;
 
-@Service("kodluListeService")
+@Service("yerlesimService")
 public class YerlesimService {
 
 
