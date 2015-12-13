@@ -1,7 +1,5 @@
 package org.tutev.web.erp.util;
 
-import java.util.Date;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
