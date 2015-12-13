@@ -19,7 +19,7 @@ import org.tutev.web.erp.service.KodluListeService;
 import org.tutev.web.erp.util.PageingModel;
 
 @Controller("kisiController")
-@Scope("TEMEL")
+@Scope("view")
 public class KisiController implements Serializable {
 
 	/**

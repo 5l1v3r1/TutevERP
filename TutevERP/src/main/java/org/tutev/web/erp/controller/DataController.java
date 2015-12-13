@@ -15,7 +15,7 @@ import org.tutev.web.erp.entity.genel.KodluListeTip;
 import org.tutev.web.erp.entity.genel.Kullanici;
 import org.tutev.web.erp.service.DataService;
 import org.tutev.web.erp.service.KodluListeService;
-import org.tutev.web.erp.service.KulService;
+import org.tutev.web.erp.service.KullaniciService;
 
 @Component("dataController")
 @Scope("singleton")
@@ -31,7 +31,7 @@ public class DataController implements Serializable {
 	@Autowired
 	private transient KodluListeService kodluListeService;
 	@Autowired
-	private transient KulService kulService;
+	private transient KullaniciService kullaniciService;
 	
 	public static Logger logger = Logger.getLogger(DataController.class);
 
@@ -99,7 +99,7 @@ public class DataController implements Serializable {
 			kullanici.setEkleyen("sys");
 			kullanici.setPassword("123");
 			kullanici.setUsername("admin");
-			kulService.save(kullanici);
+			kullaniciService.save(kullanici);
 			dataGuncelle();
 		}
 		
@@ -113,14 +113,13 @@ public class DataController implements Serializable {
 		uretimTipiListe = dataService.getByType(KodluListeTip.URETIM_TIP);
 		irsaliyeTurListe = dataService.getByType(KodluListeTip.IRSALIYE_TIP);
 		yerlesimTipListe=dataService.getByType(KodluListeTip.YERLESIM_TIP);
-		userCount=kulService.getUserCount();
+		userCount=kullaniciService.getUserCount();
 		logger.info("Referans Data Yüklendi");
 	}
 
 	public void dataUretimGuncelle() {
 		logger.info("Üretim Tip Referans Data Yükleniyor");
 		uyrukListe = dataService.getByType(KodluListeTip.URETIM_TIP);
-	 
 		logger.info("Üretim Tip Referans Data Yüklendi");
 	}
 	

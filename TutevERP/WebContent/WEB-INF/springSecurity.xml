@@ -8,8 +8,8 @@
                         http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 	<http use-expressions="true">
-		<intercept-url pattern="/secure/**" access="isAuthenticated()" />
-		<intercept-url pattern="/secure/kisi/**" access="hasRole('USER')" />
+		<intercept-url pattern="/secure/*" access="isAuthenticated()" />
+		<intercept-url pattern="/secure/kisi/*" access="hasRole('USER')" />
 		<intercept-url pattern="/secure/stok/**" access="hasRole('ADMIN')" />
    
 		<form-login  login-processing-url="/j_spring_security_check"  login-page="/Login.xhtml"
@@ -25,11 +25,11 @@
 	</http>
 
 	<authentication-manager>
-	    <authentication-provider user-service-ref="kullaniciService"  >
+	    <authentication-provider user-service-ref="userServiceImpl"  >
 	        <password-encoder  hash="md5"></password-encoder>
 	    </authentication-provider>
 	</authentication-manager>
 	
-	<beans:bean id="kullaniciService" class="org.tutev.web.erp.service.KullaniciService" />
+	<beans:bean id="userServiceImpl" class="org.tutev.web.erp.service.UserServiceImpl" />
 
 </beans:beans>
