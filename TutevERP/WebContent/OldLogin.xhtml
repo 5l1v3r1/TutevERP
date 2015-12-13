@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+<meta charset="UTF-8"/>
+<title>Giriş Yapınız </title>
+
+<link rel="stylesheet" href="css/style.css"/>
+<h:outputStylesheet library="css" name="login.css"></h:outputStylesheet>
+</h:head>
+
+<h:body>
+
+	<!--Google Font - Work Sans-->
+	<link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,700' rel='stylesheet' type='text/css'/>
+	<div class="container">
+		<div class="profile">
+	
+			<h:form >
+					<div class="field">
+						<h:inputText id="j_username" class="input" value="#{loginController.aktifKullanici.username}" /> <label for="j_username" class="label">Kullanıcı Adı</label>
+					</div>
+					<div class="field">
+						<h:inputSecret id="j_password" value="#{loginController.aktifKullanici.password}" class="input" /> <label for="j_password" class="label">Şifre</label>
+					</div>
+					<div class="profile__footer">
+						<h:commandButton class="btn" action="#{loginController.doLogin}" value="Giriş"></h:commandButton>
+					</div>
+			</h:form>
+		</div>
+	</div>
+
+</h:body>
+</html>

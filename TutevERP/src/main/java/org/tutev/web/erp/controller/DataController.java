@@ -1,6 +1,7 @@
 package org.tutev.web.erp.controller;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,8 +12,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.tutev.web.erp.entity.genel.KodluListe;
 import org.tutev.web.erp.entity.genel.KodluListeTip;
+import org.tutev.web.erp.entity.genel.Kullanici;
 import org.tutev.web.erp.service.DataService;
 import org.tutev.web.erp.service.KodluListeService;
+import org.tutev.web.erp.service.KulService;
 
 @Component("dataController")
 @Scope("singleton")
@@ -27,20 +30,24 @@ public class DataController implements Serializable {
 	private transient DataService dataService;
 	@Autowired
 	private transient KodluListeService kodluListeService;
-
+	@Autowired
+	private transient KulService kulService;
+	
 	public static Logger logger = Logger.getLogger(DataController.class);
 
 	private List<KodluListe> uyrukListe;
 	private List<KodluListe> olcuBirimListe;
 	private List<KodluListe> paraBirimListe;
 	private List<KodluListe> irsaliyeTurListe;
-	//EK
+	private List<KodluListe> yerlesimTipListe;
 	private List<KodluListe> uretimTipiListe;
+	private Long userCount=Long.MIN_VALUE;
 	
 
 	@PostConstruct
 	private void init() {
 		dataGuncelle();
+		
 		if (uyrukListe == null || uyrukListe.size() < 1) {
 			logger.debug("Referans Data Bulunamadý DB insert Yapýlýyor");
 			kodluListeService.save(new KodluListe(null, "TC","Türkiye Cumhuriyeti", KodluListeTip.UYRUK));
@@ -75,7 +82,7 @@ public class DataController implements Serializable {
 			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
 			dataGuncelle();
 		}	
-		if (paraBirimListe == null || paraBirimListe.size() < 1) {
+		if (yerlesimTipListe == null || yerlesimTipListe.size() < 1) {
 			logger.debug("paraBirimListe Referans verisi Bulunamadý DB insert Yapýlýyor");
 			kodluListeService.save(new KodluListe(null, "IL","IL", KodluListeTip.YERLESIM_TIP));
 			kodluListeService.save(new KodluListe(null, "ILCE","ILCE", KodluListeTip.YERLESIM_TIP));
@@ -84,6 +91,17 @@ public class DataController implements Serializable {
 			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
 			dataGuncelle();
 		}	
+		
+		if (userCount == null || userCount < 1) {		
+			Kullanici kullanici=new Kullanici();
+			kullanici.setDurum(Boolean.TRUE);
+			kullanici.setEklemeTarihi(new Date());
+			kullanici.setEkleyen("sys");
+			kullanici.setPassword("123");
+			kullanici.setUsername("admin");
+			kulService.save(kullanici);
+			dataGuncelle();
+		}
 		
 	}
 
@@ -94,6 +112,8 @@ public class DataController implements Serializable {
 		paraBirimListe = dataService.getByType(KodluListeTip.PARA_BIRIM);
 		uretimTipiListe = dataService.getByType(KodluListeTip.URETIM_TIP);
 		irsaliyeTurListe = dataService.getByType(KodluListeTip.IRSALIYE_TIP);
+		yerlesimTipListe=dataService.getByType(KodluListeTip.YERLESIM_TIP);
+		userCount=kulService.getUserCount();
 		logger.info("Referans Data Yüklendi");
 	}
 
@@ -135,4 +155,10 @@ public class DataController implements Serializable {
 	public void setIrsaliyeTurListe(List<KodluListe> irsaliyeTurListe) {
 		this.irsaliyeTurListe = irsaliyeTurListe;
 	}
+	
+	public List<KodluListe> getYerlesimTipListe() {
+		return yerlesimTipListe;
+	}
+	
+	
 }

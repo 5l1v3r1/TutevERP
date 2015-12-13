@@ -35,9 +35,9 @@
 		</property>
 	</bean>
 
-	<bean
-		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
-	<bean id="DataSource" class="org.postgresql.jdbc3.Jdbc3PoolingDataSource">
+	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+	
+	<bean id="DataSource"  class="org.postgresql.jdbc3.Jdbc3PoolingDataSource" destroy-method="close">
 		<property name="serverName" value="localhost" />
 		<property name="portNumber" value="5432" />
 		<property name="databaseName" value="TERP" />
@@ -47,7 +47,7 @@
 		<property name="maxConnections" value="50" />
 	</bean>
 
-	<bean id="sessionFactory"
+	<bean id="sessionFactory" 
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="DataSource" />
 		<property name="packagesToScan" value="org.tutev.web.erp" />

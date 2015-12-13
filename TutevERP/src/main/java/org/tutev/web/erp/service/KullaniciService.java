@@ -6,7 +6,6 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -35,20 +34,15 @@ public class KullaniciService implements UserDetailsService {
 		authorities.add(new SimpleGrantedAuthority("ADMIN"));
 
 		// enabled=kullanici.getDurum()
-		User user = new User(kullanici.getUsername(), kullanici.getPassword(),true, true, true, true, authorities);
+		User user =null;
+		if(kullanici!=null){
+			user= new User(kullanici.getUsername(), kullanici.getPassword(),true, true, true, true, authorities);
+			
+			System.out.println(user.toString());
+		}		
 		return user;
 	}
 	
-	public void save(Kullanici kullanici) {
-		Md5PasswordEncoder encoder =new Md5PasswordEncoder();
-		String encPass = encoder.encodePassword(kullanici.getPassword(), kullanici);
-		kullanici.setPassword(encPass);
-		baseDao.save(kullanici);
-		
-	}
-	
-	
-
 }
 
 
