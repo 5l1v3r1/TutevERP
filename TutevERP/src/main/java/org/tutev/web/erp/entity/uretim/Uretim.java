@@ -125,7 +125,7 @@ public class Uretim extends BaseEntity {
 	@Override
 	public String toString() {
 		return "Uretim{" + "id=" + id + "Miktar" + miktar + " Tarihi=" + tarih
-				+ "Malzeme "+ malzeme.getMalzemeAd()+'}';
+				+ "StokHrkMalzeme "+ malzeme.getMalzemeAd()+'}';
 	}
 
 }

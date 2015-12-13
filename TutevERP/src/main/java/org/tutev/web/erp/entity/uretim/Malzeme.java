@@ -63,7 +63,7 @@ public class Malzeme extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "Malzeme{" + "malzemeId= " + malzemeId + "  malzemeAd :" + malzemeAd+ '}';
+		return "StokHrkMalzeme{" + "malzemeId= " + malzemeId + "  malzemeAd :" + malzemeAd+ '}';
 	}
  
  

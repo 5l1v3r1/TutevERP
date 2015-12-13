@@ -22,7 +22,7 @@ import org.tutev.web.erp.entity.genel.KodluListe;
  */
 @Entity
 @Table(name="IRS_MALZEME", uniqueConstraints={@UniqueConstraint(name="IRS_MALZEME_MLZ_KODU_UC1",columnNames={"MLZ_KODU"})}, indexes={@Index(name="IRS_MALZEME_MLZ_KODU_UC1", unique=true, columnList = "MLZ_KODU"),@Index(name="IRS_MALZEME_IX2", columnList = "MLZ_ADI")})
-public class Malzeme extends BaseEntity {
+public class StokHrkMalzeme extends BaseEntity {
 	/**
 	 * Generated Serial Id
 	 */
@@ -36,7 +36,7 @@ public class Malzeme extends BaseEntity {
 	KodluListe birimAlternate;
 	Boolean aktif;
 	
-	public Malzeme() {
+	public StokHrkMalzeme() {
 
 	}
 	/**
@@ -48,7 +48,7 @@ public class Malzeme extends BaseEntity {
 	 * @param birim
 	 * @param birimAlternate
 	 */
-	public Malzeme(Long id, String kodu, String adi, Double minAmount, Double maxAmount, KodluListe birim, KodluListe birimAlternate) {
+	public StokHrkMalzeme(Long id, String kodu, String adi, Double minAmount, Double maxAmount, KodluListe birim, KodluListe birimAlternate) {
 		this.id = id;
 		this.kodu = kodu;
 		this.adi = adi;
@@ -173,7 +173,7 @@ public class Malzeme extends BaseEntity {
 	 */
 	@Override
 	public String toString() {
-		return "Malzeme [id=" + id + ", kodu=" + kodu + ", adi=" + adi + ", minAmount=" + minAmount + ", maxAmount="
+		return "StokHrkMalzeme [id=" + id + ", kodu=" + kodu + ", adi=" + adi + ", minAmount=" + minAmount + ", maxAmount="
 				+ maxAmount + ", birim=" + birim + ", birimAlternate=" + birimAlternate + " aktif=" + aktif + "]";
 	}
 

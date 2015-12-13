@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -40,7 +39,7 @@ public class StokHareket extends BaseEntity {
 	private static final long serialVersionUID = 7072124165426414348L;
 	private Long id;
 	private Long irsaliyeId;
-	private Malzeme malzeme;
+	private StokHrkMalzeme stokHrkMalzeme;
 	private Date tarih;
 	private Double fiyat;
 	private Double miktar;
@@ -70,10 +69,10 @@ public class StokHareket extends BaseEntity {
 	/**
 	 * @return the irsaliyeId
 	 */
-	@ManyToOne
-	@Column(name = "IRS_ID")
-	@JoinColumn(name = "IRS_ID")
-	@ForeignKey(name = "FK_STOKHRK_REF_IRSALIYE")
+//	@ManyToOne
+//	@JoinColumn(name = "IRS_ID", referencedColumnName = "ID")
+//	@ForeignKey(name = "FK_STOKHRK_REF_IRSALIYE")
+	@Column(name="IRS_ID")
 	public Long getIrsaliyeId() {
 		return irsaliyeId;
 	}
@@ -86,25 +85,25 @@ public class StokHareket extends BaseEntity {
 	}
 
 	/**
-	 * Malzeme nesnesini alýr.
+	 * StokHrkMalzeme nesnesini alýr.
 	 * 
-	 * @return malzeme
+	 * @return stokHrkMalzeme
 	 */
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MLZ_ID")
+	@JoinColumn(name = "MLZ_ID", referencedColumnName="ID")
 	@ForeignKey(name = "FK_IRS_STOKHRK_REF_MALZEME")
-	public Malzeme getMalzeme() {
-		return malzeme;
+	public StokHrkMalzeme getStokHrkMalzeme() {
+		return stokHrkMalzeme;
 	}
 
 	/**
-	 * malzeme object is set.
+	 * stokHrkMalzeme object is set.
 	 * 
-	 * @param malzeme
-	 *            the malzeme to set
+	 * @param stokHrkMalzeme
+	 *            the stokHrkMalzeme to set
 	 */
-	public void setMalzeme(Malzeme malzeme) {
-		this.malzeme = malzeme;
+	public void setStokHrkMalzeme(StokHrkMalzeme stokHrkMalzeme) {
+		this.stokHrkMalzeme = stokHrkMalzeme;
 	}
 
 	/**
@@ -211,7 +210,7 @@ public class StokHareket extends BaseEntity {
 	 */
 	@Override
 	public String toString() {
-		return "StokHareket [id=" + id + ", malzeme=" + malzeme + ", tarih=" + tarih + ", fiyat=" + fiyat + ", miktar="
+		return "StokHareket [id=" + id + ", stokHrkMalzeme=" + stokHrkMalzeme + ", tarih=" + tarih + ", fiyat=" + fiyat + ", miktar="
 				+ miktar + ", birim=" + birim + ", iskonto=" + iskonto + ", tutar=" + tutar + "]";
 	}
 	

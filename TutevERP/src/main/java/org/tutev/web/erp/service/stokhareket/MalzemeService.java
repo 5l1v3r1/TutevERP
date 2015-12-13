@@ -14,7 +14,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.tutev.web.erp.entity.stokhareket.Malzeme;
+import org.tutev.web.erp.entity.stokhareket.StokHrkMalzeme;
 import org.tutev.web.erp.service.BaseDao;
 import org.tutev.web.erp.service.ServiceBase;
 import org.tutev.web.erp.util.PageingModel;
@@ -24,13 +24,13 @@ import org.tutev.web.erp.util.PageingModel;
  *
  */
 @Service("malzemeService")
-public class MalzemeService implements ServiceBase<Malzeme> {
+public class MalzemeService implements ServiceBase<StokHrkMalzeme> {
 
 	@Autowired
 	private transient BaseDao baseDao;
 
 	@Override
-	public Malzeme save(Malzeme entity) {
+	public StokHrkMalzeme save(StokHrkMalzeme entity) {
 		if (entity == null || entity.getId()==null)
 			return null;
 		baseDao.save(entity);
@@ -38,13 +38,13 @@ public class MalzemeService implements ServiceBase<Malzeme> {
 	}
 
 	@Override
-	public Malzeme update(Malzeme entity) {
+	public StokHrkMalzeme update(StokHrkMalzeme entity) {
 		baseDao.saveOrUpdate(entity);
 		return entity;
 	}
 
 	@Override
-	public Boolean delete(Malzeme entity) {
+	public Boolean delete(StokHrkMalzeme entity) {
 		try {
 			baseDao.delete(entity);
 		} catch (Exception e) {
@@ -55,17 +55,17 @@ public class MalzemeService implements ServiceBase<Malzeme> {
 	}
 
 	@Override
-	public Malzeme getById(Long id) {
-		Malzeme malzeme = (Malzeme) getSession().get(Malzeme.class, id);
-		return malzeme;
+	public StokHrkMalzeme getById(Long id) {
+		StokHrkMalzeme stokHrkMalzeme = (StokHrkMalzeme) getSession().get(StokHrkMalzeme.class, id);
+		return stokHrkMalzeme;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Malzeme> getAll() {
-		Criteria criteria = getSession().createCriteria(Malzeme.class);
+	public List<StokHrkMalzeme> getAll() {
+		Criteria criteria = getSession().createCriteria(StokHrkMalzeme.class);
 		criteria.addOrder(Order.desc("id"));
-		return (List<Malzeme>) criteria.list();
+		return (List<StokHrkMalzeme>) criteria.list();
 	}
 
 	@Override
@@ -74,8 +74,8 @@ public class MalzemeService implements ServiceBase<Malzeme> {
 	}
 
 	@SuppressWarnings({ "unchecked", "null" })
-	public PageingModel<Malzeme> getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
-		Criteria criteria = getSession().createCriteria(Malzeme.class);
+	public PageingModel<StokHrkMalzeme> getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
+		Criteria criteria = getSession().createCriteria(StokHrkMalzeme.class);
 		if(filters!=null || filters.size()>0){
 			if(filters.get("adi")!=null){
 				criteria.add(Restrictions.ilike("adi", (String) filters.get("adi"),MatchMode.ANYWHERE));
@@ -92,7 +92,7 @@ public class MalzemeService implements ServiceBase<Malzeme> {
 		criteria.setMaxResults(pageSize);
 		criteria.setFirstResult(firstRecord);
 		criteria.addOrder(Order.desc("id"));
-		List<Malzeme> list= criteria.list();
-		return new PageingModel<Malzeme>(list,kayitSayisi );
+		List<StokHrkMalzeme> list= criteria.list();
+		return new PageingModel<StokHrkMalzeme>(list,kayitSayisi );
 	}
 }

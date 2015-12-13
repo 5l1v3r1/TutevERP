@@ -16,6 +16,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -135,7 +136,7 @@ public class Irsaliye extends BaseEntity {
 	}
 
 	@OneToOne(fetch=FetchType.LAZY)
-	@Column(name = "FIRMA_ID", precision = 10, scale = 0)
+	@JoinColumn(name = "FIRMA_ID", referencedColumnName="ID")
 	@ForeignKey(name="FK_IRSALIYE_REF_FIRMA")
 	public Firma getFirma() {
 		return firmaId;
@@ -158,7 +159,7 @@ public class Irsaliye extends BaseEntity {
 	 * @return the cikisDepo
 	 */
 	@OneToOne(fetch=FetchType.LAZY)
-	@Column(name = "DEPO_ID", precision = 10, scale = 0)
+	@JoinColumn(name = "DEPO_ID", referencedColumnName="ID")
 	@ForeignKey(name="FK_IRSALIYE_REF_DEPO")
 	public Depo getDepo() {
 		return depo;
@@ -167,7 +168,7 @@ public class Irsaliye extends BaseEntity {
 	/**
 	 * @param cikisDepo the cikisDepo to set
 	 */
-	public void setCikisDepo(Depo depo) {
+	public void setDepo(Depo depo) {
 		this.depo = depo;
 	}
 
