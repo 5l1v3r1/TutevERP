@@ -1,0 +1,12 @@
+wsdl ->  http://www.webservicex.net/globalweather.asmx?WSDL
+
+wsimport exe JDK/bin içerisindedir 
+bu yolu Environment Variable altýndaki Path deðiþkenine tanýmlamak gerekiyor
+
+Client Generate etmek için kullandýðýmýz komut
+wsimport -keep -clientjar Weater.jar http://www.webservicex.net/globalweather.asmx?WSDL
+
+veya var olan bir wsdl dosya için
+wsimport -keep -clientjar Weater.jar C:\\TTEMEL\Wsdl.wsdl
+kullanýlabilir.
+
