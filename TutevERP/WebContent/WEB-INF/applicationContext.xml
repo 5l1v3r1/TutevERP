@@ -68,6 +68,10 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
+	<!-- scope="singleton" Default tur -->
+	<bean id="appUtils" class="org.tutev.web.erp.util.AppUtils" >
+		<constructor-arg name="wsAdress" value="http://www.webservicex.net/globalweather.asmx?WSDL"></constructor-arg>
+	</bean>
 </beans>
 
 

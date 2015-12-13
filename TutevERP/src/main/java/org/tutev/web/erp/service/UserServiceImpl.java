@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserDetailsService {
 		Kullanici kullanici = (Kullanici) criteria.uniqueResult();
 
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-//		authorities.add(new SimpleGrantedAuthority("USER"));
+		authorities.add(new SimpleGrantedAuthority("USER"));
 		authorities.add(new SimpleGrantedAuthority("ADMIN"));
 
 		// enabled=kullanici.getDurum()

@@ -5,8 +5,36 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/layout/layout.xhtml">
 	<ui:define name="pageContent">
-		<h:form id="frmAnaSayfa">
-			Hoşgeldiniz
+		<h:form id="frmAD" prependId="false">
+			
+			<p:panelGrid id="pnlHava" columns="2">
+						<f:facet name="header">
+				HAva Durumu
+			</f:facet>
+			
+			<p:outputLabel value="Yer :"></p:outputLabel>
+			<p:outputLabel value="#{homeController.havaDurum.yer}"></p:outputLabel>
+			
+			<p:outputLabel value="Zaman :"></p:outputLabel>
+			<p:outputLabel value="#{homeController.havaDurum.zaman}"></p:outputLabel>
+			
+			<p:outputLabel value="Rüzgar :"></p:outputLabel>
+			<p:outputLabel value="#{homeController.havaDurum.ruzgar}"></p:outputLabel>
+			
+			<p:outputLabel value="Görünürlük :"></p:outputLabel>
+			<p:outputLabel value="#{homeController.havaDurum.gorunurluk}"></p:outputLabel>
+			
+			<p:outputLabel value="Sıcaklık :"></p:outputLabel>
+			<p:outputLabel value="#{homeController.havaDurum.sicaklik}"></p:outputLabel>
+			
+			<p:outputLabel value="Basınç :"></p:outputLabel>
+			<p:outputLabel value="#{homeController.havaDurum.basinc}"></p:outputLabel>
+
+			<f:facet name="footer">
+				<p:commandButton update="pnlHava" value="Hava Durumu Getir" action="#{homeController.havaDurumuGetir}"></p:commandButton>
+			</f:facet>
+						
+			</p:panelGrid>
 		</h:form>
 	</ui:define>
 </ui:composition>
