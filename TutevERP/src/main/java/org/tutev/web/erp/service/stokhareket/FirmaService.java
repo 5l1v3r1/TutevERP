@@ -10,7 +10,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,8 +73,8 @@ public class FirmaService implements ServiceBase<Firma> {
 		return baseDao.getSession();
 	}
 
-	@SuppressWarnings({ "unchecked", "null" })
-	public PageingModel<Firma> getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
+	@SuppressWarnings({  "null" })
+	public PageingModel getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
 		Criteria criteria = getSession().createCriteria(Firma.class);
 		if(filters!=null || filters.size()>0){
 			if(filters.get("name")!=null){
@@ -87,14 +86,7 @@ public class FirmaService implements ServiceBase<Firma> {
 			}
 		}
 
-		int kayitSayisi=((Long)criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
-		criteria.setProjection(null);
-		
-		criteria.setMaxResults(pageSize);
-		criteria.setFirstResult(firstRecord);
-		criteria.addOrder(Order.desc("id"));
-		List<Firma> list= criteria.list();
-		return new PageingModel<Firma>(list,kayitSayisi );
+		return baseDao.getByPageing(firstRecord, pageSize, criteria);
 	}
 
 }

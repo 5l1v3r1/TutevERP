@@ -8,7 +8,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,23 +65,15 @@ public class StokKategoriService implements ServiceBase<SkartKategori>{
 	    } 
 		
 
-		@SuppressWarnings("unchecked")
-		public PageingModel<SkartKategori> getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
+		@SuppressWarnings("null")
+		public PageingModel getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
 			Criteria criteria = getSession().createCriteria(SkartKategori.class);
 			if(filters!=null || filters.size()>0){
 				if(filters.get("ad")!=null){
 					criteria.add(Restrictions.ilike("ad", (String) filters.get("ad"),MatchMode.ANYWHERE));
 				}
 			}
-			criteria.setMaxResults(pageSize);
-			criteria.setFirstResult(firstRecord);
-
-			int kayitSayisi=((Long)criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
-			criteria.setProjection(null);
-			
-			criteria.addOrder(Order.desc("id"));
-			List<SkartKategori> list= criteria.list();
-			return new PageingModel<SkartKategori>(list,kayitSayisi );		
+			return baseDao.getByPageing(firstRecord, pageSize, criteria);		
 				
 		}
 		

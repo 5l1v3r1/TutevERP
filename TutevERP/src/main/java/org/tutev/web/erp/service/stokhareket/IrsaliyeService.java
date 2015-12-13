@@ -9,7 +9,6 @@ import java.util.Map;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Service;
 import org.tutev.web.erp.service.BaseDao;
 import org.tutev.web.erp.service.ServiceBase;
@@ -73,14 +72,8 @@ public class IrsaliyeService implements ServiceBase<Irsaliye> {
 		return baseDao.getSession();
 	}
 
-	@SuppressWarnings("unchecked")
-	public PageingModel<Irsaliye> getByPageing(int first, int pageSize, Map<String, Object> filters) {
+	public PageingModel getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
 		Criteria criteria = getSession().createCriteria(Irsaliye.class);
-		criteria.setMaxResults(pageSize);
-		criteria.setFirstResult(first);
-		criteria.addOrder(Order.desc("id"));
-		List<Irsaliye> list= criteria.list();
-		int kayitSayisi=((Long)getSession().createCriteria(Irsaliye.class).setProjection(Projections.rowCount()).uniqueResult()).intValue();
-		return new PageingModel<Irsaliye>(list, kayitSayisi);
+		return baseDao.getByPageing(firstRecord, pageSize, criteria);
 	}
 }

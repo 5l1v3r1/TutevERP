@@ -2,26 +2,29 @@ package org.tutev.web.erp.util;
 
 import java.util.List;
 
-public class PageingModel<T> {
+@SuppressWarnings("rawtypes")
+public class PageingModel {
 
 	public PageingModel() {
 	
 	}
 		
-	public PageingModel(List<T> list, int record) {
+	@SuppressWarnings("unchecked")
+	public PageingModel( List list, int record) {
 		this.list = list;
 		this.rowCount = record;
 	}
 
 
-	List<T> list;
+	List<Object> list;
 	int rowCount;
 
-	public List<T> getList() {
+	public List getList() {
 		return list;
 	}
 
-	public void setList(List<T> list) {
+	@SuppressWarnings("unchecked")
+	public void setList(List list) {
 		this.list = list;
 	}
 

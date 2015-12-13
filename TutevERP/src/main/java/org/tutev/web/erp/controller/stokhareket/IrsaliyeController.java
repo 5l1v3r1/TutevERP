@@ -92,10 +92,11 @@ public class IrsaliyeController implements Serializable {
 			/**
 			 * 
 			 */
+			@SuppressWarnings("unchecked")
 			@Override
 			public List<Irsaliye> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 				
-				PageingModel<Irsaliye> irsaliyeler=irsaliyeService.getByPageing(first, pageSize, filters);
+				PageingModel irsaliyeler=irsaliyeService.getByPageing(first, pageSize, filters);
 				lazy.setRowCount(irsaliyeler.getRowCount());
 				return irsaliyeler.getList();
 			}

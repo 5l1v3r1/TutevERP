@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.ForeignKey;
 import org.tutev.web.erp.entity.base.BaseEntity;
@@ -26,7 +27,7 @@ import org.tutev.web.erp.entity.base.BaseEntity;
  */
 @SuppressWarnings("deprecation")
 @Entity
-@Table(name = "AUT_USERS")
+@Table(name = "AUT_USERS",uniqueConstraints=@UniqueConstraint(name="UK_USERNAME",columnNames={"USERNAME"}))
 public class Kullanici extends  BaseEntity{
     
     /**
@@ -50,6 +51,7 @@ public class Kullanici extends  BaseEntity{
         this.id = id;
     }
 
+    @Column(length=100,name="USERNAME",unique=true)
     public String getUsername() {
         return username;
     }

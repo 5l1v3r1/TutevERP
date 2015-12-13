@@ -10,7 +10,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,8 +72,8 @@ public class MalzemeService implements ServiceBase<StokHrkMalzeme> {
 		return baseDao.getSession();
 	}
 
-	@SuppressWarnings({ "unchecked", "null" })
-	public PageingModel<StokHrkMalzeme> getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
+	@SuppressWarnings({ "null" })
+	public PageingModel getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
 		Criteria criteria = getSession().createCriteria(StokHrkMalzeme.class);
 		if(filters!=null || filters.size()>0){
 			if(filters.get("adi")!=null){
@@ -86,13 +85,6 @@ public class MalzemeService implements ServiceBase<StokHrkMalzeme> {
 			}
 		}
 
-		int kayitSayisi=((Long)criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
-		criteria.setProjection(null);
-		
-		criteria.setMaxResults(pageSize);
-		criteria.setFirstResult(firstRecord);
-		criteria.addOrder(Order.desc("id"));
-		List<StokHrkMalzeme> list= criteria.list();
-		return new PageingModel<StokHrkMalzeme>(list,kayitSayisi );
+		return baseDao.getByPageing(firstRecord, pageSize, criteria);
 	}
 }

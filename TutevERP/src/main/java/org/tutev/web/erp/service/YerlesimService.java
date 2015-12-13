@@ -7,7 +7,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,15 +56,9 @@ public class YerlesimService {
 		return (List<Yerlesim>) criteria.list();
 	}
 	
-	@SuppressWarnings("unchecked")
-	public PageingModel<Yerlesim> getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
+	public PageingModel getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
 		Criteria criteria = getSession().createCriteria(Yerlesim.class);
-		criteria.setMaxResults(pageSize);
-		criteria.setFirstResult(firstRecord);
-		criteria.addOrder(Order.desc("id"));
-		List<Yerlesim> list= criteria.list();
-		int kayitSayisi=((Long)getSession().createCriteria(Yerlesim.class).setProjection(Projections.rowCount()).uniqueResult()).intValue();
-		return new PageingModel<Yerlesim>(list,kayitSayisi );
+		return baseDao.getByPageing(firstRecord, pageSize, criteria);
 	}
 	
 

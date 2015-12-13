@@ -12,7 +12,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,22 +73,15 @@ public class UretimService implements ServiceBase<Uretim> {
 		return (List<Uretim>) criteria.list();
 	}
 
-	@SuppressWarnings("unchecked")
-	public PageingModel<Uretim> getByPageingOLD(int firstRecord, int pageSize,
+	public PageingModel getByPageingOLD(int firstRecord, int pageSize,
 			Map<String, Object> filters) {
 		Criteria criteria = getSession().createCriteria(Uretim.class);
-		criteria.setMaxResults(pageSize);
-		criteria.setFirstResult(firstRecord);
-		criteria.addOrder(Order.desc("id"));
-		List<Uretim> list = criteria.list();
-		int kayitSayisi = ((Long) getSession().createCriteria(Uretim.class)
-				.setProjection(Projections.rowCount()).uniqueResult())
-				.intValue();
-		return new PageingModel<Uretim>(list, kayitSayisi);
+
+		return baseDao.getByPageing(firstRecord, pageSize, criteria);
 	}
 
-	@SuppressWarnings("unchecked")
-	public PageingModel<Uretim> getByPageing(int firstRecord, int pageSize,
+	@SuppressWarnings("null")
+	public PageingModel getByPageing(int firstRecord, int pageSize,
 			Map<String, Object> filters) {
 		Criteria criteria = getSession().createCriteria(Uretim.class);
 		if (filters != null || filters.size() > 0) {
@@ -99,17 +91,7 @@ public class UretimService implements ServiceBase<Uretim> {
 			}
 		}
 		
-		criteria.setMaxResults(pageSize);
-		criteria.setFirstResult(firstRecord);
-
-		int kayitSayisi = ((Long) criteria
-				.setProjection(Projections.rowCount()).uniqueResult())
-				.intValue();
-		criteria.setProjection(null);
-
-		criteria.addOrder(Order.desc("id"));
-		List<Uretim> list = criteria.list();
-		return new PageingModel<Uretim>(list, kayitSayisi);
+		return baseDao.getByPageing(firstRecord, pageSize, criteria);
 	}
 
 	@Override

@@ -166,6 +166,7 @@ public class StokController implements Serializable {
 			 */
 			
 
+			@SuppressWarnings("unchecked")
 			@Override
 			public List<Skart> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 				
@@ -173,7 +174,7 @@ public class StokController implements Serializable {
 					filters.put("paraBirimi", filterParaBirim);
 				}
 				
-				PageingModel<Skart> stokkartlar=stokService.getByPageing(first, pageSize, filters);
+				PageingModel stokkartlar=stokService.getByPageing(first, pageSize, filters);
 				lazy.setRowCount(stokkartlar.getRowCount());
 				return stokkartlar.getList();
 			}

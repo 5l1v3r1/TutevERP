@@ -23,6 +23,12 @@
 					<p:column headerText="Soyad">
 						<h:outputText value="#{kisi.soyad}" />
 					</p:column>
+					<p:column headerText="Telefon">
+						<h:outputText value="#{kisi.adres.tel}" />
+					</p:column>
+					<p:column headerText="E-Mail">
+						<h:outputText value="#{kisi.adres.mail}" />
+					</p:column>
 					<p:column headerText="Uyruk" filterBy="#{kisi.uyruk}">
 					<f:facet name="filter">
 
@@ -67,9 +73,15 @@
 
 					<h:outputText value="Soyadı : " />
 					<p:inputText value="#{kisiController.kisi.soyad}"></p:inputText>
+					
+					<h:outputText value="E-Mail : " />
+					<p:inputText value="#{kisiController.kisi.adres.mail}"></p:inputText>
+					
+					<h:outputText value="Telefon : " />
+					<p:inputMask value="#{kisiController.kisi.adres.tel}" mask="9 999 999 99 99" ></p:inputMask>
 
 					<h:outputText value="Doğum Tarihi : " />
-					<p:calendar id="popup" value="#{kisiController.kisi.dogumTarihi}" />
+					<p:calendar id="popup" pattern="dd/MM/yyyy" value="#{kisiController.kisi.dogumTarihi}" />
 
 					<h:outputText value="Uyruk : " />
 					<p:selectOneMenu id="uyruk"  value="#{kisiController.kisi.uyruk}" 

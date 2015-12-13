@@ -11,6 +11,7 @@ import org.primefaces.model.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.tutev.web.erp.entity.base.Adres;
 import org.tutev.web.erp.entity.genel.Kisi;
 import org.tutev.web.erp.entity.genel.KodluListe;
 import org.tutev.web.erp.service.KisiService;
@@ -78,7 +79,7 @@ public class KisiController implements Serializable {
 					filters.put("uyruk", filterUyruk);
 				}
 				
-				PageingModel<Kisi> kisiler=kisiService.getByPageing(first, pageSize, filters);
+				PageingModel kisiler=kisiService.getByPageing(first, pageSize, filters);
 				lazy.setRowCount(kisiler.getRowCount());
 				return kisiler.getList();
 			}
@@ -95,6 +96,9 @@ public class KisiController implements Serializable {
 	
 	public void duzenle(Long id) {
 		kisi = kisiService.getById(id);
+		if(kisi!=null && kisi.getAdres()==null){
+			kisi.setAdres(new Adres());;
+		}
 	}
 	
 	public void yeni() {
@@ -104,6 +108,7 @@ public class KisiController implements Serializable {
 	public Kisi getKisi() {
 		if (kisi == null) {
 			kisi = new Kisi();
+			kisi.setAdres(new Adres());
 		}
 		return kisi;
 	}
