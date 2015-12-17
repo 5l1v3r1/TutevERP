@@ -17,8 +17,7 @@
 					</p:column>
 					<p:column headerText="İrsaliye Türü" filterBy="#{irs.tur}">
 						<f:facet name="filter" width="90%">
-							<p:selectOneMenu id="tur" onchange="PF('tblIrsaliye').filter()"
-								effect="fold" converter="#{kodluListeConverter}">
+							<p:selectOneMenu id="tur" onchange="PF('tblIrsaliye').filter()" effect="fold" converter="#{kodluListeConverter}">
 								<f:selectItem itemLabel="Seçiniz" itemValue="null"></f:selectItem>
 								<f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}"
 									value="#{dataController.irsaliyeTurListe}" var="item" />

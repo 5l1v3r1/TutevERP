@@ -5,14 +5,18 @@ package org.tutev.web.erp.entity.stokhareket;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.annotations.ForeignKey;
 import org.tutev.web.erp.entity.base.BaseEntity;
 import org.tutev.web.erp.entity.genel.KodluListe;
 
@@ -20,6 +24,7 @@ import org.tutev.web.erp.entity.genel.KodluListe;
  * @author gemini
  *
  */
+@SuppressWarnings("deprecation")
 @Entity
 @Table(name="IRS_DEPO", uniqueConstraints={@UniqueConstraint(name="IRS_DEPO_KODU_UC1",columnNames={"DEPO_KODU"})}, indexes={@Index(name="IRS_DEPO_KODU_IX1", columnList="DEPO_KODU"), @Index(name="IRS_DEPO_ADI", columnList="DEPO_ADI")})
 public class Depo extends BaseEntity {
@@ -92,7 +97,9 @@ public class Depo extends BaseEntity {
 	/**
 	 * @return the depoTuru
 	 */
-	@Column(name = "DEPO_TURU", length=5)
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DEPO_TURU")
+    @ForeignKey(name = "FK_IRS_DEPO_REF_DEPO_TURU")
 	public KodluListe getDepoTuru() {
 		return depoTuru;
 	}

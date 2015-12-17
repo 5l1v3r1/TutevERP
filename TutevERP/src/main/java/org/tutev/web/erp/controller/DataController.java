@@ -41,6 +41,7 @@ public class DataController implements Serializable {
 	private List<KodluListe> irsaliyeTurListe;
 	private List<KodluListe> yerlesimTipListe;
 	private List<KodluListe> uretimTipiListe;
+	private List<KodluListe> depoTuruListe;
 	private Long userCount=Long.MIN_VALUE;
 	
 
@@ -83,11 +84,20 @@ public class DataController implements Serializable {
 			dataGuncelle();
 		}	
 		if (yerlesimTipListe == null || yerlesimTipListe.size() < 1) {
-			logger.debug("paraBirimListe Referans verisi Bulunamadý DB insert Yapýlýyor");
-			kodluListeService.save(new KodluListe(null, "IL","IL", KodluListeTip.YERLESIM_TIP));
-			kodluListeService.save(new KodluListe(null, "ILCE","ILCE", KodluListeTip.YERLESIM_TIP));
-			kodluListeService.save(new KodluListe(null, "ULKE", "ÜLKE",KodluListeTip.YERLESIM_TIP));
-			kodluListeService.save(new KodluListe(null, "MAH", "MAHALLE",KodluListeTip.YERLESIM_TIP));
+			logger.debug("yerlesimTipListe Referans verisi Bulunamadý DB insert Yapýlýyor");
+			kodluListeService.save(new KodluListe(null, "ANK","Ankara", KodluListeTip.YERLESIM_TIP));
+			kodluListeService.save(new KodluListe(null, "IST","İstanbul", KodluListeTip.YERLESIM_TIP));
+			kodluListeService.save(new KodluListe(null, "IZM", "İzmir",KodluListeTip.YERLESIM_TIP));
+			kodluListeService.save(new KodluListe(null, "MAL", "Malatya",KodluListeTip.YERLESIM_TIP));
+			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
+			dataGuncelle();
+		}	
+		if (depoTuruListe == null || depoTuruListe.size() < 1) {
+			logger.debug("depoTuruListe Referans verisi Bulunamadý DB insert Yapýlýyor");
+			kodluListeService.save(new KodluListe(null, "A","Ambar", KodluListeTip.DEPO_TURU));
+			kodluListeService.save(new KodluListe(null, "E","Eczane", KodluListeTip.DEPO_TURU));
+			kodluListeService.save(new KodluListe(null, "S", "Servis Ambarı",KodluListeTip.DEPO_TURU));
+			kodluListeService.save(new KodluListe(null, "K", "Koltuk Ambarı",KodluListeTip.DEPO_TURU));
 			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
 			dataGuncelle();
 		}	
@@ -113,6 +123,7 @@ public class DataController implements Serializable {
 		uretimTipiListe = dataService.getByType(KodluListeTip.URETIM_TIP);
 		irsaliyeTurListe = dataService.getByType(KodluListeTip.IRSALIYE_TIP);
 		yerlesimTipListe=dataService.getByType(KodluListeTip.YERLESIM_TIP);
+		depoTuruListe=dataService.getByType(KodluListeTip.DEPO_TURU);
 		userCount=kullaniciService.getUserCount();
 		logger.info("Referans Data Yüklendi");
 	}
@@ -149,10 +160,10 @@ public class DataController implements Serializable {
 
 	/**
 	 * Mehmet Emin IŞIK
-	 * @param irsaliyeTurListe the irsaliyeTurListe to set
+	 * @return the depoTuruListe
 	 */
-	public void setIrsaliyeTurListe(List<KodluListe> irsaliyeTurListe) {
-		this.irsaliyeTurListe = irsaliyeTurListe;
+	public List<KodluListe> getDepoTuruListe() {
+		return depoTuruListe;
 	}
 	
 	public List<KodluListe> getYerlesimTipListe() {

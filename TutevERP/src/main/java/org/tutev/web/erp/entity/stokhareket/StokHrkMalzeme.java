@@ -27,14 +27,14 @@ public class StokHrkMalzeme extends BaseEntity {
 	 * Generated Serial Id
 	 */
 	private static final long serialVersionUID = 4681755682079952378L;
-	Long id;
-	String kodu;
-	String adi;
-	Double minAmount;
-	Double maxAmount;
-	KodluListe birim;
-	KodluListe birimAlternate;
-	Boolean aktif;
+	private Long id;
+	private String kodu;
+	private String adi;
+	private Double minAmount;
+	private Double maxAmount;
+	private KodluListe birim;
+	private KodluListe birimAlternate;
+	private Boolean aktif;
 	
 	public StokHrkMalzeme() {
 

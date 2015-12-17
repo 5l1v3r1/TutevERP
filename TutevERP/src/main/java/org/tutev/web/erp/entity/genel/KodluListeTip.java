@@ -6,8 +6,10 @@ public enum KodluListeTip {
 	, OLCU_BIRIMI(102, "Ölçü Birimi")
 	, UYRUK(103, "Uyruğu")
 	, URETIM_TIP(109, "Üretim Tipi")
+	, IRSALIYE_TIP(110, "İrsaliye Tipi")
 	, YERLESIM_TIP(111, "Yerleşim Tip")
-	, IRSALIYE_TIP(110, "İrsaliye Tipi");
+	, DEPO_TURU(112, "Depo Türü")
+	;
 
 	private KodluListeTip(int no, String label) {
 		this.no = no;

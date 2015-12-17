@@ -1,0 +1,98 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/layout/layout.xhtml">
+	<ui:define name="pageContent">
+		<h:form id="frmDepo">
+			<p:panelGrid id="pnlDepo" columns="1">
+				<p:dataTable name="tblDepo" widgetVar="tblDepo" var="depo"
+					paginatorPosition="bottom" value="#{depoController.lazy}"
+					lazy="true" rowKey="#{depo.id}" rows="10" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="10,20,50">
+					<p:column headerText="Depo Id">
+						<h:outputText value="#{depo.id}" />
+					</p:column>
+					<p:column headerText="Depo Kodu">
+						<h:outputText value="#{depo.depoKodu}" />
+					</p:column>
+					<p:column headerText="Depo Adı">
+						<h:outputText value="#{depo.depoAdi}" />
+					</p:column>
+					<p:column headerText="Depo Yeri">
+						<h:outputText value="#{depo.depoYeri}" />
+					</p:column>
+					<p:column headerText="Depo Türü">
+						<f:facet name="filter" width="80%">
+							<p:selectOneMenu id="tur" onchange="PF('tblDepo').filter()"
+								effect="fold" converter="#{kodluListeConverter}">
+								<f:selectItem itemLabel="Seçiniz" itemValue="null"></f:selectItem>
+								<f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}"
+									value="#{dataController.depoTuruListe}" var="item" />
+							</p:selectOneMenu>
+						</f:facet>
+						<h:outputText value="#{depo.depoTuru}" />
+					</p:column>
+					<p:column headerText="Aktif">
+						<h:outputText value="#{depo.aktif}" />
+					</p:column>
+				</p:dataTable>
+				<p:commandButton value="Yeni Kayıt"
+					actionListener="#{depoController.yeni}" update=":frmDepo:dlgDepo"
+					oncomplete="PF('dlgDepo').show();">
+				</p:commandButton>
+			</p:panelGrid>
+			<p:dialog id="dlgDepo" widgetVar="dlgDepo" appendTo="frmDepo"
+				closable="true" header="Depo Düzenleme" modal="true">
+
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+						<h:outputText value="Depo Detayları" />
+					</f:facet>
+
+					<p:outputLabel for="depoKodu" value="Depo Kodu:" />
+					<p:inputMask id="depoKodu" value="#{depoController.depo.depoKodu}"
+						mask="aaaaa" />
+
+					<p:outputLabel for="depoAdi" value="Depo Adı:" />
+					<p:inputText id="depoAdi" value="#{depoController.depo.tur}"
+						style="width:250px" />
+
+					<p:outputLabel for="depoYeri" value="Depo Yeri: " />
+					<p:inputText id="depoYeri" value="#{depoController.depo.depoYeri}"
+						style="width:250px" />
+
+					<h:outputText for="depoTuru" value="Depo Türü: " />
+					<p:selectOneMenu id="depoTuru"
+						value="#{depoController.depo.depoTuru}" effect="fold"
+						converter="#{kodluListeConverter}">
+						<f:selectItem itemLabel="Seçiniz" itemValue="null" />
+						<f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}"
+							value="#{dataController.depoTuruListe}" var="item" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="aktif" value="Aktif: " />
+					<p:selectBooleanCheckbox id="aktif" value="#{depoController.depo.aktif}" />
+
+					<p:commandButton value="İptal" onclick="PF('dlgDepo').hide()"></p:commandButton>
+					<p:commandButton value="Kaydet"
+						update=":frmDepo:pnlDepo,:frmDepo:dlgDepo" process="@form"
+						oncomplete="PF('dlgDepo').hide()"
+						action="#{depoController.depoKaydet}"></p:commandButton>
+				</p:panelGrid>
+					<!-- 					<p:outputLabel for="depoTuru" value="Depo Türü: " />
+					<p:column headerText="Depo Türü:" filterBy="#{kisi.uyruk}">
+					<f:facet name="filter">
+						<p:selectOneMenu id="depoTuru" onchange="PF('tblDepo').filter()" effect="fold" converter="#{kodluListeConverter}">
+							<f:selectItem itemLabel="Seçiniz" itemValue="null"></f:selectItem>
+							<f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}" value="#{dataController.depoTuruListe}" var="item" />
+						</p:selectOneMenu>
+					</f:facet>
+ -->
+
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
