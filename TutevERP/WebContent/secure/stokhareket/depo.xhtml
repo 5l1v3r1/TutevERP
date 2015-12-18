@@ -38,6 +38,16 @@
 					<p:column headerText="Aktif">
 						<h:outputText value="#{depo.aktif}" />
 					</p:column>
+					<p:column headerText="İşlemler">
+						<p:commandButton value="Sil" icon="ui-icon-trash" actionListener="#{depoController.sil(depo.id)}" update=":frmDepo:tblDepo">
+							<p:confirm header="Silme Onay" message="Silmek İstediginizden Emin misiniz?" icon="ui-icon-alert" />
+						</p:commandButton>	
+						<p:commandButton icon="ui-icon-pencil" value="Düzenle" update=":frmDepo:dlgDepo" oncomplete="PF('dlgDepo').show()" actionListener="#{depoController.duzenle(depo.id)}" > </p:commandButton>
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					    </p:confirmDialog>					
+					</p:column>
 				</p:dataTable>
 				<p:commandButton value="Yeni Kayıt"
 					actionListener="#{depoController.yeni}" update=":frmDepo:dlgDepo"
@@ -54,10 +64,10 @@
 
 					<p:outputLabel for="depoKodu" value="Depo Kodu:" />
 					<p:inputMask id="depoKodu" value="#{depoController.depo.depoKodu}"
-						mask="aaaaa" />
+						mask="aaa**" />
 
 					<p:outputLabel for="depoAdi" value="Depo Adı:" />
-					<p:inputText id="depoAdi" value="#{depoController.depo.tur}"
+					<p:inputText id="depoAdi" value="#{depoController.depo.depoTuru}"
 						style="width:250px" />
 
 					<p:outputLabel for="depoYeri" value="Depo Yeri: " />
@@ -69,8 +79,7 @@
 						value="#{depoController.depo.depoTuru}" effect="fold"
 						converter="#{kodluListeConverter}">
 						<f:selectItem itemLabel="Seçiniz" itemValue="null" />
-						<f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}"
-							value="#{dataController.depoTuruListe}" var="item" />
+						<f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}" value="#{dataController.depoTuruListe}" var="item" />
 					</p:selectOneMenu>
 
 					<p:outputLabel for="aktif" value="Aktif: " />
@@ -82,16 +91,6 @@
 						oncomplete="PF('dlgDepo').hide()"
 						action="#{depoController.depoKaydet}"></p:commandButton>
 				</p:panelGrid>
-					<!-- 					<p:outputLabel for="depoTuru" value="Depo Türü: " />
-					<p:column headerText="Depo Türü:" filterBy="#{kisi.uyruk}">
-					<f:facet name="filter">
-						<p:selectOneMenu id="depoTuru" onchange="PF('tblDepo').filter()" effect="fold" converter="#{kodluListeConverter}">
-							<f:selectItem itemLabel="Seçiniz" itemValue="null"></f:selectItem>
-							<f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}" value="#{dataController.depoTuruListe}" var="item" />
-						</p:selectOneMenu>
-					</f:facet>
- -->
-
 			</p:dialog>
 		</h:form>
 	</ui:define>

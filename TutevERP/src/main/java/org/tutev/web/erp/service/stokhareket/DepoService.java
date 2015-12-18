@@ -62,7 +62,7 @@ public class DepoService implements ServiceBase<Depo> {
 		return depo;
 	}
 
-	public Depo getByKod(String kod) {
+	public Depo getByDepoKodu(String kod) {
 		Session session = getSession();
 		Depo depo = (Depo) session.get(Depo.class, kod);
 		return depo;

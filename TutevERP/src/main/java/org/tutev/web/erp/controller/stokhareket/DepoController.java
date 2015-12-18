@@ -14,6 +14,8 @@ import org.primefaces.model.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.tutev.web.erp.entity.base.Adres;
+import org.tutev.web.erp.entity.genel.Kisi;
 import org.tutev.web.erp.entity.genel.KodluListe;
 import org.tutev.web.erp.entity.stokhareket.Depo;
 import org.tutev.web.erp.service.KodluListeService;
@@ -25,7 +27,7 @@ import org.tutev.web.erp.util.PageingModel;
  *
  */
 @Controller("depoController")
-@Scope("session")
+@Scope("view")
 public class DepoController implements Serializable {
 	
 	/**
@@ -38,9 +40,11 @@ public class DepoController implements Serializable {
 	@Autowired
 	private transient KodluListeService kodluListeService;
 
+	private Depo depo;
+	private KodluListe filterDepoTuru;
+	
 	LazyDataModel<Depo> lazy;
 
-	private Depo depo;
 	List<Depo> depoListesi;
 	
 	@PostConstruct
@@ -62,20 +66,27 @@ public class DepoController implements Serializable {
 		}
 	}
 
+	public void sil(Long id) {
+		Depo silinecekDepo = depoService.getById(id);
+		depoService.delete(silinecekDepo);
+		listele();
+	}
+	
+	public void duzenle(Long id) {
+		depo = depoService.getById(id);
+	}
+	
+	public void yeni() {
+		depo = null;
+	}
+
 	public void listele() {
 		lazy=new LazyDataModel<Depo>() {
-			/**
-			 * 
-			 */
 			private static final long serialVersionUID = -8687445177321936423L;
 
-			/**
-			 * 
-			 */
 			@SuppressWarnings("unchecked")
 			@Override
 			public List<Depo> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-				
 				PageingModel depolar=depoService.getByPageing(first, pageSize, filters);
 				lazy.setRowCount(depolar.getRowCount());
 				return depolar.getList();
@@ -86,6 +97,9 @@ public class DepoController implements Serializable {
 	 * @return the depo
 	 */
 	public Depo getDepo() {
+		if (depo == null) {
+			depo = new Depo();
+		}
 		return depo;
 	}
 
@@ -126,6 +140,23 @@ public class DepoController implements Serializable {
 	
 	public void ajaxCall() {
 		listele();
+	}
+
+	/**
+	 * @return the filterDepoTuru
+	 */
+	public KodluListe getFilterDepoTuru() {
+		if (filterDepoTuru == null) {
+			filterDepoTuru = new KodluListe();
+		}
+		return filterDepoTuru;
+	}
+
+	/**
+	 * @param filterDepoTuru the filterDepoTuru to set
+	 */
+	public void setFilterDepoTuru(KodluListe filterDepoTuru) {
+		this.filterDepoTuru = filterDepoTuru;
 	}
 
 

@@ -14,7 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+//import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.ForeignKey;
 import org.tutev.web.erp.entity.base.BaseEntity;
@@ -24,9 +24,10 @@ import org.tutev.web.erp.entity.genel.KodluListe;
  * @author gemini
  *
  */
+// @Table(name="IRS_DEPO", uniqueConstraints={@UniqueConstraint(name="IRS_DEPO_KODU_UC1",columnNames={"DEPO_KODU"})}, indexes={@Index(name="IRS_DEPO_KODU_IX1", columnList="DEPO_KODU"), @Index(name="IRS_DEPO_ADI", columnList="DEPO_ADI")})
 @SuppressWarnings("deprecation")
 @Entity
-@Table(name="IRS_DEPO", uniqueConstraints={@UniqueConstraint(name="IRS_DEPO_KODU_UC1",columnNames={"DEPO_KODU"})}, indexes={@Index(name="IRS_DEPO_KODU_IX1", columnList="DEPO_KODU"), @Index(name="IRS_DEPO_ADI", columnList="DEPO_ADI")})
+@Table(name="IRS_DEPO", indexes={@Index(name="IRS_DEPO_KODU_IX1", columnList="DEPO_KODU"), @Index(name="IRS_DEPO_ADI", columnList="DEPO_ADI")})
 public class Depo extends BaseEntity {
 	/**
 	 * Generated Serial Id
@@ -37,8 +38,27 @@ public class Depo extends BaseEntity {
 	String depoAdi;
 	String depoYeri;
 	KodluListe depoTuru;
-	Boolean aktif;
 	
+	/**
+	 * @param id
+	 * @param depoKodu
+	 * @param depoAdi
+	 * @param depoYeri
+	 * @param depoTuru
+	 * @param aktif
+	 */
+	public Depo(Long id, String depoKodu, String depoAdi, String depoYeri, KodluListe depoTuru) {
+		this.id = id;
+		this.depoKodu = depoKodu;
+		this.depoAdi = depoAdi;
+		this.depoYeri = depoYeri;
+		this.depoTuru = depoTuru;
+	}
+	
+	public Depo() {
+
+	}
+
 	/**
 	 * @return the id
 	 */
@@ -58,7 +78,7 @@ public class Depo extends BaseEntity {
 	/**
 	 * @return the depoKodu
 	 */
-	@Column(name = "DEPO_KODU", length=5, nullable=false)
+	@Column(name = "DEPO_KODU", length=5)
 	public String getDepoKodu() {
 		return depoKodu;
 	}
@@ -109,26 +129,13 @@ public class Depo extends BaseEntity {
 	public void setDepoTuru(KodluListe depoTuru) {
 		this.depoTuru = depoTuru;
 	}
-	/**
-	 * @return the aktif
-	 */
-	@Column(name="AKTIF")
-	public Boolean getAktif() {
-		return aktif;
-	}
-	/**
-	 * @param aktif the aktif to set
-	 */
-	public void setAktif(Boolean aktif) {
-		this.aktif = aktif;
-	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "Depo [id=" + id + ", depoKodu=" + depoKodu + ", depoAdi=" + depoAdi + ", depoYeri=" + depoYeri
-				+ ", depoTuru=" + depoTuru + " aktif=" + aktif + "]";
+				+ ", depoTuru=" + depoTuru + "]";
 	}
 
 }
