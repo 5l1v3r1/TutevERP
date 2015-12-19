@@ -83,15 +83,15 @@ public class DataController implements Serializable {
 			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
 			dataGuncelle();
 		}	
-//		if (yerlesimTipListe == null || yerlesimTipListe.size() < 1) {
-//			logger.debug("yerlesimTipListe Referans verisi Bulunamadý DB insert Yapýlýyor");
-//			kodluListeService.save(new KodluListe(null, "ANK","Ankara", KodluListeTip.YERLESIM_TIP));
-//			kodluListeService.save(new KodluListe(null, "IST","İstanbul", KodluListeTip.YERLESIM_TIP));
-//			kodluListeService.save(new KodluListe(null, "IZM", "İzmir",KodluListeTip.YERLESIM_TIP));
-//			kodluListeService.save(new KodluListe(null, "MAL", "Malatya",KodluListeTip.YERLESIM_TIP));
-//			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
-//			dataGuncelle();
-//		}	
+		if (yerlesimTipListe == null || yerlesimTipListe.size() < 1) {
+			logger.debug("yerlesimTipListe Referans verisi Bulunamadý DB insert Yapýlýyor");
+			kodluListeService.save(new KodluListe(null, "ANK","Ankara", KodluListeTip.YERLESIM_TIP));
+			kodluListeService.save(new KodluListe(null, "IST","İstanbul", KodluListeTip.YERLESIM_TIP));
+			kodluListeService.save(new KodluListe(null, "IZM", "İzmir",KodluListeTip.YERLESIM_TIP));
+			kodluListeService.save(new KodluListe(null, "MAL", "Malatya",KodluListeTip.YERLESIM_TIP));
+			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
+			dataGuncelle();
+		}	
 		if (depoTuruListe == null || depoTuruListe.size() < 1) {
 			logger.debug("depoTuruListe Referans verisi Bulunamadý DB insert Yapýlýyor");
 			kodluListeService.save(new KodluListe(null, "A","Ambar", KodluListeTip.DEPO_TURU));
