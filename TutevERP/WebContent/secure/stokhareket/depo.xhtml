@@ -7,12 +7,15 @@
 	<ui:define name="pageContent">
 		<h:form id="frmDepo">
 			<p:panelGrid id="pnlDepo" columns="1">
-				<p:dataTable name="tblDepo" widgetVar="tblDepo" var="depo"
-					paginatorPosition="bottom" value="#{depoController.lazy}"
-					lazy="true" rowKey="#{depo.id}" rows="10" paginator="true"
+				<p:dataTable id="tblDepo" widgetVar="tblDepo" var="depo" paginatorPosition="bottom"
+					value="#{depoController.lazy}" lazy="true" rowKey="#{depo.id}"  rows="10" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="10,20,50">
-					<p:column headerText="Depo Id">
+					<f:facet name="header">
+						<h:outputText value="Depo Listesi" />
+					</f:facet>
+
+					<p:column headerText="Id: ">
 						<h:outputText value="#{depo.id}" />
 					</p:column>
 					<p:column headerText="Depo Kodu">
@@ -24,29 +27,31 @@
 					<p:column headerText="Depo Yeri">
 						<h:outputText value="#{depo.depoYeri}" />
 					</p:column>
-					<p:column headerText="Depo Türü">
-						<f:facet name="filter" width="80%">
-							<p:selectOneMenu id="tur" onchange="PF('tblDepo').filter()"
-								effect="fold" converter="#{kodluListeConverter}">
-								<f:selectItem itemLabel="Seçiniz" itemValue="null"></f:selectItem>
-								<f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}"
-									value="#{dataController.depoTuruListe}" var="item" />
-							</p:selectOneMenu>
-						</f:facet>
-						<h:outputText value="#{depo.depoTuru}" />
-					</p:column>
-					<p:column headerText="Aktif">
-						<h:outputText value="#{depo.aktif}" />
+					<p:column headerText="Depo Türü" filterBy="#{depo.depo_Turu}">
+					<f:facet name="filter">
+						<p:selectOneMenu id="depo"  onchange="PF('tblDepo').filter()"  effect="fold" converter="#{kodluListeConverter}">
+						<f:selectItem itemLabel="Seçiniz" itemValue="null" ></f:selectItem>
+			            <f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}"  value="#{dataController.depoTuruListe}" var="item" />
+			        </p:selectOneMenu>
+					</f:facet>
+						<h:outputText value="#{depo.depoTuru.tanim}" />
 					</p:column>
 					<p:column headerText="İşlemler">
-						<p:commandButton value="Sil" icon="ui-icon-trash" actionListener="#{depoController.sil(depo.id)}" update=":frmDepo:tblDepo">
-							<p:confirm header="Silme Onay" message="Silmek İstediginizden Emin misiniz?" icon="ui-icon-alert" />
-						</p:commandButton>	
-						<p:commandButton icon="ui-icon-pencil" value="Düzenle" update=":frmDepo:dlgDepo" oncomplete="PF('dlgDepo').show()" actionListener="#{depoController.duzenle(depo.id)}" > </p:commandButton>
+						<p:commandButton value="Sil" icon="ui-icon-trash"  actionListener="#{depoController.sil(depo.id)}" update=":frmDepo:tblDepo">
+							<p:confirm header="Silme Onay"
+								message="Silmek İstediginizden Emin misiniz?"
+								icon="ui-icon-alert" />
+						</p:commandButton>
+						<p:commandButton icon="ui-icon-pencil" value="Düzenle"
+							update=":frmDepo:dlgDepo" oncomplete="PF('dlgDepo').show()"
+							actionListener="#{depoController.duzenle(depo.id)}">
+						</p:commandButton>
 						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-					    </p:confirmDialog>					
+							<p:commandButton value="Evet" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+							<p:commandButton value="Hayır" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
 					</p:column>
 				</p:dataTable>
 				<p:commandButton value="Yeni Kayıt"
@@ -79,15 +84,13 @@
 						value="#{depoController.depo.depoTuru}" effect="fold"
 						converter="#{kodluListeConverter}">
 						<f:selectItem itemLabel="Seçiniz" itemValue="null" />
-						<f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}" value="#{dataController.depoTuruListe}" var="item" />
+						<f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}"
+							value="#{dataController.depoTuruListe}" var="item" />
 					</p:selectOneMenu>
-
-					<p:outputLabel for="aktif" value="Aktif: " />
-					<p:selectBooleanCheckbox id="aktif" value="#{depoController.depo.aktif}" />
 
 					<p:commandButton value="İptal" onclick="PF('dlgDepo').hide()"></p:commandButton>
 					<p:commandButton value="Kaydet"
-						update=":frmDepo:pnlDepo,:frmDepo:dlgDepo" process="@form"
+						update=":frmDepo:tblDepo,:frmDepo:dlgDepo" process="@form"
 						oncomplete="PF('dlgDepo').hide()"
 						action="#{depoController.depoKaydet}"></p:commandButton>
 				</p:panelGrid>

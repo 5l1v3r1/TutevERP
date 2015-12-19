@@ -14,8 +14,6 @@ import org.primefaces.model.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.tutev.web.erp.entity.base.Adres;
-import org.tutev.web.erp.entity.genel.Kisi;
 import org.tutev.web.erp.entity.genel.KodluListe;
 import org.tutev.web.erp.entity.stokhareket.Depo;
 import org.tutev.web.erp.service.KodluListeService;
@@ -53,7 +51,6 @@ public class DepoController implements Serializable {
 	}
 
 	public void depoKaydet() {
-		// irsaliye.setTarih(new Date());
 		try {
 			if(depo.getId()==null)
 				depoService.save(depo);
@@ -81,12 +78,21 @@ public class DepoController implements Serializable {
 	}
 
 	public void listele() {
+		
 		lazy=new LazyDataModel<Depo>() {
+			/**
+			 * 
+			 */
 			private static final long serialVersionUID = -8687445177321936423L;
 
 			@SuppressWarnings("unchecked")
 			@Override
 			public List<Depo> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+				
+				if(filterDepoTuru!=null && filterDepoTuru.getId()!=null ){
+					filters.put("depoTuru", filterDepoTuru);
+				}
+				
 				PageingModel depolar=depoService.getByPageing(first, pageSize, filters);
 				lazy.setRowCount(depolar.getRowCount());
 				return depolar.getList();

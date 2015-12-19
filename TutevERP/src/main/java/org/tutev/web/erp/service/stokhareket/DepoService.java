@@ -32,7 +32,7 @@ public class DepoService implements ServiceBase<Depo> {
 	@SuppressWarnings("null")
 	@Override
 	public Depo save(Depo entity) {
-		if(entity==null && entity.getDepoKodu().equals(""))
+		if(entity==null && entity.getId()==null)
 			return null;
 //			throw new NameNotNullException();
 		baseDao.save(entity);
@@ -62,12 +62,6 @@ public class DepoService implements ServiceBase<Depo> {
 		return depo;
 	}
 
-	public Depo getByDepoKodu(String kod) {
-		Session session = getSession();
-		Depo depo = (Depo) session.get(Depo.class, kod);
-		return depo;
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Depo> getAll() {
@@ -76,11 +70,6 @@ public class DepoService implements ServiceBase<Depo> {
 		return (List<Depo>) criteria.list();
 	}
 
-	@Override
-	public Session getSession() {
-		return baseDao.getSession();
-	}
-	
 	@SuppressWarnings({"null" })
 	public PageingModel getByPageing(int firstRecord, int pageSize, Map<String, Object> filters) {
 		Criteria criteria = getSession().createCriteria(Depo.class);
@@ -89,14 +78,18 @@ public class DepoService implements ServiceBase<Depo> {
 				criteria.add(Restrictions.ilike("depoAdi", (String) filters.get("depoAdi"),MatchMode.ANYWHERE));
 			}
 			
-			if(filters.get("depoTuru")!=null){
-				Criteria crTuru =criteria.createAlias("depo_turu", "u");
-				KodluListe depoTuru= (KodluListe) filters.get("depoTuru");
-				crTuru.add(Restrictions.eq("u.id",depoTuru.getId()));
+			if(filters.get("depo_turu")!=null){
+				KodluListe depoTuru= (KodluListe) filters.get("depo_turu");
+				criteria.add(Restrictions.eq("depo_turu.id",depoTuru.getId()));
 			}
 		}
 
 		return baseDao.getByPageing(firstRecord, pageSize, criteria);
 	}
 
+	@Override
+	public Session getSession() {
+		return baseDao.getSession();
+	}
+	
 }

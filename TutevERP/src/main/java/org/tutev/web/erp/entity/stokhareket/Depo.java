@@ -34,10 +34,10 @@ public class Depo extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 3951228488405913371L;
 	Long id;
-	String depoKodu;
-	String depoAdi;
-	String depoYeri;
-	KodluListe depoTuru;
+	private String depoKodu;
+	private String depoAdi;
+	private String depoYeri;
+	private KodluListe depoTuru;
 	
 	/**
 	 * @param id
@@ -119,7 +119,7 @@ public class Depo extends BaseEntity {
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DEPO_TURU")
-    @ForeignKey(name = "FK_IRS_DEPO_REF_DEPO_TURU")
+    @ForeignKey(name = "FK_DEPO_REF_DEPOTUR")
 	public KodluListe getDepoTuru() {
 		return depoTuru;
 	}
