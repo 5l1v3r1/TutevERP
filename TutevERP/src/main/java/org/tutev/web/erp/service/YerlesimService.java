@@ -75,6 +75,16 @@ public class YerlesimService {
 		List<Yerlesim> list= criteria.list();
 		return list;
 	}
+
+	@Transactional
+	public List<Yerlesim> getNullYerlesim() {
+		Criteria criteria = getSession().createCriteria(Yerlesim.class);
+		criteria.add(Restrictions.isNull("ustYerlesim.id"));
+		criteria.addOrder(Order.asc("id"));
+		@SuppressWarnings("unchecked")
+		List<Yerlesim> list= criteria.list();
+		return list;		
+	}
 	
 	
 }

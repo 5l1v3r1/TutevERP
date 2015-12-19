@@ -28,6 +28,7 @@ public class Yerlesim extends BaseEntity {
 	private String kod;
 	private String tanim;
 	private KodluListe yerlesimTip;
+	private Yerlesim ustYerlesim;
 
 	@Id
 	@SequenceGenerator(name = "SQ_YERLESIM", sequenceName = "SQ_YERLESIM", allocationSize = 1, initialValue = 1)
@@ -57,6 +58,17 @@ public class Yerlesim extends BaseEntity {
 
 	public void setTanim(String tanim) {
 		this.tanim = tanim;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "UST_YERLESIM_ID")
+    @ForeignKey(name = "FK_UST_YERLESIM_ID")
+	public Yerlesim getUstYerlesim() {
+		return ustYerlesim;
+	}
+	
+	public void setUstYerlesim(Yerlesim ustYerlesim) {
+		this.ustYerlesim = ustYerlesim;
 	}
 
     @ManyToOne(fetch = FetchType.LAZY)

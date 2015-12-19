@@ -72,6 +72,7 @@ public class KisiController implements Serializable {
 			 */
 			private static final long serialVersionUID = -1117065338221723478L;
 
+			@SuppressWarnings("unchecked")
 			@Override
 			public List<Kisi> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 				
