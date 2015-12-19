@@ -10,23 +10,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.tutev.web.erp.entity.genel.KodluListe;
-import org.tutev.web.erp.service.KodluListeService;
+import org.tutev.web.erp.entity.genel.Yerlesim;
+import org.tutev.web.erp.service.YerlesimService;
 
-@Controller("kodluListeConverter")
+@Controller("yerlesimConverter")
 @Scope("request")
-public class KodluListeConverter implements Converter {
+public class YerlesimConverter implements Converter {
 	@Autowired
-	private transient KodluListeService kodluListeService;
+	private transient YerlesimService yerlesimService;
 	
-	public static Logger logger = Logger.getLogger(KodluListeConverter.class);
+	public static Logger logger = Logger.getLogger(YerlesimConverter.class);
 
 	@Override
 	public Object getAsObject(FacesContext arg0, UIComponent arg1, String arg2) {
 		if (arg2 != null && arg2.trim().length() > 0 && !arg2.equals("null")) {
 			try {
-				KodluListe kodluListe = kodluListeService.getById(new Long(arg2));
-				logger.debug("KodluListeConverter Convert Yaptý " + arg2);
-				return kodluListe;
+				Yerlesim ent = yerlesimService.getById(new Long(arg2));
+				logger.debug("yerlesimConverter Convert Yaptý " + arg2);
+				return ent;
 			} catch (Exception e) {
 				logger.error(e);
 			}
@@ -39,7 +40,7 @@ public class KodluListeConverter implements Converter {
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
 	 if(arg2 != null && !arg2.equals("null") && arg2 instanceof KodluListe ) {
-            return String.valueOf(((KodluListe) arg2).getId());
+            return String.valueOf(((Yerlesim) arg2).getId());
         }
         else {
             return null;

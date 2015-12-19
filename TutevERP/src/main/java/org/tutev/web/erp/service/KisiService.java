@@ -8,6 +8,8 @@ package org.tutev.web.erp.service;
 import java.util.List;
 import java.util.Map;
 
+
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
@@ -15,6 +17,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.tutev.web.erp.entity.genel.Kisi;
 import org.tutev.web.erp.entity.genel.KodluListe;
 import org.tutev.web.erp.util.PageingModel;
@@ -57,6 +60,7 @@ public class KisiService implements ServiceBase<Kisi> {
 	}
 
 	@Override
+	@Transactional
 	public Kisi getById(Long id) {
 		Session session = getSession();
 		Kisi kisi = (Kisi) session.get(Kisi.class, id);
