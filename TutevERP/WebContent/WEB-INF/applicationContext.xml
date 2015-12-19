@@ -72,6 +72,10 @@
 	<bean id="appUtils" class="org.tutev.web.erp.util.AppUtils" >
 		<constructor-arg name="wsAdress" value="http://www.webservicex.net/globalweather.asmx?WSDL"></constructor-arg>
 	</bean>
+	
+	<bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter">
+    	<property name="baseAddress" value="http://localhost:8001/Ws/"/>
+	</bean>
 </beans>
 
 
