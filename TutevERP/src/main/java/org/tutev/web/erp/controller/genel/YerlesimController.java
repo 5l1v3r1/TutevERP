@@ -3,20 +3,16 @@ package org.tutev.web.erp.controller.genel;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
 import org.primefaces.model.DefaultTreeNode;
-import org.primefaces.model.LazyDataModel;
-import org.primefaces.model.SortOrder;
 import org.primefaces.model.TreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.tutev.web.erp.entity.genel.Yerlesim;
 import org.tutev.web.erp.service.YerlesimService;
-import org.tutev.web.erp.util.PageingModel;
 
 @Controller("yerlesimController")
 @Scope("view")
@@ -33,7 +29,6 @@ public class YerlesimController implements Serializable {
 	private Yerlesim yerlesim;
 	private TreeNode root;
 	
-	LazyDataModel<Yerlesim> lazy;
  
 	@PostConstruct
 	public void init() {
@@ -82,7 +77,6 @@ public class YerlesimController implements Serializable {
 			else
 				yerlesimService.update(yerlesim);	
 			
-			listele();
 		} catch (Exception e) {
 		}
 
@@ -93,32 +87,11 @@ public class YerlesimController implements Serializable {
 	}
 	
 	
-	public void listele() {
-		
-		lazy=new LazyDataModel<Yerlesim>() {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = -1117065338221723478L;
 
-			@SuppressWarnings("unchecked")
-			@Override
-			public List<Yerlesim> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-				
-				
-				PageingModel yrls=yerlesimService.getByPageing(first, pageSize, filters);
-				lazy.setRowCount(yrls.getRowCount());
-				return yrls.getList();
-			}
-
-		};
-
-	}
 	
 	public void sil(Long id) {
 		Yerlesim silinecek = yerlesimService.getById(id);
 		yerlesimService.delete(silinecek);
-		listele();
 	}
 	
 	public void duzenle(Long id) {
@@ -140,8 +113,5 @@ public class YerlesimController implements Serializable {
 		this.yerlesim = yerlesim;
 	}
 	
-	public LazyDataModel<Yerlesim> getLazy() {
-		return lazy;
-	}
 	
 }
