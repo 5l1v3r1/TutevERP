@@ -10,7 +10,7 @@ import org.tutev.web.erp.entity.fatura.Fatura;
 import org.tutev.web.erp.service.BaseDao;
 import org.tutev.web.ws.response.WsFatura;
 
-@WebService(name="FaturaWs")
+//@WebService(name="FaturaWs")
 @Service("faturaWs")
 public class FaturaWs {
 

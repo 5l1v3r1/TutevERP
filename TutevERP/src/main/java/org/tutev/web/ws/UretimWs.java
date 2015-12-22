@@ -16,7 +16,7 @@ import org.tutev.web.erp.service.BaseDao;
 import org.tutev.web.ws.response.WsKisi;
 import org.tutev.web.ws.response.WsUretim;
 
-@WebService(name="UretimWs")
+//@WebService(name="UretimWs")
 @Service("uretimWs")
 public class UretimWs {
 
