@@ -20,10 +20,6 @@ import org.tutev.web.erp.service.KodluListeService;
 import org.tutev.web.erp.service.stokhareket.DepoService;
 import org.tutev.web.erp.util.PageingModel;
 
-/**
- * @author gemini
- *
- */
 @Controller("depoController")
 @Scope("view")
 public class DepoController implements Serializable {
@@ -43,8 +39,6 @@ public class DepoController implements Serializable {
 	
 	LazyDataModel<Depo> lazy;
 
-	List<Depo> depoListesi;
-	
 	@PostConstruct
 	public void init() {
 		listele();
@@ -117,13 +111,6 @@ public class DepoController implements Serializable {
 	}
 
 	/**
-	 * @return the depoListesi
-	 */
-	public List<Depo> getDepoListesi() {
-		return depoListesi;
-	}
-
-	/**
 	 * @return the lazy
 	 */
 	public LazyDataModel<Depo> getLazy() {
@@ -135,9 +122,7 @@ public class DepoController implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		final int maxLen = 10;
-		return "DepoController [lazy=" + lazy + ", depo=" + depo + ", depoListesi="
-				+ (depoListesi != null ? depoListesi.subList(0, Math.min(depoListesi.size(), maxLen)) : null) + "]";
+		return "DepoController [lazy=" + lazy + ", depo=" + depo + "]";
 	}
 
 	public List<KodluListe> acomp(String query) {

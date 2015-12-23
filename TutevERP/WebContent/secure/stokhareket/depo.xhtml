@@ -7,7 +7,7 @@
 	<ui:define name="pageContent">
 		<h:form id="frmDepo">
 			<p:panelGrid id="pnlDepo" columns="1">
-				<p:dataTable id="tblDepo" widgetVar="tblDepo" var="depo" paginatorPosition="bottom"
+				<p:dataTable id="tblDepo" widgetVar="tblDepo" var="depo" paginatorPosition="bottom" 
 					value="#{depoController.lazy}" lazy="true" rowKey="#{depo.id}"  rows="10" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="10,20,50">
@@ -21,15 +21,16 @@
 					<p:column headerText="Depo Kodu">
 						<h:outputText value="#{depo.depoKodu}" />
 					</p:column>
-					<p:column headerText="Depo Adı">
+					<p:column headerText="Depo Adı" filterBy="#{depo.depoAdi}" >
 						<h:outputText value="#{depo.depoAdi}" />
 					</p:column>
-					<p:column headerText="Depo Yeri">
+					<p:column headerText="Depo Yeri" filterBy="#{depo.depoYeri}" >
 						<h:outputText value="#{depo.depoYeri}" />
 					</p:column>
-					<p:column headerText="Depo Türü" filterBy="#{depo.depo_Turu}">
+					<p:column headerText="Depo Türü" filterBy="#{depo.depoTuru}">
 					<f:facet name="filter">
-						<p:selectOneMenu id="depo"  onchange="PF('tblDepo').filter()"  effect="fold" converter="#{kodluListeConverter}">
+
+						<p:selectOneMenu id="depoTuru"  onchange="PF('tblDepo').filter()"  effect="fold" converter="#{kodluListeConverter}">
 						<f:selectItem itemLabel="Seçiniz" itemValue="null" ></f:selectItem>
 			            <f:selectItems itemLabel="#{item.tanim}" itemValue="#{item}"  value="#{dataController.depoTuruListe}" var="item" />
 			        </p:selectOneMenu>
@@ -37,12 +38,12 @@
 						<h:outputText value="#{depo.depoTuru.tanim}" />
 					</p:column>
 					<p:column headerText="İşlemler">
-						<p:commandButton value="Sil" icon="ui-icon-trash"  actionListener="#{depoController.sil(depo.id)}" update=":frmDepo:tblDepo">
+						<p:commandButton icon="ui-icon-trash"  actionListener="#{depoController.sil(depo.id)}" update=":frmDepo:tblDepo">
 							<p:confirm header="Silme Onay"
 								message="Silmek İstediginizden Emin misiniz?"
 								icon="ui-icon-alert" />
 						</p:commandButton>
-						<p:commandButton icon="ui-icon-pencil" value="Düzenle"
+						<p:commandButton icon="ui-icon-pencil"
 							update=":frmDepo:dlgDepo" oncomplete="PF('dlgDepo').show()"
 							actionListener="#{depoController.duzenle(depo.id)}">
 						</p:commandButton>
@@ -72,7 +73,7 @@
 						mask="aaa**" />
 
 					<p:outputLabel for="depoAdi" value="Depo Adı:" />
-					<p:inputText id="depoAdi" value="#{depoController.depo.depoTuru}"
+					<p:inputText id="depoAdi" value="#{depoController.depo.depoAdi}"
 						style="width:250px" />
 
 					<p:outputLabel for="depoYeri" value="Depo Yeri: " />

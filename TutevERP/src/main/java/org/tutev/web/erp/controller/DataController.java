@@ -50,55 +50,57 @@ public class DataController implements Serializable {
 		dataGuncelle();
 		
 		if (uyrukListe == null || uyrukListe.size() < 1) {
-			logger.debug("Referans Data Bulunamadý DB insert Yapýlýyor");
+			logger.debug("Referans Data Bulunamadı DB insert Yapılıyor");
 			kodluListeService.save(new KodluListe(null, "TC","Türkiye Cumhuriyeti", KodluListeTip.UYRUK));
-			kodluListeService.save(new KodluListe(null, "ABD","Amerika Birleþik Devletleri", KodluListeTip.UYRUK));
+			kodluListeService.save(new KodluListe(null, "ABD","Amerika Birleşik Devletleri", KodluListeTip.UYRUK));
 			kodluListeService.save(new KodluListe(null, "FR", "Fransa",KodluListeTip.UYRUK));
-			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
+			logger.debug("Referans Data Bulunamadı DB insert Yapıldı");
 			dataGuncelle();
 		}
 		
 		if (irsaliyeTurListe == null || irsaliyeTurListe.size() < 1) {
-			logger.debug("İrsaliye Türü : Referans Data Bulunamadý DB insert Yapýlýyor");
+			logger.debug("İrsaliye Türü : Referans Data Bulunamadı DB insert Yapılıyor");
 			kodluListeService.save(new KodluListe(null, "G","Giriş İrsaliyesi", KodluListeTip.IRSALIYE_TIP));
 			kodluListeService.save(new KodluListe(null, "C","Çıkış İrsaliyesi", KodluListeTip.IRSALIYE_TIP));
-			logger.debug("İrsaliye Türü : Referans Data Bulunamadý DB insert Yapýldý");
+			logger.debug("İrsaliye Türü : Referans Data Bulunamadı DB insert Yapıldı");
 			dataGuncelle();
 		}
 
 		if (uretimTipiListe == null || uretimTipiListe.size() < 1) {
-			logger.debug("uretimTipiListe Referans verisi Bulunamadý DB insert Yapýlýyor");
+			logger.debug("uretimTipiListe Referans verisi Bulunamadı DB insert Yapılıyor");
 			kodluListeService.save(new KodluListe(null, "krtk","Kritik Üretim", KodluListeTip.URETIM_TIP));
 			kodluListeService.save(new KodluListe(null, "Zrnl","Zorunlu Üretim", KodluListeTip.URETIM_TIP));
-			kodluListeService.save(new KodluListe(null, "icuretim", "Ýç Kaynaklar için Üretim",KodluListeTip.URETIM_TIP));
+			kodluListeService.save(new KodluListe(null, "icuretim", "İç Kaynaklar için Üretim",KodluListeTip.URETIM_TIP));
 			kodluListeService.save(new KodluListe(null, "dnmsl", "Dönemsel Üretim",KodluListeTip.URETIM_TIP));
-			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
+			logger.debug("Referans Data Bulunamadı DB insert Yapıldı");
 			dataGuncelle();
 		}
 		if (paraBirimListe == null || paraBirimListe.size() < 1) {
-			logger.debug("paraBirimListe Referans verisi Bulunamadý DB insert Yapýlýyor");
+			logger.debug("paraBirimListe Referans verisi Bulunamadı DB insert Yapılıyor");
 			kodluListeService.save(new KodluListe(null, "TL","Türk Lirası", KodluListeTip.PARA_BIRIM));
 			kodluListeService.save(new KodluListe(null, "USD","Amerikan Doları", KodluListeTip.PARA_BIRIM));
 			kodluListeService.save(new KodluListe(null, "EURO", "Avrupa Para Birimi",KodluListeTip.PARA_BIRIM));
-			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
+			logger.debug("Referans Data Bulunamadı DB insert Yapıldı");
 			dataGuncelle();
 		}	
 		if (yerlesimTipListe == null || yerlesimTipListe.size() < 1) {
-			logger.debug("yerlesimTipListe Referans verisi Bulunamadý DB insert Yapýlýyor");
-			kodluListeService.save(new KodluListe(null, "ANK","Ankara", KodluListeTip.YERLESIM_TIP));
-			kodluListeService.save(new KodluListe(null, "IST","İstanbul", KodluListeTip.YERLESIM_TIP));
-			kodluListeService.save(new KodluListe(null, "IZM", "İzmir",KodluListeTip.YERLESIM_TIP));
-			kodluListeService.save(new KodluListe(null, "MAL", "Malatya",KodluListeTip.YERLESIM_TIP));
-			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
+			logger.debug("yerlesimTipListe Referans verisi Bulunamadı DB insert Yapılıyor");
+			kodluListeService.save(new KodluListe(null, "U","Ülke", KodluListeTip.YERLESIM_TIP));
+			kodluListeService.save(new KodluListe(null, "B","Bölge", KodluListeTip.YERLESIM_TIP));
+			kodluListeService.save(new KodluListe(null, "E", "Eyalet",KodluListeTip.YERLESIM_TIP));
+			kodluListeService.save(new KodluListe(null, "C", "Şehir",KodluListeTip.YERLESIM_TIP));
+			kodluListeService.save(new KodluListe(null, "T", "İlçe",KodluListeTip.YERLESIM_TIP));
+			kodluListeService.save(new KodluListe(null, "M", "Mahalle",KodluListeTip.YERLESIM_TIP));
+			logger.debug("Referans Data Bulunamadı DB insert Yapıldı");
 			dataGuncelle();
 		}	
 		if (depoTuruListe == null || depoTuruListe.size() < 1) {
-			logger.debug("depoTuruListe Referans verisi Bulunamadý DB insert Yapýlýyor");
+			logger.debug("depoTuruListe Referans verisi Bulunamadı DB insert Yapılıyor");
 			kodluListeService.save(new KodluListe(null, "A","Ambar", KodluListeTip.DEPO_TURU));
 			kodluListeService.save(new KodluListe(null, "E","Eczane", KodluListeTip.DEPO_TURU));
-			kodluListeService.save(new KodluListe(null, "S", "Servis Ambarı",KodluListeTip.DEPO_TURU));
+			kodluListeService.save(new KodluListe(null, "S", "Soğutmalı Depo",KodluListeTip.DEPO_TURU));
 			kodluListeService.save(new KodluListe(null, "K", "Koltuk Ambarı",KodluListeTip.DEPO_TURU));
-			logger.debug("Referans Data Bulunamadý DB insert Yapýldý");
+			logger.debug("Referans Data Bulunamadı DB insert Yapıldı");
 			dataGuncelle();
 		}	
 		
@@ -151,7 +153,7 @@ public class DataController implements Serializable {
 	}
 
 	/**
-	 * Mehmet Emin IŞIK
+	 * Mehmet Emin IÅ�IK
 	 * @return the irsaliyeTurListe
 	 */
 	public List<KodluListe> getIrsaliyeTurListe() {
@@ -159,7 +161,7 @@ public class DataController implements Serializable {
 	}
 
 	/**
-	 * Mehmet Emin IŞIK
+	 * Mehmet Emin IÅ�IK
 	 * @return the depoTuruListe
 	 */
 	public List<KodluListe> getDepoTuruListe() {
