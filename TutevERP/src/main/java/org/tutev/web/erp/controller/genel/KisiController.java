@@ -3,6 +3,8 @@ package org.tutev.web.erp.controller.genel;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 
 import javax.annotation.PostConstruct;
 
@@ -83,6 +85,18 @@ public class KisiController implements Serializable {
 				PageingModel kisiler=kisiService.getByPageing(first, pageSize, filters);
 				lazy.setRowCount(kisiler.getRowCount());
 				return kisiler.getList();
+			}
+
+			@Override
+			public void forEach(Consumer<? super Kisi> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public Spliterator<Kisi> spliterator() {
+				// TODO Auto-generated method stub
+				return null;
 			}
 
 		};

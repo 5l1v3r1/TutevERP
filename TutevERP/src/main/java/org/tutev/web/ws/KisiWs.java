@@ -14,7 +14,6 @@ import org.tutev.web.erp.service.BaseDao;
 import org.tutev.web.ws.response.WsKisi;
 
 @WebService(name="PersonWs")
-@Service("kisiWs")
 public class KisiWs {
 
 	@Autowired

@@ -1,4 +1,4 @@
-package org.tutev.web.ws.response;
+package org.tutev.web.ws.fatura;
 
 import java.util.Date;
 

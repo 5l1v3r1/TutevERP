@@ -1,17 +1,16 @@
-package org.tutev.web.ws;
+package org.tutev.web.ws.fatura;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tutev.web.erp.entity.fatura.Fatura;
 import org.tutev.web.erp.service.BaseDao;
-import org.tutev.web.ws.response.WsFatura;
 
-//@WebService(name="FaturaWs")
-@Service("faturaWs")
+@WebService(name="FaturaWs")
 public class FaturaWs {
 
 	@Autowired

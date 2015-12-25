@@ -6,6 +6,8 @@ package org.tutev.web.erp.controller.stokhareket;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 
 import javax.annotation.PostConstruct;
 
@@ -90,6 +92,18 @@ public class DepoController implements Serializable {
 				PageingModel depolar=depoService.getByPageing(first, pageSize, filters);
 				lazy.setRowCount(depolar.getRowCount());
 				return depolar.getList();
+			}
+
+			@Override
+			public void forEach(Consumer<? super Depo> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public Spliterator<Depo> spliterator() {
+				// TODO Auto-generated method stub
+				return null;
 			}
 		};
 	}

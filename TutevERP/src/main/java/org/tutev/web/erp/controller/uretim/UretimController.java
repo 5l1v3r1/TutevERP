@@ -3,6 +3,8 @@ package org.tutev.web.erp.controller.uretim;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 
 import javax.annotation.PostConstruct;
 
@@ -72,6 +74,18 @@ public class UretimController implements Serializable {
 				PageingModel uretimler=uretimService.getByPageing(first, pageSize, filters);
 				lazy.setRowCount(uretimler.getRowCount());
 				return uretimler.getList();
+			}
+
+			@Override
+			public void forEach(Consumer<? super Uretim> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public Spliterator<Uretim> spliterator() {
+				// TODO Auto-generated method stub
+				return null;
 			}
 		};
 
