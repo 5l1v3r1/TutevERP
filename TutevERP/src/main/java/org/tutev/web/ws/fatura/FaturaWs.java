@@ -5,16 +5,13 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.tutev.web.erp.entity.fatura.Fatura;
 import org.tutev.web.erp.service.BaseDao;
 
 @WebService(name="FaturaWs")
 public class FaturaWs {
 
-	@Autowired
-	private transient BaseDao baseDao;
+	private BaseDao baseDao;
 	
 	@WebMethod(operationName="getFaturaById")
 	public @WebResult(name="Fatura") WsFatura getFaturaById(@WebParam(name="FaturaId") Long id) {
@@ -29,5 +26,12 @@ public class FaturaWs {
 			}
 		}
 		return wsFatura;
+	}
+	
+	public BaseDao getBaseDao() {
+		return baseDao;
+	}
+	public void setBaseDao(BaseDao baseDao) {
+		this.baseDao = baseDao;
 	}
 }

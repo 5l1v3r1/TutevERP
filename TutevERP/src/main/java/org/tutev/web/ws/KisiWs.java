@@ -7,17 +7,14 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.tutev.web.erp.entity.genel.Kisi;
 import org.tutev.web.erp.service.BaseDao;
 import org.tutev.web.ws.response.WsKisi;
 
 @WebService(name="PersonWs")
-public class KisiWs {
+public class KisiWs{
 
-	@Autowired
-	private transient BaseDao baseDao;
+	private BaseDao baseDao;
 	
 	@WebMethod(operationName="getPersonById")
 	public @WebResult(name="Person") WsKisi getKisiById(@WebParam(name="PersonId") Long id) {
@@ -45,4 +42,12 @@ public class KisiWs {
 	public List<WsKisi> getKisisBySoyad(@WebParam(name="PersonSurname") String soyad) {
 		return null;
 	}
+	
+	public BaseDao getBaseDao() {
+		return baseDao;
+	}
+	public void setBaseDao(BaseDao baseDao) {
+		this.baseDao = baseDao;
+	}
+
 }

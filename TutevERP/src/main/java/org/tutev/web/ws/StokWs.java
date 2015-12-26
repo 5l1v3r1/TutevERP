@@ -7,18 +7,15 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.tutev.web.erp.entity.stok.Skart;
 import org.tutev.web.erp.service.BaseDao;
 import org.tutev.web.ws.response.WsStok;
 //http://localhost:8001/Ws/StockWs?wsdl
-//@WebService(name="StockWs")
-@Service("stokWs")
-public class StokWs {
+@WebService(name="StockWs")
+public class StokWs{
 
-	@Autowired
-	private transient BaseDao baseDao;
+	private BaseDao baseDao;
+	
 	
 	@WebMethod(operationName="getStockById")
 	public @WebResult(name="Stock") WsStok getStockById(@WebParam(name="StockId") Long id) {
@@ -37,6 +34,14 @@ public class StokWs {
 	public List<WsStok> getStokByTanim(@WebParam(name="StockName") String stokTanim) {
 
 		return null;
+	}
+	
+	public BaseDao getBaseDao() {
+		return baseDao;
+	}
+	
+	public void setBaseDao(BaseDao baseDao) {
+		this.baseDao = baseDao;
 	}
 	
 }

@@ -9,3 +9,7 @@ wsimport -keep -clientjar Weater.jar http://www.webservicex.net/globalweather.as
 veya var olan bir wsdl dosya için
 wsimport -keep -clientjar Weater.jar C:\\TTEMEL\Wsdl.wsdl
 kullanýlabilir
+
+
+Uygulama sunucusunun classes dizininde çalýþtýrýlmasý gerekiyor
+wsgen -keep -cp . org.tutev.AbcWs
