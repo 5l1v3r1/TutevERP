@@ -1,11 +1,17 @@
 package org.tutev.web.erp.util;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "CurrentWeather")
-public class HavaDurum {
+public class HavaDurum implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String yer;	
 	private String zaman;	
 	private String ruzgar;	

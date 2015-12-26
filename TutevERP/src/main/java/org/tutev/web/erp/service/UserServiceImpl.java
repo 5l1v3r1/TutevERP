@@ -21,10 +21,22 @@ public class UserServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private transient BaseDao baseDao;
-
+	 
 	@Transactional
 	@Override
 	public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException {
+		
+//		SecurityContextHolder.
+//        final List<Object> allPrincipals = sessionRegistry.getAllPrincipals();
+//
+//        for(final Object principal : allPrincipals) {
+//            if(principal instanceof UserDetails) {
+//            	UserDetails ob= (UserDetails) principal;
+//            	if(ob.getUsername().equals(arg0))
+//            		return null;
+//            }
+//        }
+        
 		Criteria criteria = baseDao.getSession().createCriteria(Kullanici.class);
 		criteria.add(Restrictions.eq("username", arg0));
 		Kullanici kullanici = (Kullanici) criteria.uniqueResult();

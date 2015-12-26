@@ -55,7 +55,7 @@ public class LoginController implements Serializable{
 
 	public Kullanici getAktifKullanici() {
 		if(aktifKullanici==null){
-			aktifKullanici=new Kullanici();
+			aktifKullanici =new Kullanici();			
 		}
 		return aktifKullanici;
 	}

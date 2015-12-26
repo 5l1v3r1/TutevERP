@@ -29,9 +29,9 @@ public class KisiController implements Serializable {
 	 */
 	private static final long serialVersionUID = -3607896108305768125L;
 
-	@Autowired
+	@Autowired(required=true)
 	private transient KisiService kisiService;
-	@Autowired
+	@Autowired(required=true)
 	private transient KodluListeService kodluListeService;
 
 	private Kisi kisi;
