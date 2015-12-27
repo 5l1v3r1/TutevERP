@@ -14,7 +14,6 @@ public class DbUtil {
     public List<Kisi> getKisis()
     {
         List<Kisi> kisiList=new ArrayList<Kisi>();
-        
         Connection connnection=null;
         PreparedStatement preparedStatement=null;
         ResultSet resultSet=null;
