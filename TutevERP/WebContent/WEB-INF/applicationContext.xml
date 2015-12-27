@@ -37,7 +37,7 @@
 
 	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
 	
-	<bean id="DataSource"  class="org.postgresql.jdbc3.Jdbc3PoolingDataSource" destroy-method="close">
+	<bean id="dataSource"  class="org.postgresql.jdbc3.Jdbc3PoolingDataSource" destroy-method="close">
 		<property name="serverName" value="localhost" />
 		<property name="portNumber" value="5432" />
 		<property name="databaseName" value="TERP" />
@@ -49,7 +49,7 @@
 
 	<bean id="sessionFactory" 
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="DataSource" />
+		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan" value="org.tutev.web.erp" />
 		<property name="hibernateProperties">
 			<props>

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.tutev.web.erp.entity.base.Adres;
 import org.tutev.web.erp.entity.genel.Kisi;
 import org.tutev.web.erp.entity.genel.KodluListe;
+import org.tutev.web.erp.reports.RaporController;
 import org.tutev.web.erp.service.KisiService;
 import org.tutev.web.erp.service.KodluListeService;
 import org.tutev.web.erp.util.PageingModel;
@@ -33,9 +34,13 @@ public class KisiController implements Serializable {
 	private transient KisiService kisiService;
 	@Autowired(required=true)
 	private transient KodluListeService kodluListeService;
+	@Autowired
+	private RaporController raporController;
 
 	private Kisi kisi;
 	private KodluListe filterUyruk;
+	
+	private Integer raporTip;
 	
 	LazyDataModel<Kisi> lazy;
  
@@ -60,6 +65,11 @@ public class KisiController implements Serializable {
 	
 	public List<KodluListe> acomp(String query) {
 		return kodluListeService.acomp(query);
+	}
+	
+	public void raporAl() {
+		raporController.raporAl(raporTip);
+		raporController.raporAlGoster();
 	}
 	
 	public void ajaxCall() {
@@ -145,5 +155,13 @@ public class KisiController implements Serializable {
 	
 	public void setFilterUyruk(KodluListe filterUyruk) {
 		this.filterUyruk = filterUyruk;
+	}
+	
+	public Integer getRaporTip() {
+		return raporTip;
+	}
+	
+	public void setRaporTip(Integer raporTip) {
+		this.raporTip = raporTip;
 	}
 }
