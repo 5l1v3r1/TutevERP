@@ -2,8 +2,6 @@ package org.tutev.web.erp.controller.stok;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 import javax.annotation.PostConstruct;
 
@@ -181,17 +179,6 @@ public class StokController implements Serializable {
 				return stokkartlar.getList();
 			}
 
-			@Override
-			public void forEach(Consumer<? super Skart> arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public Spliterator<Skart> spliterator() {
-				// TODO Auto-generated method stub
-				return null;
-			}
 		};
 
 	}

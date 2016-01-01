@@ -6,8 +6,6 @@ package org.tutev.web.erp.controller.stokhareket;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 import javax.annotation.PostConstruct;
 
@@ -103,17 +101,6 @@ public class IrsaliyeController implements Serializable {
 				return irsaliyeler.getList();
 			}
 
-			@Override
-			public void forEach(Consumer<? super Irsaliye> arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public Spliterator<Irsaliye> spliterator() {
-				// TODO Auto-generated method stub
-				return null;
-			}
 		};
 	}
 	/**
