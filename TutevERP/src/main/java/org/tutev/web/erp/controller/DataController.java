@@ -153,7 +153,7 @@ public class DataController implements Serializable {
 	}
 
 	/**
-	 * Mehmet Emin IÅ�IK
+	 * Mehmet Emin IŞIK
 	 * @return the irsaliyeTurListe
 	 */
 	public List<KodluListe> getIrsaliyeTurListe() {
