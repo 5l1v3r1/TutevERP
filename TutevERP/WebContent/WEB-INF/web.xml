@@ -45,7 +45,7 @@
 	</context-param>
 	<context-param>
 	    <param-name>primefaces.THEME</param-name>
-	    <param-value>cupertino</param-value>
+	    <param-value>dark-hive</param-value>
 	</context-param>
 	<context-param>
 		<param-name>log4jExposeWebAppRoot</param-name>
@@ -109,12 +109,20 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/faces/*</url-pattern>
   </servlet-mapping>
-      <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.xhtml</url-pattern>
-      </servlet-mapping>
+	<servlet-mapping id="jsf">
+	    <servlet-name>Faces Servlet</servlet-name>
+	    <url-pattern>*.html</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping id="xhtml">
+	    <servlet-name>Faces Servlet</servlet-name>
+	    <url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
       <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.faces</url-pattern>
       </servlet-mapping>
+      
+      <session-config>
+      <session-timeout>30</session-timeout>
+    </session-config>
 </web-app>

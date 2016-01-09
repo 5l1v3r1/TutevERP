@@ -36,7 +36,6 @@ public class UserServiceImpl implements UserDetailsService {
 //            		return null;
 //            }
 //        }
-        
 		Criteria criteria = baseDao.getSession().createCriteria(Kullanici.class);
 		criteria.add(Restrictions.eq("username", arg0));
 		Kullanici kullanici = (Kullanici) criteria.uniqueResult();

@@ -19,5 +19,4 @@
 			<source-class>javax.faces.component.UIViewRoot</source-class>
 		</system-event-listener>
 	</application>
-
 </faces-config>
