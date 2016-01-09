@@ -51,11 +51,4 @@
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 		<nature>org.hibernate.eclipse.console.hibernateNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>WebContent/WEB-INF/log4j.properties</name>
-			<type>1</type>
-			<locationURI>PROJECT_LOC/src/main/java/log4j.properties</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
