@@ -5,7 +5,14 @@
 	<artifactId>TutevERP</artifactId>
 	<version>10.0.1.RELEASE</version>
 	<packaging>war</packaging>
-
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 	<properties>
 		<spring.version>4.1.0.RELEASE</spring.version>
 		<security.version>3.2.5.RELEASE</security.version>
@@ -20,6 +27,11 @@
 		<javassist.version>3.18.1-GA</javassist.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.10</version>
+		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
@@ -121,12 +133,12 @@
 			<artifactId>jaxrpc-api</artifactId>
 			<version>${jaxrpc.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>net.bootsfaces</groupId>
-			<artifactId>bootsfaces</artifactId>
-			<version>0.6.6</version>
-			<scope>compile</scope>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>net.bootsfaces</groupId> -->
+<!-- 			<artifactId>bootsfaces</artifactId> -->
+<!-- 			<version>0.6.6</version> -->
+<!-- 			<scope>compile</scope> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
@@ -242,11 +254,6 @@
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.annotation</artifactId>
 			<version>3.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.faces</artifactId>
-			<version>2.1.21</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
