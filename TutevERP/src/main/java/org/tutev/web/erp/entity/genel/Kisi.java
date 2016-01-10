@@ -61,8 +61,10 @@ public class Kisi extends BaseEntity{
     
 
     @Id
-    @SequenceGenerator(name = "SQ_KISI",sequenceName = "SQ_KISI",allocationSize = 1,initialValue = 1)
-    @GeneratedValue(generator = "SQ_KISI",strategy = GenerationType.SEQUENCE)
+    //@SequenceGenerator(name = "SQ_KISI",sequenceName = "SQ_KISI",allocationSize = 1,initialValue = 1)
+   // //@GeneratedValue(generator = "SQ_KISI",strategy = GenerationType.SEQUENCE 
+     @GeneratedValue()
+   //     @GeneratedValue()
     @Column(name = "ID")
     public Long getId() {
         return id;

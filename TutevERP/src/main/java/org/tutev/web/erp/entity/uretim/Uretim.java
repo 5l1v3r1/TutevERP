@@ -60,8 +60,9 @@ public class Uretim extends BaseEntity {
 	
 	
 	@Id
-	@SequenceGenerator(name = "SQ_URETIM", sequenceName = "SQ_URETIM", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "SQ_URETIM", strategy = GenerationType.SEQUENCE)
+	//@SequenceGenerator(name = "SQ_URETIM", sequenceName = "SQ_URETIM", allocationSize = 1, initialValue = 1)
+	//@GeneratedValue(generator = "SQ_URETIM", strategy = GenerationType.SEQUENCE 
+     @GeneratedValue()
 	@Column(name = "ID")
 	public Long getId() {
 		return id;

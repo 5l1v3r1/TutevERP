@@ -62,8 +62,9 @@ public class StokHrkMalzeme extends BaseEntity {
 	 * @return the id
 	 */
 	@Id
-	@SequenceGenerator(name = "SQ_IRS_MALZEME_ID", sequenceName = "SQ_IRS_MALZEME_ID", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "SQ_IRS_MALZEME_ID", strategy = GenerationType.SEQUENCE)
+	//@SequenceGenerator(name = "SQ_IRS_MALZEME_ID", sequenceName = "SQ_IRS_MALZEME_ID", allocationSize = 1, initialValue = 1)
+	//@GeneratedValue(generator = "SQ_IRS_MALZEME_ID", strategy = GenerationType.SEQUENCE 
+     @GeneratedValue()
 	@Column(name = "ID")
 	public Long getId() {
 		return id;

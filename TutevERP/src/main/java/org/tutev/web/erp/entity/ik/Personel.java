@@ -47,8 +47,9 @@ public class Personel extends BaseEntity {
 	}
 
 	@Id
-	@SequenceGenerator(name = "SQ_PERSONEL_ID", sequenceName = "SQ_PERSONEL_ID", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "SQ_PERSONEL_ID", strategy = GenerationType.SEQUENCE)
+	//@SequenceGenerator(name = "SQ_PERSONEL_ID", sequenceName = "SQ_PERSONEL_ID", allocationSize = 1, initialValue = 1)
+	//@GeneratedValue(generator = "SQ_PERSONEL_ID", strategy = GenerationType.SEQUENCE 
+     @GeneratedValue()
 	@Column(name = "ID")
 	public Long getId() {
 		return Id;

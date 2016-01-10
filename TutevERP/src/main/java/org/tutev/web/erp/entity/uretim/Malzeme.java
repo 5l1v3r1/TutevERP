@@ -41,8 +41,9 @@ public class Malzeme extends BaseEntity {
 	
 
 	@Id
-	@SequenceGenerator(name = "SQ_MALZEME", sequenceName = "SQ_MALZEME", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "SQ_MALZEME", strategy = GenerationType.SEQUENCE)
+	//@SequenceGenerator(name = "SQ_MALZEME", sequenceName = "SQ_MALZEME", allocationSize = 1, initialValue = 1)
+	//@GeneratedValue(generator = "SQ_MALZEME", strategy = GenerationType.SEQUENCE 
+     @GeneratedValue()
 	@Column(name = "MALZEME_ID")	 	
 	public Long getMalzemeId() {
 		return malzemeId;

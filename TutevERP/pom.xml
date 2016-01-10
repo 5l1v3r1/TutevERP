@@ -27,6 +27,12 @@
 		<javassist.version>3.18.1-GA</javassist.version>
 	</properties>
 	<dependencies>
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.9</version>
+	</dependency>
+
 		<dependency>
 			<groupId>org.primefaces.themes</groupId>
 			<artifactId>all-themes</artifactId>
@@ -133,12 +139,12 @@
 			<artifactId>jaxrpc-api</artifactId>
 			<version>${jaxrpc.version}</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>net.bootsfaces</groupId> -->
-<!-- 			<artifactId>bootsfaces</artifactId> -->
-<!-- 			<version>0.6.6</version> -->
-<!-- 			<scope>compile</scope> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>net.bootsfaces</groupId> -->
+		<!-- <artifactId>bootsfaces</artifactId> -->
+		<!-- <version>0.6.6</version> -->
+		<!-- <scope>compile</scope> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>

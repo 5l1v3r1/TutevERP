@@ -94,8 +94,9 @@ public class Irsaliye extends BaseEntity {
 	}
 
 	@Id
-	@SequenceGenerator(name = "SQ_IRSALIYE", sequenceName = "SQ_IRSALIYE", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "SQ_IRSALIYE", strategy = GenerationType.SEQUENCE)
+	//@SequenceGenerator(name = "SQ_IRSALIYE", sequenceName = "SQ_IRSALIYE", allocationSize = 1, initialValue = 1)
+	//@GeneratedValue(generator = "SQ_IRSALIYE", strategy = GenerationType.SEQUENCE 
+     @GeneratedValue()
 	@Column(name = "ID")
 	public Long getId() {
 		return id;

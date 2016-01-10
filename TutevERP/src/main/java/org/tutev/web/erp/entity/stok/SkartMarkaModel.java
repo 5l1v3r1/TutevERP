@@ -30,8 +30,9 @@ public class SkartMarkaModel extends BaseEntity{
 	private SkartMarkaModel ustMarkaModel;
 
 	@Id
-	@SequenceGenerator(name = "SQ_SKART_KATEGORI", sequenceName = "SQ_SKART_KATEGORI", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "SQ_SKART_KATEGORI", strategy = GenerationType.SEQUENCE)
+	//@SequenceGenerator(name = "SQ_SKART_KATEGORI", sequenceName = "SQ_SKART_KATEGORI", allocationSize = 1, initialValue = 1)
+	//@GeneratedValue(generator = "SQ_SKART_KATEGORI", strategy = GenerationType.SEQUENCE 
+     @GeneratedValue()
 	@Column(name = "ID")
 	public Long getId() {
 		return id;

@@ -39,8 +39,9 @@ public class KodluListe extends BaseEntity {
 	}
 
 	@Id
-	@SequenceGenerator(name = "SQ_KODLU_LISTE", sequenceName = "SQ_KODLU_LISTE", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "SQ_KODLU_LISTE", strategy = GenerationType.SEQUENCE)
+	//@SequenceGenerator(name = "SQ_KODLU_LISTE", sequenceName = "SQ_KODLU_LISTE", allocationSize = 1, initialValue = 1)
+	//@GeneratedValue(generator = "SQ_KODLU_LISTE", strategy = GenerationType.SEQUENCE 
+     @GeneratedValue()
 	@Column(name = "id")
 	public Long getId() {
 		return id;

@@ -44,8 +44,9 @@ public class Fatura extends BaseEntity {
 
     
     @Id
-    @GeneratedValue(generator = "SQ_FATURA", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(allocationSize = 1, initialValue = 1, name = "SQ_FATURA", sequenceName = "SQ_FATURA")
+   // //@GeneratedValue(generator = "SQ_FATURA", strategy = GenerationType.SEQUENCE 
+     @GeneratedValue()
+    //@SequenceGenerator(allocationSize = 1, initialValue = 1, name = "SQ_FATURA", sequenceName = "SQ_FATURA")
     public Long getId() {
         return id;
     }

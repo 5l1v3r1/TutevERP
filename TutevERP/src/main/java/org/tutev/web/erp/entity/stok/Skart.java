@@ -42,8 +42,9 @@ public class Skart extends BaseEntity {
 
 	@Id
 	// Each entity bean will have a primary key
-	@SequenceGenerator(name = "SQ_SKART_ID", sequenceName = "SQ_SKART_ID", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "SQ_SKART_ID", strategy = GenerationType.SEQUENCE)
+	//@SequenceGenerator(name = "SQ_SKART_ID", sequenceName = "SQ_SKART_ID", allocationSize = 1, initialValue = 1)
+	//@GeneratedValue(generator = "SQ_SKART_ID", strategy = GenerationType.SEQUENCE 
+     @GeneratedValue()
 	@Column(name = "ID")
 	// to specify the details of the column to which a field or property will be
 	// mapped

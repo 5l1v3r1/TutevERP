@@ -63,8 +63,9 @@ public class Depo extends BaseEntity {
 	 * @return the id
 	 */
 	@Id
-	@SequenceGenerator(name = "SQ_DEPO_ID", sequenceName = "SQ_DEPO_ID", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "SQ_DEPO_ID", strategy = GenerationType.SEQUENCE)
+	//@SequenceGenerator(name = "SQ_DEPO_ID", sequenceName = "SQ_DEPO_ID", allocationSize = 1, initialValue = 1)
+	//@GeneratedValue(generator = "SQ_DEPO_ID", strategy = GenerationType.SEQUENCE 
+     @GeneratedValue()
 	@Column(name = "ID")
 	public Long getId() {
 		return id;

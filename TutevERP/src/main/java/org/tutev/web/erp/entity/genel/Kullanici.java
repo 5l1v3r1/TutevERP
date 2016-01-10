@@ -40,8 +40,9 @@ public class Kullanici extends  BaseEntity{
     private Kisi kisi;
 
     @Id
-    @SequenceGenerator(name = "SQ_KULLANICI",sequenceName = "SQ_KULLANICI",allocationSize = 1,initialValue = 1)
-    @GeneratedValue(generator = "SQ_KULLANICI",strategy = GenerationType.SEQUENCE)
+    //@SequenceGenerator(name = "SQ_KULLANICI",sequenceName = "SQ_KULLANICI",allocationSize = 1,initialValue = 1)
+   // //@GeneratedValue(generator = "SQ_KULLANICI",strategy = GenerationType.SEQUENCE 
+     @GeneratedValue()
     @Column(name = "ID")
     public Long getId() {
         return id;

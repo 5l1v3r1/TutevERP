@@ -51,8 +51,9 @@ public class StokHareket extends BaseEntity {
 	 * @return the id
 	 */
 	@Id
-	@SequenceGenerator(name = "SQ_STOKHAREKET", sequenceName = "SQ_STOKHAREKET", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "SQ_STOKHAREKET", strategy = GenerationType.SEQUENCE)
+	//@SequenceGenerator(name = "SQ_STOKHAREKET", sequenceName = "SQ_STOKHAREKET", allocationSize = 1, initialValue = 1)
+	//@GeneratedValue(generator = "SQ_STOKHAREKET", strategy = GenerationType.SEQUENCE 
+     @GeneratedValue()
 	@Column(name = "ID")
 	public Long getId() {
 		return id;

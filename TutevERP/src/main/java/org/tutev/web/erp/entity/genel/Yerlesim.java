@@ -31,8 +31,9 @@ public class Yerlesim extends BaseEntity {
 	private Yerlesim ustYerlesim;
 
 	@Id
-	@SequenceGenerator(name = "SQ_YERLESIM", sequenceName = "SQ_YERLESIM", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "SQ_YERLESIM", strategy = GenerationType.SEQUENCE)
+	//@SequenceGenerator(name = "SQ_YERLESIM", sequenceName = "SQ_YERLESIM", allocationSize = 1, initialValue = 1)
+	//@GeneratedValue(generator = "SQ_YERLESIM", strategy = GenerationType.SEQUENCE 
+     @GeneratedValue()
 	@Column(name = "id")
 	public Long getId() {
 		return id;

@@ -66,8 +66,9 @@ public class Firma extends BaseEntity {
 	 * @return the id of the firma
 	 */
 	@Id
-	@SequenceGenerator(name = "SQ_IRS_FIRMA_ID", sequenceName = "SQ_IRS_FIRMA_ID", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "SQ_IRS_FIRMA_ID", strategy = GenerationType.SEQUENCE)
+	//@SequenceGenerator(name = "SQ_IRS_FIRMA_ID", sequenceName = "SQ_IRS_FIRMA_ID", allocationSize = 1, initialValue = 1)
+	//@GeneratedValue(generator = "SQ_IRS_FIRMA_ID", strategy = GenerationType.SEQUENCE 
+     @GeneratedValue()
 	@Column(name = "ID")
 	public Long getId() {
 		return id;
